@@ -1,0 +1,95 @@
+% Commands
+\newcommand{\drawcard}[3]{\raisebox{-2 pt}{%
+		\begin{tikzpicture}
+			\draw (-0.2,-0.2) rectangle (0.2,0.2)
+			(0,0) node[#1] {\contourlength{0.01 em}\contour{black}{$#2$}}
+			#3;
+		\end{tikzpicture}}%
+	}
+
+\newcommand{\colorclue}[1]{(0.12, 0.3) node {\tiny \hspace{-2 mm} #1}}
+\newcommand{\numberclue}[1]{(-0.04, 0.3) node {\tiny \hspace{-2 mm} $#1$}}
+
+% Symbols
+\newcommand{\white}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{white.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\blue}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{blue.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\green}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{green.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\yellow}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{yellow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\red}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{red.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\rainbow}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{rainbow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+% Macros
+\newcommand{\K}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{black}{$#1$}}}
+\newcommand{\R}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{red}{$#1$}} \red}
+\newcommand{\Y}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{yellow}{$#1$}} \yellow}
+\newcommand{\G}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{green}{$#1$}} \green}
+\newcommand{\B}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{blue}{$#1$}} \blue}
+\newcommand{\W}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{gray}{$#1$}} \white}
+\newcommand{\M}[1]{\contourlength{0.01 em}\contour{black}{\textcolor{violet}{$#1$}} \rainbow}
+
+\newcommand{\KC}[1]{\drawcard{black}{#1}{}}
+\newcommand{\RC}[1]{\drawcard{red}{#1}{}}
+\newcommand{\YC}[1]{\drawcard{yellow}{#1}{}}
+\newcommand{\GC}[1]{\drawcard{green}{#1}{}}
+\newcommand{\BC}[1]{\drawcard{blue}{#1}{}}
+\newcommand{\WC}[1]{\drawcard{gray}{#1}{}}
+\newcommand{\MC}[1]{\drawcard{violet}{#1}{}}
+
+\newcommand{\RCc}[1]{\drawcard{red}{#1}{\colorclue{\red}}}
+\newcommand{\YCc}[1]{\drawcard{yellow}{#1}{\colorclue{\yellow}}}
+\newcommand{\GCc}[1]{\drawcard{green}{#1}{\colorclue{\green}}}
+\newcommand{\BCc}[1]{\drawcard{blue}{#1}{\colorclue{\blue}}}
+\newcommand{\WCc}[1]{\drawcard{gray}{#1}{\colorclue{\white}}}
+\newcommand{\MCc}[1]{\drawcard{violet}{#1}{\colorclue{\rainbow}}}
+
+\newcommand{\RCn}[1]{\drawcard{red}{#1}{\numberclue{#1}}}
+\newcommand{\YCn}[1]{\drawcard{yellow}{#1}{\numberclue{#1}}}
+\newcommand{\GCn}[1]{\drawcard{green}{#1}{\numberclue{#1}}}
+\newcommand{\BCn}[1]{\drawcard{blue}{#1}{\numberclue{#1}}}
+\newcommand{\WCn}[1]{\drawcard{gray}{#1}{\numberclue{#1}}}
+\newcommand{\MCn}[1]{\drawcard{violet}{#1}{\numberclue{#1}}}
+
+\newcommand{\RCcn}[1]{\drawcard{red}{#1}{\colorclue{\red} \numberclue{#1}}}
+\newcommand{\YCcn}[1]{\drawcard{yellow}{#1}{\colorclue{\yellow} \numberclue{#1}}}
+\newcommand{\GCcn}[1]{\drawcard{green}{#1}{\colorclue{\green} \numberclue{#1}}}
+\newcommand{\BCcn}[1]{\drawcard{blue}{#1}{\colorclue{\blue} \numberclue{#1}}}
+\newcommand{\WCcn}[1]{\drawcard{gray}{#1}{\colorclue{\white} \numberclue{#1}}}
+\newcommand{\MCcn}[1]{\drawcard{violet}{#1}{\colorclue{\rainbow} \numberclue{#1}}}
+
+
+% Generic card template
+
+\makeatletter
+
+\newcommand{\C}[3][]{%
+%		
+	\ifthenelse{\equal{#2}{R}}{\def\@color{red} \def\@symbol{\red}}{}%
+	\ifthenelse{\equal{#2}{Y}}{\def\@color{yellow} \def\@symbol{\yellow}}{}%
+	\ifthenelse{\equal{#2}{G}}{\def\@color{green} \def\@symbol{\green}}{}%
+	\ifthenelse{\equal{#2}{B}}{\def\@color{blue} \def\@symbol{\blue}}{}%
+	\ifthenelse{\equal{#2}{W}}{\def\@color{gray} \def\@symbol{\white}}{}%
+	\ifthenelse{\equal{#2}{M}}{\def\@color{violet} \def\@symbol{\rainbow}}{}%
+%	
+	\ifthenelse{\equal{#1}{c}}{\drawcard{\@color}{#3}{\colorclue{\@symbol}}}{%
+		\ifthenelse{\equal{#1}{n}}{\drawcard{\@color}{#3}{\numberclue{#3}}}{%
+			\ifthenelse{\equal{#1}{cn}}{\drawcard{\@color}{#3}{\colorclue{\@symbol} \numberclue{#3}}}{%
+				\drawcard{\@color}{#3}{}}}}\!\!}
+			
+\makeatother

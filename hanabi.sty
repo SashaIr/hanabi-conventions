@@ -1,0 +1,128 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{hanabi}[2018/04/22 v1.0 A package for drawing Hanabi cards]
+
+% Requirements
+\RequirePackage{contour}
+\RequirePackage{scalerel}
+\RequirePackage{pgfkeys}
+\RequirePackage{pgfopts}
+\RequirePackage{tikz}
+	\usetikzlibrary{backgrounds,calc,shapes}
+
+% Symbols
+\newcommand{\white}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{white.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\blue}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{blue.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\green}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{green.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\yellow}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{yellow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\red}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{red.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\newcommand{\rainbow}{\scalerel*{ \hspace{-1 mm}
+		\def\svgwidth{10 pt}
+		\import{symbols/}{rainbow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+
+\pgfkeys{/card/options/.is family}
+\newcommand{\cardsetup}[1]{\pgfkeys{/card/options,#1}}
+
+\pgfkeys{/card/options,
+	color/.default = black
+	color/black/.code = {%
+		\def \@color {black}
+		\def \@symbol {}}
+	color/white/.code = {%
+		\def \@color {gray}
+		\def \@symbol \white}
+	color/blue/.code = {%
+		\def \@color {blue}
+		\def \@symbol \blue}
+	color/green/.code = {%
+		\def \@color {green}
+		\def \@symbol \green}
+	color/yellow/.code = {%
+		\def \@color {yellow}
+		\def \@symbol \yellow}
+	color/red/.code = {%
+		\def \@color {red}
+		\def \@symbol \red}
+	color/rainbow/.code = {%
+		\def \@color {violet}
+		\def \@symbol \rainbow}
+	}
+
+\pgfkeys{/number/options,
+	number/.default = ?
+	number/.code = {%
+		\def \@number {$#1$}
+}
+
+\pgfkeys{/card/options,	
+	colorclue/.default = false,
+	colorclue/.is choice,
+	colorclue/true/.code = {\def \@cclue {(0.12, 0.3) node {\tiny \hspace{-2 mm} \@symbol}}},
+	colorclue/false/.code = {\def \@nclue {}},
+	c/.value forbidden,
+	c/.style = {colorclue = true},
+}
+
+\pgfkeys{/card/options,	
+	numberclue/.default = false,
+	numberclue/.is choice,
+	numberclue/true/.code = {\def \@nclue {(-0.04, 0.3) node {\tiny \hspace{-2 mm} \@number}}},
+	numberclue/false/.code = {\def \@nclue {}},
+	n/.value forbidden,
+	n/.style = {numberclue = true},
+}
+
+\newcommand{\@card}{%
+	\@card@i
+}
+
+\newcommand{\@card@i}{%
+	\@ifnextchar[%
+	{\@card@ii}%
+	{\@card@iii}%
+}
+
+\newcommand{\@card@ii}[1][]{%
+	\@ifnextchar c
+	\@card@i
+}
+
+\newcommand{\@card@iii}[2]{
+	\def \@color #1
+	\def \@number #2
+	\carddefault
+}
+
+\newenvironment{hanabicard}[2]{%
+	\begin{tikzpicture}
+		\@card
+		\draw (-0.2,-0.2) rectangle (0.2,0.2)
+		(0,0) node[\@color] {\contourlength{0.01 em} \contour{black}{\@number}};
+		\@cclue
+		\@nclue
+	}{%
+	\end{tikzpicture}%
+	}
+
+\newcommand{\carddefault}{%
+	\cardsetup{color, number, colorclue, numberclue}
+	}
+
+\carddefault
+\ProcessPgfPackageOptions{/card/options}
+
+\endinput
