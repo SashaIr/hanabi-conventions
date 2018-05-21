@@ -872,14 +872,12 @@ Late in the game, some clues are just useless. It's clear that cluing \textit{1}
 Cluing any set of useless cards means that the clued player should play the complement (the cards not involved in that clue) \textit{left to right} (the usual order). The clued player should start with their compatible clued cards (if any) and then their unclued cards, as for finesses.
 
 \begin{example}
-	
-	Let the setting be the following.
-	
+	\hfill
 	\begin{tasks}(3)
 		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-		\task[A] \BC{4} \GC{3} \YC{3} \RC{5}
-		\task[B] \GCn{4} \RC{4} \GC{1} \GC{5}
-		\task[C] \MCc{5} \RC{2} \YC{2} \YC{1}
+		\task[A] \BC{4} \GC{3} \RC{3} \RC{5}
+		\task[B] \RC{4} \GC{1} \GC{5} \GCn{4}
+		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
 		\task[D] \RC{4} \GC{4} \YC{4} \RC{1}
 		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
 	\end{tasks}
@@ -888,35 +886,45 @@ Cluing any set of useless cards means that the clued player should play the comp
 \end{example}
 
 \begin{example}
-	
-	Let the setting be the following.
-	
+	\hfill
 	\begin{tasks}(3)
 		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-		\task[A] \RC{5} \GC{3} \YC{3} \BC{4}
-		\task[B] \GCn{4} \MC{3} \GC{1} \GC{5}
-		\task[C] \MCc{5} \RC{2} \YC{2} \YC{1}
+		\task[A] \RC{5} \GC{3} \BC{4} \BC{5}
+		\task[B] \MC{3} \GC{1} \GC{5} \GCn{4}
+		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
 		\task[D] \RC{4} \GC{4} \YC{4} \RC{1}
 		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
 	\end{tasks}
 	
-	Similar as before, but now B doesn't have a \R{4}. D has one, but they don't know about it, and the \R{5} is the leftmost card in A's hand. C can still clue \textit{green} to A, and this becomes a finesse for D: C is asking A to play their leftmost card (which isn't playable), so it must be a finesse.
+	Similar as before, but now B doesn't have a \R{4}. D has one, but they don't know about it, and the \R{5} is the leftmost card in A's hand. C can still clue \textit{green} to A, and this becomes a finesse for D. In fact, C is asking A to play their leftmost card (which isn't playable), so it must be a finesse.
 \end{example}
 
+%\begin{example}
+%	\hfill
+%	\begin{tasks}(3)
+%		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
+%		\task[A] \RC{5} \GC{3} \RC{4} \MC{3}
+%		\task[B] \BC{1} \GC{1} \GC{5} \GCn{4}
+%		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
+%		\task[D] \BC{4} \GC{4} \YC{4} \RC{1}
+%		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
+%	\end{tasks}
+%	
+%	Similar as before, but the \R{4} is in A's hand. In this case, C may still clue \textit{green} to A, and D has to give a \textit{fix clue} (e.g. a \textit{5} clue) to A.
+%\end{example}
+
 \begin{example}
-	
-	Let the setting be the following.
-	
+	\hfill
 	\begin{tasks}(3)
 		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-		\task[A] \RC{5} \GC{3} \YC{3} \BC{4}
-		\task[B] \GCn{4} \MC{3} \GC{1} \GC{5}
-		\task[C] \MCc{5} \RC{2} \YC{2} \YC{1}
+		\task[A] \MC{3} \GC{3} \BC{4} \RC{5}
+		\task[B] \GC{5} \BC{1} \GC{1} \GCn{4}
+		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
 		\task[D] \BC{4} \GC{4} \YC{4} \RC{1}
 		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
 	\end{tasks}
 	
-	Similar as before, but there is no \R{4} around. In this case, C may clue \textit{5} to A (no 5 is playable, except the green one), which allows D to clue \textit{green} to A. If the \R{5} weren't A's leftmost card (eg. switching \R{5} and \B{4} in A's hand), C may clue \textit{green} to A anyway, hoping for a \R{4} to show up as soon as possible, and possibly cluing \textit{5} to A if it doesn't (same principle as unfinessing cards, see \ref{unfinesse}). It is \textit{not} a finesse because the \R{5} isn't A's first card to play.
+	In this case there is no \R{4} around. C may clue \textit{green} to A anyway, hoping for a \R{4} to show up as soon as possible, and possibly cluing \textit{5} to A if it doesn't (same principle as unfinessing cards, see \ref{unfinessing}). It is \textit{not} a finesse (yet) because the \R{5} isn't A's first card to play. Also notice that B has a playable clued \K{4} in their hand, hence (if they don't get any extra clue) they will play that card as a \R{4} right after A plays their \M{3}.
 \end{example}
 
 \subsection{First round complement}
@@ -950,11 +958,11 @@ We'll see more examples in Section \ref{firstround}.
 
 Sometimes, a player can pass information to the others by discarding a card. There are two main cases, depending on the information a player has on the discarded card.
 
-\subsection{Discard prompt}
-
-If a player knows that they have a playable card, they might deliberately discard it instead of playing it. This must imply that there is another copy of that card in some other player's hand, who's asked to play their finesse card.
-
-There might be several reasons to do so, for example getting extra cards player, or forcing a player with a dangerous chop to play (thus, preventing them to discard), or avoiding confusion in case a card has been clued multiple times.
+%\subsection{Discard prompt}
+%
+%If a player knows that they have a playable card, they might deliberately discard it instead of playing it. This must imply that there is another copy of that card in some other player's hand, who's asked to play their finesse card.
+%
+%There might be several reasons to do so, for example getting extra cards player, or forcing a player with a dangerous chop to play (thus, preventing them to discard), or avoiding confusion in case a card has been clued multiple times.
 
 \subsection{Lategame mirror trash discard}
 
