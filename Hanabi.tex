@@ -40,6 +40,7 @@
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
 
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
@@ -218,7 +219,7 @@ Since players are supposed to play their clued cards, cluing trash will eventual
 
 \begin{convention}[New information principle]
 	\label{new-information}
-	Every clue must either indicate sufficient information for one or more previously unclued cards to be played, or prevent the possible discard of a card that needs to be saved.
+	Every clue must either indicate sufficient information for one or more previously unclued cards to be played, prevent the possible discard of a card that needs to be saved, or prevent an impending misplay.
 \end{convention}
 
 Once again, since clued cards are supposed to be eventually played, giving a clue that only gets already clued cards player is bad, since the play would have happened anyway. Giving a second clue on a clued card to get it played immediately (a \textit{tempo clue}) is possible only in certain specific situations in which waiting would be worse (e.g. towards the end of the game, if some player has a lot of cards to play).
@@ -249,13 +250,17 @@ This convention is tricky, because it is not totally clear what \textit{same val
 	If the card on chop is not valuable, then a \textit{rainbow} clue is a \textit{finesse} instead (see Convention~\ref{finesse}).
 \end{convention}
 
+\begin{corollary}[Safe discard]
+	If a player gets a \textit{save clue} on their card in discard position, then the card on its left can be safely discarded.
+\end{corollary}
+
 \section{Prompts and finesses}
 
 Clued cards should be played as soon as possible. Following this principle, one can give important information by cluing cards that are not immediately playable, by implying that they will be playable soon. This can be summed up in the following principle.
 
 \begin{convention}[Connection principle]
 	\label{connection-principle}
-	If a card that is not currently playable is given a play clue, then all the connecting cards must be visible in some other players hand by the player who gave the clue.
+	If a card that is not currently playable is given a play clue, then all the connecting cards whose position is not currently known must be visible in some other players hand by the player who gave the clue.
 \end{convention}
 
 By \textit{connecting cards} we mean all the cards that have to be played before the clued one (e.g. if the \B{2} belongs to the current configuration and the \B{4} is clued, then the connecting card is the \B{3}). Such a clue \emph{promises} all the connecting cards.
@@ -434,7 +439,7 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 An exception to the multiple finesse convention is the \textit{bluff}. A player can be tricked into thinking that they have the connecting card even if they don't, just to get their drop played. This might lead into confusion, since all the other players will assume that they have the connecting card, so a precise criterion to distinguish bluffs from multiple finesses is needed.
 
 \begin{convention}[Bluff]
-	If a player clues a one-away card (i.e. a card that needs only one connecting card) of which the connecting card is missing, then the very next player has to play their newest card and not continue playing during their next turn. The player who got the clue should deduce that their card is one-away and only play it if the other played card might be the connecting one. No one should assume that the connecting card is visible in any player's hand.
+	If a player clues a one-away card (i.e. a card that needs only one connecting card) of which the connecting card is missing, then the very next player has to play their drop card and not continue playing into the finesse during their next turn. The player who got the clue should deduce that their card is one-away and only play it if the other played card might be the connecting one. No one should assume that the connecting card is visible in any player's hand.
 \end{convention}
 
 This might be quite confusing, so some examples are needed.
@@ -589,7 +594,7 @@ This maneuver is usually not recommended (just playing the card is simpler), but
 
 \subsection{Combining finesse techniques}
 
-Of course all these finesse techniques may be combined, but as always, be careful before doing something risky or unclear. Think to every possible interpretation of your clue, and it you're reasonably sure that your team mates will understand, then go for it. If not, better do something safer.
+Of course all these finesse techniques may be combined, but as always, be careful before doing something risky or unclear. Think to every possible interpretation of your clue, and if you're reasonably sure that your team mates will understand, then go for it. If not, better do something safer.
 
 \section{Multiple cards clue}
 
@@ -603,9 +608,9 @@ If the player gets clued again on these cards, then the second clue has a very p
 
 If the leftmost card is not immediately playable, then such a clue implies a finesse. If the other one has not to be played next turn, however, the situation could be more complicated, since the clue might have involved the leftmost card only, especially if it triggered a finesse. It is convenient to have a convention to establish whether the other card is triggering a finesse as well.
 
-\begin{convention}[Two cards colour clue finesse]
-	ARGH!
-\end{convention}
+%\begin{convention}[Two cards colour clue finesse]
+%	A \textit{play colour clue} on two cards always implies a finesse if any (or both) of the clued cards is not immediately playable.
+%\end{convention}
 
 \begin{convention}[Delayed multi-card finesse]
 	If a player receives a colour clue on multiple cards, then after all the playable ones are played, what happens depends on several factors.
@@ -613,13 +618,15 @@ If the leftmost card is not immediately playable, then such a clue implies a fin
 	Players whose turn is between the moment in which the last card has been played and the original cluer's turn should act according to the following algorithm.
 	
 	\begin{itemize}
-		\item If, at the moment in which the clue was given, the connecting card is visible in any other player's hand (except the one who originally gave the clue), and it was in finesse position, they should assume that the original clue is implying a finesse on that card.
-		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was not in finesse position at the moment the clue was given, then they should clue that card.
-		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was not in finesse position at the moment the clue was given, then they may clue that card, depending on the original cluer being busy during their turn or not.
-		\item If they can't see any copy of the connecting card, then they should assume that the original clue was a finesse, hence they should play the card that was in finesse position when the clue was given.
+		\item If, at the moment in which the clue was given, the connecting card was visible in any other player's hand (except the one who originally gave the clue), and it was in finesse position, they should assume that the original clue is implying a finesse on that card.
+		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was not in finesse position at the moment the clue was given, but it is one-away from being in finesse position from their perspective (i.e. it would be in finesse position if one connecting card is played, thus it might be a layered finesse), then they should assume that it was a layered finesse and play their card that was in finesse position when the clue was given.
+		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was neither in finesse position nor one-away from being in finesse position at the moment the clue was given, then they should clue that card.
+		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was one-away from being in finesse position at the moment the clue was given, then they should assume that it was a layered finesse and play their card that was in finesse position when the clue was given.
+		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was neither in finesse position nor one-away from being in finesse position at the moment the clue was given, then they may clue that card, depending on the original cluer being busy during their turn or not.
+		\item If they can't see any copy of the connecting card, then they should assume that the original clue was a finesse, hence they should play their card that was in finesse position when the clue was given.
 	\end{itemize}
 
-	The original cluer should give a clue on the connecting card if it is visible in any other player's hand and it was not in finesse position at the moment the clue was given. If the connecting card is not visible, then the original cluer should prevent an impeding misplay by cluing again the card that was supposed to be played.
+	The original cluer should give a clue on the connecting card if it is visible in any other player's hand and it was not in finesse position (possibly considering layered finesses) at the moment the clue was given. If the connecting card is not visible, then the original cluer should prevent an impeding misplay by cluing again the card that was supposed to be played.
 	
 	Players whose turn is after the first turn of the original cluer after the last playable card being played should assume that the original clue was a finesse if not told otherwise, and act accordingly.
 	
