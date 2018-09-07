@@ -20,6 +20,7 @@
 \usepackage{scalerel}
 \usepackage{xargs}
 \usepackage{xifthen}
+\usepackage{xstring}
 
 \usepackage{contour}
 \usepackage{multicol}
@@ -62,11 +63,11 @@
 
 \section{Game rules}
 
-\textit{Hanabi} is a cooperative card game for 2-5 players. A Hanabi deck is composed of 50 cards, 10 for each of the colours \textcolor{red}{red} \R{\!}, \textcolor{yellow}{yellow} \Y{\!}, \textcolor{green}{green} \G{\!}, \textcolor{blue}{blue} \B{\!}, and \textcolor{gray}{white} \W{\!}. We use black to denote a generic colour.
+\textit{Hanabi} is a cooperative card game for 2-5 players. A Hanabi deck is composed of 50 cards, 10 for each of the colours \textcolor{red}{red} \R{S}, \textcolor{yellow}{yellow} \Y{S}, \textcolor{green}{green} \G{S}, \textcolor{blue}{blue} \B{S}, and \textcolor{gray}{white} \W{S}. We use black to denote a generic colour.
 
-The values of the 10 cards of each colour are \KC{1} \KC{1} \KC{1} \KC{2} \KC{2} \KC{3} \KC{3} \KC{4} \KC{4} \KC{5}.
+The values of the 10 cards of each colour are \C{K1} \C{K1} \C{K1} \C{K2} \C{K2} \C{K3} \C{K3} \C{K4} \C{K4} \C{K5}.
 
-There are two variants that include an optional sixth colour \textcolor{violet}{rainbow} \M{\!}. In the \textit{rainbow variant}, the rainbow cards work exactly as the other ones, except that there's exactly one copy of each card of value from 1 to 5. In the \textit{multicolour variant}, the rainbow cards distribution is the same for the other colours, but you can't give a \textit{rainbow} clue, and you should point all the rainbow cards when giving any colour clue.
+There are two variants that include an optional sixth colour \textcolor{violet}{rainbow} \M{S}. In the \textit{rainbow variant}, the rainbow cards work exactly as the other ones, except that there's exactly one copy of each card of value from 1 to 5. In the \textit{multicolour variant}, the rainbow cards distribution is the same for the other colours, but you can't give a \textit{rainbow} clue, and you should point all the rainbow cards when giving any colour clue.
 
 In this document we only consider the \textit{rainbow variant}, which is assumed to be the default version of the game.
 
@@ -78,23 +79,23 @@ In this document we only consider the \textit{rainbow variant}, which is assumed
 
 At the beginning of the game, each player draws 4 cards (if the number of players is 4 or 5) or 5 cards (if the number of players is 2 or 3). The cards must face \textit{the other players}: one player does not know which cards are in their hands, but they know which cards are in the other players hands.
 
-The players start with 8 \textit{clues}, 3 \textit{lives}, and configuration \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}.
+The players start with 8 \textit{clues}, 3 \textit{lives}, and configuration \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}.
 
 \begin{definition}
 	The \textit{configuration} of the game is the set of the highest cards played for each colour.
 \end{definition}
 
 \begin{definition}
-	A card \KC{k} is \textit{playable} if it is the successor (i.e. it has the same colour and the number is one unit higher) of a card that belongs to the current configuration.
+	A card is \textit{playable} if it is the successor (i.e. it has the same colour and the number is one unit higher) of a card that belongs to the current configuration.
 \end{definition}
 
-The players must decide who start first \textit{before} drawing the initial hands. The game then proceeds clockwise.
+The players must decide who starts first \textit{before} drawing the initial hands. The game then proceeds clockwise.
 
 \subsection{Game turn}
 
 During their turn, the current player must do one of the following actions.
 
-\paragraph{Play a card} The current player picks a card in their hand and puts it face-up on the table. If the card is playable, then it replaces the current one of the same colour in the configuration. Furthermore, if the card is a 5, the players gain one clue (unless they have 8).
+\paragraph{Play a card} The current player picks a card in their hand and puts it face-up on the table. If the card is playable, then it replaces the current one of the same colour in the configuration. Furthermore, if the card is a \K{5}, the players gain one clue (unless they have 8).
 
 If the card is not playable, then it's discarded and the players lose a life. In either case, the current player draws another card (if possible).
 
@@ -123,13 +124,13 @@ In our version of the game, the players may always look at the discard pile, and
 We will denote clued card by adding a small symbol above it that indicates the clue.
 
 \begin{tasks}(2)
-	\task[$\bullet$] No clues. \GC{2}
-	\task[$\bullet$] Clue on the number. \RCn{3}
-	\task[$\bullet$] Clue on the colour. \BCc{4}
-	\task[$\bullet$] Both clues. \MCcn{5}
+	\task[$\bullet$] No clues. \C{G2}
+	\task[$\bullet$] Clue on the number. \C[n]{R3}
+	\task[$\bullet$] Clue on the colour. \C[c]{B4}
+	\task[$\bullet$] Both clues. \C[cn]{M5}
 \end{tasks}
 
-We will use letters from A to E to denote players, going clockwise. A string like C \BCc{3} \MCcn{2} \RC{3} \GC{4} means that player C has those four cards in their hand, and they have been clued on the first two ones. We will use $+$ for the configuration (the played cards).
+We will use letters from A to E to denote players, going clockwise. A string like C \C[c]{B3} \C[cn]{M2} \C{R3} \C{G4} means that player C has those four cards in their hand, and they have been clued on the first two ones. We will use $+$ for the configuration (the played cards).
 
 We also want to name some properties.
 
@@ -204,12 +205,12 @@ Since players are supposed to play their clued cards, cluing trash will eventual
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \BCn{4} \RCn{5}
-		\task[B] \WC{1} \YC{1} \MCn{2} \WCn{5}
-		\task[C] \YC{4} \WC{4} \RC{3} \MCc{4}
-		\task[D] \BC{5} \BC{2} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{B4} \C[n]{R5}
+		\task[B] \C{W1} \C{Y1} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{Y4} \C{W4} \C{R3} \C[c]{M4}
+		\task[D] \C{B5} \C{B2} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 
 	B to play. If they clue \textit{blue} to D, according to Convention~\ref{clue-playable-cards}, D should deduce that at least one of their cards is a \B{4} or \B{5}. According to Convention~\ref{disjoint-clues} and Convention~\ref{new-information}, since the \B{4} has already been clued in A's hand, one of the clued cards must be \B{5}. According to Convention~\ref{play-left}, the \B{5} is the leftmost card. Hence, the other blue card must be trash.
@@ -277,12 +278,12 @@ The easiest of these conventions is the \textit{prompt}, which involve only alre
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{1} \GC{3} \BC{0} \WC{2} \MC{0}
-		\task[A] \BCc{1} \GC{2} \BCn{4} \RCn{5}
-		\task[B] \RCn{2} \YC{1} \WCn{5} \MCn{2}
-		\task[C] \YC{4} \WC{4} \BC{3} \MCc{4}
-		\task[D] \BC{5} \RC{3} \RC{4} \YC{4}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y1} \C{G3} \C{B0} \C{W2} \C{M0}
+		\task[A] \C[c]{B1} \C{G2} \C[n]{B4} \C[n]{R5}
+		\task[B] \C[n]{R2} \C{Y1} \C[n]{W5} \C[n]{M2}
+		\task[C] \C{Y4} \C{W4} \C{B3} \C[c]{M4}
+		\task[D] \C{B5} \C{R3} \C{R4} \C{Y4}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	C to play. If they clue \textit{red} to D, then this is a play clue. However, according to Convention~\ref{disjoint-clues}, none of their cards is a \R{2}, since it has already been clued in B's hand (probably with a \textit{2}-save, since they have \M{2} on chop). Hence, D doesn't play. Then, when B is to play, since they know that a play clue has been given on \R{3}, and they can't see the \R{2} in any other players hand, they can deduce that the \R{2} is in their hand. According to Convention~\ref{prompt}, it must be the leftmost of the two \K{2}'s, so they can safely play it.
@@ -293,12 +294,12 @@ Players are allowed to lie if this gets more cards played, as in the next exampl
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{1} \GC{3} \BC{0} \WC{2} \MC{0}
-		\task[A] \BCc{1} \GC{2} \BCn{4} \RCn{5}
-		\task[B] \YCn{2} \YC{1} \WCn{5} \RCn{2}
-		\task[C] \YC{4} \WC{4} \BC{3} \MCc{4}
-		\task[D] \BC{5} \RC{3} \RC{4} \YC{4}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y1} \C{G3} \C{B0} \C{W2} \C{M0}
+		\task[A] \C[c]{B1} \C{G2} \C[n]{B4} \C[n]{R5}
+		\task[B] \C[n]{Y2} \C{Y1} \C[n]{W5} \C[n]{R2}
+		\task[C] \C{Y4} \C{W4} \C{B3} \C[c]{M4}
+		\task[D] \C{B5} \C{R3} \C{R4} \C{Y4}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Same example as before, but the \K{2}'s in B's hand are now of different colours. In particular, the leftmost is a \Y{2}, not a \R{2}. However, this is not a problem, since the \Y{2} is playable: during their turn, B will deduce that their leftmost \K{2} is \R{2}, and they will play it. One round later, since B knows that they must have the \R{2} in their hand, they will play their other clued \K{2}, which this time would be the correct one. B was tricked into think that their leftmost \K{2} was \R{2} in order to get it played for free.
@@ -317,12 +318,12 @@ Also called \textit{giochino} (pronounced \textit{jokeeno}), the finesse is prob
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \YC{3} \WC{4} \RC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{Y3} \C{W4} \C{R3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	If B is to play, they can clue \textit{yellow} to D. C sees that D is given a play clue on their non-playable \Y{4}, and also they can't see the connecting \Y{3} in any other player's hand. Hence, C must have the \Y{3}, and since their only clued card is the \M{4} (which, being rainbow, can't be yellow), then they should deduce that the connecting card is their leftmost, and thus C should play it.
@@ -343,12 +344,12 @@ If the player who has the matching card as leftmost unclued one plays it, then i
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[D] \YC{3} \WC{4} \RC{3} \MCc{4}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[D] \C{Y3} \C{W4} \C{R3} \C[c]{M4}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Same as before, except that C and D have been swapped. If B is to play, they can clue \textit{yellow} to C. C sees that D has a \Y{3} as drop, hence the clued card might be a \Y{4} and C does not play it. Then, D should deduce that they have a \Y{3} and play their leftmost card, as before.
@@ -379,12 +380,12 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \RC{2} \RC{3} \YC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{R2} \C{R3} \C{Y3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	If A clues \textit{yellow} to D, they are promising a \Y{3}. C has a \Y{3}, and it is in finesse position: it is unclued, there are no compatible clued cards, and all the cards on its left are playable. However, if C also got a \textit{3} clue, then the \Y{3} would not be in finesse position any more! In fact, it would be clued with a compatible clue, but in that case the \R{3} would also be, it is on the left of the \Y{3}, and it is not playable.
@@ -398,12 +399,12 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \RC{2} \YC{3} \RC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{R2} \C{Y3} \C{R3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	The setting is the same as Subsection~\ref{sec:finesse}, except that now C's leftmost unclued card is a \R{2}, which is playable. The next one is a \Y{3}. If A is to play, they can still clue \textit{yellow} to D. As before, C should play their leftmost unclued card, and so they do. Since C played, D can deduce that their card is not a \Y{3}, but it's a \Y{4} instead, so they wait. During their next turn C should keep playing, and so they have to pick their second leftmost unclued card \textit{at the moment they received the clue} (which is a very important information to track). They play the \Y{3} and next D plays the \Y{4}, leading to play three cards with one clue.
@@ -423,12 +424,12 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{1} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \YC{2} \WC{2} \MCn{2} \WCn{5}
-		\task[C] \YC{3} \RC{3} \BC{3} \MCc{4}
-		\task[D] \BC{2} \YC{1} \YC{4} \RC{1}
-		\task[E] \MCc{1} \WC{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y1} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{Y2} \C{W2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{Y3} \C{R3} \C{B3} \C[c]{M4}
+		\task[D] \C{B2} \C{Y1} \C{Y4} \C{R1}
+		\task[E] \C[c]{M1} \C{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	A clues \textit{4} to D. It is a finesse on the \Y{4}, so B is supposed to play their drop, which is the \Y{2}. C sees that the \Y{4} still lacks a connecting card (the \Y{3}) that they can't see in any other player's hand. Hence, C is also supposed to play their drop.
@@ -447,12 +448,12 @@ This might be quite confusing, so some examples are needed.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \RC{2} \WC{4} \RC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{R2} \C{W4} \C{R3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	B clues \textit{yellow} to D. As we've seen before, C is supposed to play their drop, which is the \R{2}. Since C blind-played his newest card, D should deduce that its yellow card is one-away, and hence it is a \Y{4}. Since the \R{2} can't be connecting, D shouldn't play their yellow card; since the \Y{4} is one-away, all the other players should deduce that they do not have a \Y{3} and so they should not play their drop card.
@@ -461,12 +462,12 @@ This might be quite confusing, so some examples are needed.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \YC{3} \WC{4} \RC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{Y3} \C{W4} \C{R3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	B clues \textit{yellow} to D. As we've seen before, C is supposed to play their drop, which is the \Y{3}. Since C blind-played his newest card, D should deduce that its yellow card is one-away, and hence it is a \Y{4}. Since the \Y{3} can be connecting, D should play their yellow card.
@@ -475,12 +476,12 @@ This might be quite confusing, so some examples are needed.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \YC{3} \GC{4} \RC{3} \MCc{4}
-		\task[D] \BC{2} \YC{1} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{Y3} \C{G4} \C{R3} \C[c]{M4}
+		\task[D] \C{B2} \C{Y1} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	In this case, cluing \textit{yellow} doesn't work because of the \Y{1}, so B clues \textit{4} to D. The \Y{4} is one-away, so C is supposed to play their drop, which is the \Y{3}. D deduces that their \K{4} is one-away, so it might be either yellow or white, but since the \Y{3} can be connecting, D should play their \K{4} anyway.
@@ -489,12 +490,12 @@ This might be quite confusing, so some examples are needed.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \RC{2} \RC{3} \YC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{R2} \C{R3} \C{Y3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Now it is A that clues \textit{yellow} to D. B sees that the \Y{3} in C's hand only has playable cards on its left, hence, according to Convention~\ref{multiple-finesse}, they deduce that C is the one that is supposed to play their drop. C plays it, and it is a \R{2}. Since C blind-played his newest card, D should deduce that its yellow card is not a \Y{3}, and hence it is probably a \Y{4}. Since C was not the player immediately after the one who gave the play clue, they should keep playing until they see the \Y{3}.
@@ -503,12 +504,12 @@ This might be quite confusing, so some examples are needed.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{1} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \YC{2} \YC{3} \RC{3} \MCc{4}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y1} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{Y2} \C{Y3} \C{R3} \C[c]{M4}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Now is again B that clues \textit{yellow} to D. C is supposed to play their drop, which is the \Y{2}. D sees that C also has a \Y{3} on the right of the \Y{2}, so their card might be the \Y{4}. Since the \Y{4} was not one-away, C should keep playing until they see the \Y{3}.
@@ -517,12 +518,12 @@ This might be quite confusing, so some examples are needed.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{1} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{1} \GC{2} \RCn{5} \BCn{4}
-		\task[B] \YC{2} \WC{2} \MCn{2} \WCn{5}
-		\task[C] \RC{2} \YC{3} \BC{3} \MCc{4}
-		\task[D] \BC{2} \YC{1} \YC{4} \RC{1}
-		\task[E] \MCc{1} \WC{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y1} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B1} \C{G2} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{Y2} \C{W2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{R2} \C{Y3} \C{B3} \C[c]{M4}
+		\task[D] \C{B2} \C{Y1} \C{Y4} \C{R1}
+		\task[E] \C[c]{M1} \C{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	A clues \textit{4} to D. It is a finesse on the \Y{4}, so B is supposed to play their drop, which is the \Y{2}. C sees that the \Y{4} was not one-away (it was not the \W{4}), hence it can't be a bluff, and according to Convention~\ref{multiplayer-finesse}, they should play their drop, the \R{2}. D sees that C played, so they deduce that it was not a bluff and their \K{4} was not one-away. Also, they see that C has the \Y{3} as next card to be played because of the finesse, hence their card must be \Y{4}.
@@ -542,12 +543,12 @@ Let's see an example.
 \begin{example}
 	\hfill	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \RC{3} \YC{3} \RCn{5} \BCn{4}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \WCc{3} \WCc{4} \GC{3} \YC{1}
-		\task[D] \RC{2} \YC{5} \YC{1} \MCn{5}
-		\task[E] \BC{2} \GC{4} \YC{4} \RC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{R3} \C{Y3} \C[n]{R5} \C[n]{B4}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
+		\task[D] \C{R2} \C{Y5} \C{Y1} \C[n]{M5}
+		\task[E] \C{B2} \C{G4} \C{Y4} \C{R1}
 	\end{tasks}
 	
 	B just clued \textit{yellow} to E, C plays their \W{3}, and D is now to play. They see that A has a \Y{3} in their hand, but not in finesse position. Cluing \textit{red} to A may be ambiguous, since A's red cards cannot be played. How can D deduce if they're being finessed or not? They can't, but it's not an issue at all: D should just play their leftmost unclued card. If that's a \Y{3}, then D was being finessed everything is fine. If not, then A is being finessed, but their leftmost unclued card is a \R{3}, not playable. Then there is also an ongoing finesse on that card and D's leftmost unclued card must be a \R{2}, so they should still play.	
@@ -567,12 +568,12 @@ Let's see an example.
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BC{4} \MC{3} \YC{3} \RCn{5}
-		\task[B] \WC{1} \YC{2} \MCn{2} \WCn{5}
-		\task[C] \RC{2} \YC{5} \YC{1} \MCn{5} 
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C{B4} \C{M3} \C{Y3} \C[n]{R5}
+		\task[B] \C{W1} \C{Y2} \C[n]{M2} \C[n]{W5}
+		\task[C] \C{R2} \C{Y5} \C{Y1} \C[n]{M5} 
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Same as before, except for A's hand. B clues \textit{yellow} to D, trying to get the \B{4} and the \Y{3} for free. All the players but A see the connecting card in A's hand, and they also see that A's drop is a \B{4}, which is playable, so nobody does anything. A plays their \B{4} assuming that it is a \Y{3} instead, and now B must stop A from playing their \M{3}, for example with a \textit{rainbow} clue on that card. This can't possibly be a play clue (if it were a \M{1}, then no clue would have been needed), nor a finesse on some other player (otherwise B could just have let that going, since everybody knew that A was about to play their \M{3}), hence it must just be an \textit{unfinessing} clue, meaning that the clued card is not involved into the finesse, and hence the card on its right has to be played next.
@@ -600,33 +601,38 @@ Of course all these finesse techniques may be combined, but as always, be carefu
 
 It is often convenient to include multiple cards in a clue, in order to give as much information as possible while saving clues. To do so, one has to be precise in explaining what each clue means.
 
-\subsection{Two cards colour clue}
+\subsection{Multiple cards colour clue}
 
-Cluing two cards of the same colour usually asks the clued player to play the leftmost, and the rightmost one round later if no new information arises.
+Cluing multiple cards of the same colour usually asks the clued player to play them from the leftmost to the rightmost if no new information arises, assuming no prior knowledge on these cards.
 
-If the player gets clued again on these cards, then the second clue has a very precise meaning. If the player gets a number clue on the leftmost card, then it means that the rightmost is to play. If they get a number clue on the rightmost, in means that \textit{none} is to play! In fact, if the leftmost was playable, they wouldn't need another clue until their next turn.
-
-If the leftmost card is not immediately playable, then such a clue implies a finesse. If the other one has not to be played next turn, however, the situation could be more complicated, since the clue might have involved the leftmost card only, especially if it triggered a finesse. It is convenient to have a convention to establish whether the other card is triggering a finesse as well.
+If the leftmost card is not immediately playable, then such a clue implies a finesse. If any of the other one has not to be played during the appropriate turn, however, the situation could be more complicated, since the clue might have involved the played cards only, especially if it triggered a finesse. It is convenient to have a convention to establish whether the non-playable cards are triggering a finesse as well.
 
 %\begin{convention}[Two cards colour clue finesse]
 %	A \textit{play colour clue} on two cards always implies a finesse if any (or both) of the clued cards is not immediately playable.
 %\end{convention}
 
 \begin{convention}[Delayed multi-card finesse]
-	If a player receives a colour clue on multiple cards, then after all the playable ones are played, what happens depends on several factors.
+	If a player receives a colour clue on multiple cards, assuming that they had no previous knowledge on the number of these cards, then what happens after all the playable ones are played depends on several factors.
 	
 	Players whose turn is between the moment in which the last card has been played and the original cluer's turn should act according to the following algorithm.
-	
+
 	\begin{itemize}
 		\item If, at the moment in which the clue was given, the connecting card was visible in any other player's hand (except the one who originally gave the clue), and it was in finesse position, they should assume that the original clue is implying a finesse on that card.
-		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was not in finesse position at the moment the clue was given, but it is one-away from being in finesse position from their perspective (i.e. it would be in finesse position if one connecting card is played, thus it might be a layered finesse), then they should assume that it was a layered finesse and play their card that was in finesse position when the clue was given.
-		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was neither in finesse position nor one-away from being in finesse position at the moment the clue was given, then they should clue that card.
-		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was one-away from being in finesse position at the moment the clue was given, then they should assume that it was a layered finesse and play their card that was in finesse position when the clue was given.
-		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was neither in finesse position nor one-away from being in finesse position at the moment the clue was given, then they may clue that card, depending on the original cluer being busy during their turn or not.
+		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was not in finesse position at the moment the clue was given, then they should clue that card.
+		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was not in finesse position at the moment the clue was given, then they may clue that card, depending on the original cluer being busy during their turn or not.
 		\item If they can't see any copy of the connecting card, then they should assume that the original clue was a finesse, hence they should play their card that was in finesse position when the clue was given.
 	\end{itemize}
+	
+%	\begin{itemize}
+%		\item If, at the moment in which the clue was given, the connecting card was visible in any other player's hand (except the one who originally gave the clue), and it was in finesse position, they should assume that the original clue is implying a finesse on that card.
+%		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was not in finesse position at the moment the clue was given, but it was one-away from being in finesse position from their perspective (i.e. it would have been in finesse position if one connecting card was played, thus it might be a layered finesse), then they should assume that it was a layered finesse and play their card that was in finesse position when the clue was given.
+%		\item If not, if they see a copy of the connecting card in the hand of any player strictly between them and the one who originally gave the clue, and that card was neither in finesse position nor one-away from being in finesse position at the moment the clue was given, then they should clue that card.
+%		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was one-away from being in finesse position at the moment the clue was given, then they should assume that it was a layered finesse and play their card that was in finesse position when the clue was given.
+%		\item If not, if they see a copy of the connecting card in the hand of any player strictly between the one who originally gave the clue and the one who received the clue, and that card was neither in finesse position nor one-away from being in finesse position at the moment the clue was given, then they may clue that card, depending on the original cluer being busy during their turn or not.
+%		\item If they can't see any copy of the connecting card, then they should assume that the original clue was a finesse, hence they should play their card that was in finesse position when the clue was given.
+%	\end{itemize}
 
-	The original cluer should give a clue on the connecting card if it is visible in any other player's hand and it was not in finesse position (possibly considering layered finesses) at the moment the clue was given. If the connecting card is not visible, then the original cluer should prevent an impeding misplay by cluing again the card that was supposed to be played.
+	The original cluer should give a clue on the connecting card if it is visible in any other player's hand and it was not in finesse position at the moment the clue was given. If the connecting card is not visible, then the original cluer should prevent an impeding misplay by cluing again the card that was supposed to be played.
 	
 	Players whose turn is after the first turn of the original cluer after the last playable card being played should assume that the original clue was a finesse if not told otherwise, and act accordingly.
 	
@@ -636,6 +642,8 @@ If the leftmost card is not immediately playable, then such a clue implies a fin
 \begin{remark}
 	If the connecting card is missing, then it is better if the original clue is given by the player immediately on the left (i.e. immediately after) the one who receives it; this way there is no risk of misplays. However, if that player has a playable card in finesse position, then the next one can safely give the clue and get that extra card for free: they should then warn everybody that it was a bluff and not a finesse by giving another clue on the card that is supposed to be played next.
 \end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{remark}
 	If one has some cards to play, it's better not to give them any clue (except for ones giving information to other players as well, like finesses) until they play those cards.
@@ -648,12 +656,12 @@ This is because they may interpret the new clue as a stop signal. Also, if you w
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \WCn{5} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C[n]{W5} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 
 	Player E has just been clued \textit{white}, and it's their turn. They play their leftmost card, which is a \W{3}. One round later, they will play the \W{4}. Notice that E sees the \W{5}, so they must assume that their clued card is a \W{4} unless told otherwise, since you are supposed to play clued cards.
@@ -665,12 +673,12 @@ This is because they may interpret the new clue as a stop signal. Also, if you w
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \WC{4} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{W4} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Same as before, but we replaced the \W{5} that B had with a \W{4}. Once again, player E has just been clued \textit{white}. They play their \W{3}. One round later, they will still play the \W{4}: in this case, E sees B's \W{4}, and since no one clued it, then it must not be relevant. In fact, cluing \textit{4} to B would have been a great way to tell E not to play their second white card, if other players didn't want it to happen.
@@ -682,12 +690,12 @@ This is because they may interpret the new clue as a stop signal. Also, if you w
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \WC{1}
-		\task[B] \MCc{2} \RC{4} \RC{5} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{4} \GC{2} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{W1}
+		\task[B] \C[c]{M2} \C{R4} \C{R5} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W4} \C{G2} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	In this case, E played the \W{3} one round ago, and it's their turn again. No other information on white cards is available. E is allowed to play their white card, but now it depends on what happened during the last round: if everyone was busy playing or giving important clues, then it may be better to wait. If nothing relevant happened, instead, it should be safe to play. In this case, though, cluing \textit{red} to B would be a great move (see why?), so E should do that and wait a bit more.
@@ -699,12 +707,12 @@ This is because they may interpret the new clue as a stop signal. Also, if you w
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \WCn{5} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{3} \YC{4} \RC{1}
-		\task[E] \WCc{4} \WCc{3} \GC{4} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C[n]{W5} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G3} \C{Y4} \C{R1}
+		\task[E] \C[c]{W4} \C[c]{W3} \C{G4} \C{Y1}
 	\end{tasks}
 	
 	C just clued \textit{white} to E, and D is to play. Let us suppose that one copy of the \W{3} has been discarded, hence C's clue can't be a finesse. D must do something, or else E would play their leftmost card, a \W{4}. According to what we said before, they should clue \textit{4} to E. Then E will play the \W{3} with the \W{4} to follow. E will also keep the \G{4} among their clued cards until they eventually realize that it's useless, and discard it.
@@ -722,12 +730,12 @@ Since a colour clue on multiple cards usually asks to play them all, it can be u
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \WC{4} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{3} \RC{1}
-		\task[E] \WCc{3} \WCc{5} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{W4} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y3} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W5} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	A clues \textit{white} to E. B, C, and D do something (i.e. B clues \textit{yellow} to D, C clues \textit{5} to A, D plays his \Y{4}), then E plays their \W{3}. It's A's turn again, and they discard. B sees that E's clued card is a \W{5}, hence it is not playable. Since A didn't give any fix clue, it must be a finesse, so B plays their \W{4}.
@@ -739,12 +747,12 @@ Since a colour clue on multiple cards usually asks to play them all, it can be u
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \WC{4} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{5} \GC{3} \YC{1}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{W4} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W5} \C{G3} \C{Y1}
 	\end{tasks}
 	
 	Almost the same setting, we only replaced D's \Y{3} with a \Y{4} but this time is C that clues \textit{white} to E. D does something (i.e. they clue \textit{yellow} to A), then E plays their \W{3}. A plays their \Y{3}. B sees that E's clued card is a \W{5}, hence it is not playable. It might be a finesse on their \W{4}, but it might not, so B can't play; they discard instead. C clues \textit{yellow} to D, who plays that card. C had the chance to give a fix clue, but they didn't. However, E sees the \W{4} in B's hand, and it was in finesse position when C first gave the \textit{white} clue, so it might still be a finesse; hence, E doesn't play. During B's next turn, since E didn't play their \W{5} despite C not giving any fix clue, B must realize that it was actually a finesse, and play the \W{4}, i.e. the card that was in finesse position when C gave the \textit{white} clue. During E's next turn, they play their \W{5}
@@ -772,12 +780,12 @@ Of course, if the leftmost card is playable, but the second leftmost is not, we 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \YC{1} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \WCc{5} \GC{3} 
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{Y1} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C[c]{W5} \C{G3} 
 	\end{tasks}
 	
 	Player E has just been clued \textit{white}, and it's their turn. They will play their white cards left to right, with the nice result of playing three cards with one clue.
@@ -789,12 +797,12 @@ Of course, if the leftmost card is playable, but the second leftmost is not, we 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \YC{1} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{5} \WCc{4} \GC{3}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{Y1} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W5} \C[c]{W4} \C{G3}
 	\end{tasks}
 	
 	Same setting as before, but we switched the \W{4} and \W{5} in E's hand. In this case, we wait until E plays their \W{3}, then we clue \textit{4}, according to the two cards case.
@@ -806,12 +814,12 @@ Of course, if the leftmost card is playable, but the second leftmost is not, we 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{2} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \YC{1} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{4} \WCc{5} \WCc{3} \GC{3}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{Y1} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W4} \C[c]{W5} \C[c]{W3} \C{G3}
 	\end{tasks}
 	
 	Same setting, but different permutation. In this case, we should immediately clue \textit{5} to E.
@@ -823,12 +831,12 @@ Of course, if the leftmost card is playable, but the second leftmost is not, we 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{1} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \YC{1} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{3} \YC{4} \RC{1}
-		\task[E] \WCc{4} \WCc{3} \GC{4} \WCc{5}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W1} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{Y1} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G3} \C{Y4} \C{R1}
+		\task[E] \C[c]{W4} \C[c]{W3} \C{G4} \C[c]{W5}
 	\end{tasks}
 	
 	Different permutation, and also no card of E is playable. C just clued \textit{white} to E, and so D should immediately clue them \textit{4}. It's a huge waste, because it also moves the useless \G{4} among the clued cards. It would have been better to clue \textit{5} to E instead of cluing \textit{white}, if we wanted to stop them from discarding the \W{5}.
@@ -840,12 +848,12 @@ Of course, if the leftmost card is playable, but the second leftmost is not, we 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{1} \YC{2} \GC{5} \BC{3} \WC{1} \MC{0}
-		\task[A] \BCn{4} \RC{3} \YC{3} \RC{5}
-		\task[B] \MCc{2} \WC{2} \WC{1} \YC{2}
-		\task[C] \MCc{5} \RC{2} \YC{5} \YC{1}
-		\task[D] \BC{2} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \WCc{5} \GC{3}
+		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W1} \C{M0}
+		\task[A] \C[n]{B4} \C{R3} \C{Y3} \C{R5}
+		\task[B] \C[c]{M2} \C{W2} \C{W1} \C{Y2}
+		\task[C] \C[c]{M5} \C{R2} \C{Y5} \C{Y1}
+		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C[c]{W5} \C{G3}
 	\end{tasks}
 	
 	Slightly different. C just clued \textit{white} to E, but now D shouldn't clue E again. Why? Look at B's hand...
@@ -881,12 +889,12 @@ Cluing any set of useless cards means that the clued player should play the comp
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-		\task[A] \BC{4} \GC{3} \RC{3} \RC{5}
-		\task[B] \RC{4} \GC{1} \GC{5} \GCn{4}
-		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
-		\task[D] \RC{4} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
+		\task[+] \C{R3} \C{Y5} \C{G3} \C{B3} \C{W2} \C{M2}
+		\task[A] \C{B4} \C{G3} \C{R3} \C{R5}
+		\task[B] \C{R4} \C{G1} \C{G5} \C[n]{G4}
+		\task[C] \C{R2} \C{Y2} \C{Y1} \C[n]{M5}
+		\task[D] \C{R4} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{M4} \C{G1}
 	\end{tasks}
 	
 	A is to play. They can safely clue \textit{1} to B, who should play their \G{4} (followed by \R{4} and \G{5} in the upcoming rounds). Immediately after, C can clue \textit{green} to A. In fact, A knows that their green card is useless (both A and C see the \G{5} in B's hand), hence A should play the complement left to right. The \R{5} is not immediately playable, it will be at the right moment (B has to play the \R{4} their next turn).
@@ -895,12 +903,12 @@ Cluing any set of useless cards means that the clued player should play the comp
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-		\task[A] \RC{5} \GC{3} \BC{4} \BC{5}
-		\task[B] \MC{3} \GC{1} \GC{5} \GCn{4}
-		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
-		\task[D] \RC{4} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
+		\task[+] \C{R3} \C{Y5} \C{G3} \C{B3} \C{W2} \C{M2}
+		\task[A] \C{R5} \C{G3} \C{B4} \C{B5}
+		\task[B] \C{M3} \C{G1} \C{G5} \C[n]{G4}
+		\task[C] \C{R2} \C{Y2} \C{Y1} \C[n]{M5}
+		\task[D] \C{R4} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{M4} \C{G1}
 	\end{tasks}
 	
 	Similar as before, but now B doesn't have a \R{4}. D has one, but they don't know about it, and the \R{5} is the leftmost card in A's hand. C can still clue \textit{green} to A, and this becomes a finesse for D. In fact, C is asking A to play their leftmost card (which isn't playable), so it must be a finesse.
@@ -909,12 +917,12 @@ Cluing any set of useless cards means that the clued player should play the comp
 %\begin{example}
 %	\hfill
 %	\begin{tasks}(3)
-%		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-%		\task[A] \RC{5} \GC{3} \RC{4} \MC{3}
-%		\task[B] \BC{1} \GC{1} \GC{5} \GCn{4}
-%		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
-%		\task[D] \BC{4} \GC{4} \YC{4} \RC{1}
-%		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
+%		\task[+] \C{R3} \C{Y5} \C{G3} \C{B3} \C{W2} \C{M2}
+%		\task[A] \C{R5} \C{G3} \C{R4} \C{M3}
+%		\task[B] \C{B1} \C{G1} \C{G5} \C[n]{G4}
+%		\task[C] \C{R2} \C{Y2} \C{Y1} \C[n]{M5}
+%		\task[D] \C{B4} \C{G4} \C{Y4} \C{R1}
+%		\task[E] \C[c]{W3} \C[c]{W4} \C{M4} \C{G1}
 %	\end{tasks}
 %	
 %	Similar as before, but the \R{4} is in A's hand. In this case, C may still clue \textit{green} to A, and D has to give a \textit{fix clue} (e.g. a \textit{5} clue) to A.
@@ -923,12 +931,12 @@ Cluing any set of useless cards means that the clued player should play the comp
 \begin{example}
 	\hfill
 	\begin{tasks}(3)
-		\task[+] \RC{3} \YC{5} \GC{3} \BC{3} \WC{2} \MC{2}
-		\task[A] \MC{3} \GC{3} \BC{4} \RC{5}
-		\task[B] \GC{5} \BC{1} \GC{1} \GCn{4}
-		\task[C] \RC{2} \YC{2} \YC{1} \MCn{5}
-		\task[D] \BC{4} \GC{4} \YC{4} \RC{1}
-		\task[E] \WCc{3} \WCc{4} \MC{4} \GC{1}
+		\task[+] \C{R3} \C{Y5} \C{G3} \C{B3} \C{W2} \C{M2}
+		\task[A] \C{M3} \C{G3} \C{B4} \C{R5}
+		\task[B] \C{G5} \C{B1} \C{G1} \C[n]{G4}
+		\task[C] \C{R2} \C{Y2} \C{Y1} \C[n]{M5}
+		\task[D] \C{B4} \C{G4} \C{Y4} \C{R1}
+		\task[E] \C[c]{W3} \C[c]{W4} \C{M4} \C{G1}
 	\end{tasks}
 	
 	In this case there is no \R{4} around. C may clue \textit{green} to A anyway, hoping for a \R{4} to show up as soon as possible, and possibly cluing \textit{5} to A if it doesn't (same principle as unfinessing cards, see \ref{unfinessing}). It is \textit{not} a finesse (yet) because the \R{5} isn't A's first card to play. Also notice that B has a playable clued \K{4} in their hand, hence (if they don't get any extra clue) they will play that card as a \R{4} right after A plays their \M{3}.
@@ -948,12 +956,12 @@ One should read Section \ref{firstround} to understand what to do during the fir
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}
-		\task[A] \RC{3} \GC{1} \MC{1} \BC{3}
-		\task[B] \YC{5} \RC{1} \YC{1} \WC{5}
-		\task[C] \WC{1} \YC{1} \GC{3} \BC{3}
-		\task[D] \WC{2} \BC{1} \GC{4} \WC{1}
-		\task[E] \GC{3} \WC{2} \MC{3} \GC{1}
+		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
+		\task[A] \C{R3} \C{G1} \C{M1} \C{B3}
+		\task[B] \C{Y5} \C{R1} \C{Y1} \C{W5}
+		\task[C] \C{W1} \C{Y1} \C{G3} \C{B3}
+		\task[D] \C{W2} \C{B1} \C{G4} \C{W1}
+		\task[E] \C{G3} \C{W2} \C{M3} \C{G1}
 	\end{tasks}
 	
 	First round of the game, A is the first player. They clue \textit{5} to B: B sees that A could have clued \textit{1} (or \textit{3}) to C, for example, so it's a complement clue (not a direct one). B plays their \Y{1} (they have to play right to left). C clues \textit{4} to D: any \textit{3} or \textit{4} clue is a complement clue, so D plays their \W{1} (right to left, again). At last, E clues \textit{3} to A: it's still the first round, so it must be a complement clue.
@@ -984,12 +992,12 @@ The mirrored position trick is useful because in this case, if one discards the 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{5} \YC{3} \GC{5} \BC{3} \WC{5} \MC{4}
-		\task[A] \RC{3} \GC{1} \RC{2} \BC{2}
-		\task[B] \YC{1} \YC{5} \YC{4} \WC{4}
-		\task[C] \BCc{4} \YC{1} \GC{3} \BC{3}
-		\task[D] \BCn{5} \BC{1} \GC{4} \WC{1}
-		\task[E] \MCc{5} \WC{2} \RC{1} \GC{3}
+		\task[+] \C{R5} \C{Y3} \C{G5} \C{B3} \C{W5} \C{M4}
+		\task[A] \C{R3} \C{G1} \C{R2} \C{B2}
+		\task[B] \C{Y1} \C{Y5} \C{Y4} \C{W4}
+		\task[C] \C[c]{B4} \C{Y1} \C{G3} \C{B3}
+		\task[D] \C[n]{B5} \C{B1} \C{G4} \C{W1}
+		\task[E] \C[c]{M5} \C{W2} \C{R1} \C{G3}
 	\end{tasks}
 	
 	A to play, no clues left, two cards in the deck. One \Y{4} has been discarded. In order to achieve a perfect score, B must play their \Y{4} immediately, but they don't know which card is it (in B's perspective, it may still be in the deck). All the other players already know what to do.
@@ -1004,12 +1012,12 @@ This trick was worth a full point, but it can get even better.
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{4} \YC{3} \GC{5} \BC{3} \WC{5} \MC{5}
-		\task[A] \RC{3} \MC{5} \RC{2} \BC{2}
-		\task[B] \BCn{5} \BC{1} \GC{4} \WC{1}
-		\task[C] \YC{1} \YC{5} \WC{4} \YC{4}
-		\task[D] \BCc{4} \YC{1} \GC{3} \BC{3}
-		\task[E] \WC{2} \BC{1} \RC{1} \GC{3}
+		\task[+] \C{R4} \C{Y3} \C{G5} \C{B3} \C{W5} \C{M5}
+		\task[A] \C{R3} \C{M5} \C{R2} \C{B2}
+		\task[B] \C[n]{B5} \C{B1} \C{G4} \C{W1}
+		\task[C] \C{Y1} \C{Y5} \C{W4} \C{Y4}
+		\task[D] \C[cn]{B4} \C{Y1} \C{G3} \C{B3}
+		\task[E] \C{W2} \C{B1} \C{R1} \C{G3}
 	\end{tasks}
 	
 	As before, A to play, no clues left, two cards in the deck, one \Y{4} has been discarded. B, C, and D have been permuted, and also A, not E, has the \M{5} in their hand. Notice that there is no way to point the \Y{4} in B's hand with one single clue.
@@ -1035,12 +1043,12 @@ A player is not allowed to discard if all the players before them either played 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}
-		\task[A] \RC{3} \GC{4} \MC{5} \BC{3}
-		\task[B] \YC{5} \GC{1} \YC{1} \WC{5}
-		\task[C] \WC{1} \BC{1} \RC{1} \BC{3}
-		\task[D] \WC{2} \BC{1} \GC{4} \YC{1}
-		\task[E] \GC{3} \WC{2} \MC{3} \GC{1}
+		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
+		\task[A] \C{R3} \C{G4} \C{M5} \C{B3}
+		\task[B] \C{Y5} \C{G1} \C{Y1} \C{W5}
+		\task[C] \C{W1} \C{B1} \C{R1} \C{B3}
+		\task[D] \C{W2} \C{B1} \C{G4} \C{Y1}
+		\task[E] \C{G3} \C{W2} \C{M3} \C{G1}
 	\end{tasks}
 	
 	First round of the game, A is the first player. They clue \textit{5} to B (complement clue). B plays their \Y{1} (they have to play right to left). C can't clue D or E about their \K{1}'s (because they're not disjoint from B's ones), so they clue \textit{5} to A (a wasting-time clue). D can now clue \textit{3} to C, asking them to play their \K{1}'s, and E is quite sure that they can discars, because of the \textit{5} clue that C gave to E (if E's rightmost card was at risk, C should have clued them instead).
@@ -1059,12 +1067,12 @@ Of course there are some exceptions: the first player is always allowed to clue 
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}
-		\task[A] \RC{1} \GC{1} \MC{3} \BC{3}
-		\task[B] \YC{5} \GC{2} \MC{1} \WC{5}
-		\task[C] \GC{1} \BC{4} \RC{5} \BC{3}
-		\task[D] \WC{2} \GC{3} \GC{4} \YC{1}
-		\task[E] \GC{3} \YC{1} \BC{1} \YC{1}
+		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
+		\task[A] \C{R1} \C{G1} \C{M3} \C{B3}
+		\task[B] \C{Y5} \C{G2} \C{M1} \C{W5}
+		\task[C] \C{G1} \C{B4} \C{R5} \C{B3}
+		\task[D] \C{W2} \C{G3} \C{G4} \C{Y1}
+		\task[E] \C{G3} \C{Y1} \C{B1} \C{Y1}
 	\end{tasks}
 	
 	First round of the game, A is the first player. They can't clue \textit{1} to C, because they may have the \G{1} with another \K{1} in their hand (and in fact they do). They can clue \textit{1} to B (because there's a single copy of the \M{1}) or to D (because all the \Y{1}'s are visible, so A can't have any). They can also clue \textit{3} to E, asking to play the complement and stopping them two turns later, but it's probably better to let them discard first.
@@ -1085,12 +1093,12 @@ It should be easy to distinguish negative \textit{2} and \textit{5} clues from p
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}
-		\task[A] \RC{3} \GC{4} \MC{5} \BC{3}
-		\task[B] \WC{2} \BC{1} \GC{2} \YC{1}
-		\task[C] \WC{1} \BC{4} \RC{2} \BC{3}
-		\task[D] \YC{5} \YC{2} \YC{1} \WC{5}
-		\task[E] \GC{3} \WC{2} \MC{3} \GC{1}
+		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
+		\task[A] \C{R3} \C{G4} \C{M5} \C{B3}
+		\task[B] \C{W2} \C{B1} \C{G2} \C{Y1}
+		\task[C] \C{W1} \C{B4} \C{R2} \C{B3}
+		\task[D] \C{Y5} \C{Y2} \C{Y1} \C{W5}
+		\task[E] \C{G3} \C{W2} \C{M3} \C{G1}
 	\end{tasks}
 	
 	In this case, A can safely clue \textit{5} to D: seeing that B has two different \K{1}'s in their hand, D knows that it must be a complement clue. A can't clue \textit{2} to B, though: B doesn't know that A can let D play two cards (a colour-clue won't work, and B does not see any other clues that allow someone play two cards), so B should interpret a \textit{2} clue as a negative one.
@@ -1115,12 +1123,12 @@ All the players between the cluing player and the clued one should follow the no
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}
-		\task[A] \RC{3} \GC{4} \MC{5} \BC{3}
-		\task[B] \WC{2} \BC{4} \GC{2} \YC{1}
-		\task[C] \WC{1} \GC{4} \RC{2} \BC{3}
-		\task[D] \WC{5} \YC{2} \YC{3} \WC{3}
-		\task[E] \GC{3} \WC{2} \MC{3} \GC{1}
+		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
+		\task[A] \C{R3} \C{G4} \C{M5} \C{B3}
+		\task[B] \C{W2} \C{B4} \C{G2} \C{Y1}
+		\task[C] \C{W1} \C{G4} \C{R2} \C{B3}
+		\task[D] \C{W5} \C{Y2} \C{Y3} \C{W3}
+		\task[E] \C{G3} \C{W2} \C{M3} \C{G1}
 	\end{tasks}
 	
 	In this case, A clues \textit{4} to B: B plays the \Y{1}, C can clue \textit{yellow} to D, who has to be careful. D sees a \G{1} in E's hand, but it's not in playing position, so they have to clue \textit{1} to E. E plays the \G{1}, A clues \textit{green} to C (it's a finesse on E), B plays the \G{2}, and C sees no \W{1}'s, so they must play their newest card.
@@ -1174,12 +1182,12 @@ When a player have more than one playable card, they should decide which to play
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{2} \YC{3} \GC{2} \BC{3} \WC{4} \MC{5}
-		\task[A] \RCcn{3} \YCcn{4} \RC{2} \BC{2}
-		\task[B] \GCcn{3} \RCn{4} \GC{4} \WC{1}
-		\task[C] \WCn{5} \YC{1} \WC{3} \YC{4}
-		\task[D] \BCcn{4} \YC{1} \GC{3} \BC{3}
-		\task[E] \YC{5} \YC{2} \RC{1} \GC{3}
+		\task[+] \C{R2} \C{Y3} \C{G2} \C{B3} \C{W4} \C{M5}
+		\task[A] \C[cn]{R3} \C[cn]{Y4} \C{R2} \C{B2}
+		\task[B] \C[cn]{G3} \C[n]{R4} \C{G4} \C{W1}
+		\task[C] \C[n]{W5} \C{Y1} \C{W3} \C{Y4}
+		\task[D] \C[cn]{B4} \C{Y1} \C{G3} \C{B3}
+		\task[E] \C{Y5} \C{Y2} \C{R1} \C{G3}
 	\end{tasks}
 	
 	A to play. They know that both the \R{3} and the \Y{4} are playable. B has a \R{4}, but they don't know its colour. A plays the \R{3}, so be knows that their \K{4} is red (else A should have played the \Y{4}, allowing E to play their \Y{5}). B plays the \G{3} instead, so C knows that their \K{5} isn't red (it's white). They can clue \textit{yellow} to E instead.
@@ -1192,12 +1200,12 @@ When a player have more than one playable card, they should decide which to play
 	Let the setting be the following.
 	
 	\begin{tasks}(3)
-		\task[+] \RC{0} \YC{0} \GC{0} \BC{0} \WC{0} \MC{0}
-		\task[A] \MC{1} \YC{1} \YC{4} \WC{3}
-		\task[B] \RC{1} \RC{3} \GC{4} \RC{4}
-		\task[C] \GC{1} \WC{2} \BC{2} \YC{5}
-		\task[D] \YC{2} \YC{3} \GC{2} \WC{4}
-		\task[E] \BC{2} \BC{1} \RC{1} \GC{3}
+		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
+		\task[A] \C{M1} \C{Y1} \C{Y4} \C{W3}
+		\task[B] \C{R1} \C{R3} \C{G4} \C{R4}
+		\task[C] \C{G1} \C{W2} \C{B2} \C{Y5}
+		\task[D] \C{Y2} \C{Y3} \C{G2} \C{W4}
+		\task[E] \C{B2} \C{B1} \C{R1} \C{G3}
 	\end{tasks}
 	
 	First round of the game, A is the first player. They clue \textit{3} to E, asking to play the complement right to left. Then, B clues \textit{yellow} to C. This is a (fantastic) finesse involving A and D. Then, C and D aren't really allowed to discard (it's still the first round), so they may clue \textit{red} and \textit{1} respectively to B, meaning that no red card is to play and that there is one available to discard (because the \R{1} will be played by E).
