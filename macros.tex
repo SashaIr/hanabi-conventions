@@ -18,7 +18,7 @@
 % Symbols
 \newcommand{\white}{\scalerel*{
 		\def\svgwidth{10 pt}
-		\import{cards/}{WS.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+		\import{cards/}{WS.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 \newcommand{\blue}{\scalerel*{
 		\def\svgwidth{10 pt}
@@ -38,7 +38,7 @@
 
 \newcommand{\rainbow}{\scalerel*{
 		\def\svgwidth{10 pt}
-		\import{cards/}{MS.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+		\import{cards/}{MS.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 % Numbers
 
@@ -62,9 +62,7 @@
 		\def\svgwidth{10 pt}
 		\import{cards/}{K4.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
 
-\newcommand{\five}{\scalerel*{
-		\def\svgwidth{10 pt}
-		\import{cards/}{K5.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\five}{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{K5.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
 
 \newcommand{\ZZ}{\scalerel*{
 		\def\svgwidth{10 pt}
@@ -73,12 +71,12 @@
 % Macros
 
 \newcommand{\K}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{K#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
-\newcommand{\R}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{R#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \red}
-\newcommand{\Y}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{Y#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \yellow}
-\newcommand{\G}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{G#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \green}
-\newcommand{\B}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{B#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \blue}
-\newcommand{\W}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{W#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \white}
-\newcommand{\M}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{M#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \rainbow}
+\newcommand{\R}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{R#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\red}}
+\newcommand{\Y}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{Y#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\yellow}}
+\newcommand{\G}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{G#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\green}}
+\newcommand{\B}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{B#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\blue}}
+\newcommand{\W}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{W#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\white}}
+\newcommand{\M}[1]{\scalerel*{\def\svgwidth{10 pt}\import{cards/}{M#1.pdf_tex} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\rainbow}}
 
 % Generic card template
 
