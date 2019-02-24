@@ -67,7 +67,7 @@
 
 The values of the 10 cards of each colour are \C{K1} \C{K1} \C{K1} \C{K2} \C{K2} \C{K3} \C{K3} \C{K4} \C{K4} \C{K5}.
 
-There are two variants that include an optional sixth colour \textcolor{violet}{rainbow} \rainbow. In the \textit{rainbow variant}, the rainbow cards work exactly as the other ones, except that there's exactly one copy of each card of value from 1 to 5. In the \textit{multicolour variant}, the rainbow cards distribution is the same for the other colours, but you can't give a \M{S} clue, and you should point all the rainbow cards when giving any colour clue.
+There are two variants that include an optional sixth colour \textcolor{red}{r}\textcolor{orange}{a}\textcolor{yellow}{i}\textcolor{green}{n}\textcolor{blue}{b}\textcolor{purple}{o}\textcolor{violet}{w} \rainbow. In the \textit{rainbow variant}, the rainbow cards work exactly as the other ones, except that there's exactly one copy of each card of value from 1 to 5. In the \textit{multicolour variant}, the rainbow cards distribution is the same for the other colours, but you can't give a \M{S} clue, and you should point all the rainbow cards when giving any colour clue.
 
 In this document we only consider the \textit{rainbow variant}, which is assumed to be the default version of the game.
 
@@ -261,7 +261,18 @@ This convention is tricky, because it is not totally clear what \textit{same val
 
 It happens quite often that a player discards to prevent the next player from doing the same, usually because the next player's rightmost card is important. It also may happen that a player has two cards of the same colour that they should play, but the higher is on the left. Both issues can be fixed with this idea.
 
-When a player gives a clue, they should move their chop card in finesse position. If such a player has at most one unclued card, then they do nothing.
+\begin{convention}[Cyclic rearrangement]
+	When a player gives a clue, they should move their chop card in finesse position. If such a player has at most one unclued card, then they do nothing.
+\end{convention}
+
+ The cyclic rearrangement works very well with the following convention.
+
+\begin{convention}[Chop focus]
+	\label{chop-focus}
+	When a player receives a \emph{play clue} on a set of cards that includes their chop, then that card is the one which should be played first. The other cards are played left to right as usual.
+\end{convention}
+
+The reason behind this is the fact that sometimes a player has multiple playable cards of the same colour, and if the first to be played is on chop, then the other players might be tempted to wait until the player gives a clue and cyclically rearranges their hand. This is risky, because it lets a playable card stay on chop for at least a round. Convention~\ref{chop-focus} solves this issue. Of course the drawback is that configurations in which a non playable card of the same colour is on chop cannot be clued, but this is less of an issue because if the player gives a clue themselves, then the non playable card moves and the playable one gets closer to the chop (where it can be clued); if they discard instead, the lost card is not as valuable, because it wasn't immediately playable.
 
 \section{Prompts and finesses}
 
@@ -534,7 +545,7 @@ This might be quite confusing, so some examples are needed.
 		\task[E] \C[c]{M1} \C{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
-	A clues \K{4} to D. It is a finesse on the \Y{4}, so B is supposed to play their drop, which is the \Y{2}. C sees that the \Y{4} was not one-away (it was not the \W{4}), hence it can't be a bluff, and according to Convention~\ref{multiplayer-finesse}, they should play their drop, the \R{2}. D sees that C played, so they deduce that it was not a bluff and their \K{4} was not one-away. Also, they see that C has the \Y{3} as next card to be played because of the finesse, hence their card must be \Y{4}.
+	A clues \K{4} to D. It is a finesse on the \Y{4}, so B is supposed to play their drop, which is the \Y{2}. C sees that the \Y{4} was not one-away (it was not the \W{4}), hence it can't be a bluff, and according to Convention~\ref{multiplayer-finesse}, they should play their drop, the \R{2}. D sees that C played, so their \K{4} can be either the \W{4} (bluff) or the \Y{4} (finesse). The next turn C will play the \Y{3} (they know it is not a bluff, since the \Y{4} is not one-away), and D deduces that the clue is an actual finesse, hence their card must be \Y{4}.
 \end{example}
 
 \subsection{Layered finesse}
@@ -563,7 +574,7 @@ Let's see an example.
 \end{example}
 
 \begin{remark}
-	Layered finesse is very risky, and it requires great understanding and trust among the players. It's very easy to mistake a generic clue for a layered finesse, so be careful and think to every possible scenario before giving such a clue.
+	Layered finesse is very risky, and it requires great understanding and trust among the players. It's very easy to mistake a generic clue for a layered finesse, so be careful and think to every possible scenario before giving such a clue. I recommend beginners not to use this convention until they are fully familiar with the finesse and with the play style of the other players.
 \end{remark}
 
 \subsection{Unfinessing a card}
@@ -584,7 +595,7 @@ Let's see an example.
 		\task[E] \C[c]{W3} \C[c]{W4} \C{G3} \C{Y1}
 	\end{tasks}
 	
-	Same as before, except for A's hand. B clues \Y{S} to D, trying to get the \B{4} and the \Y{3} for free. All the players but A see the connecting card in A's hand, and they also see that A's drop is a \B{4}, which is playable, so nobody does anything. A plays their \B{4} assuming that it is a \Y{3} instead, and now B must stop A from playing their \M{3}, for example with a \M{S} clue on that card. This can't possibly be a play clue (if it were a \M{1}, then no clue would have been needed), nor a finesse on some other player (otherwise B could just have let that going, since everybody knew that A was about to play their \M{3}), hence it must just be an \textit{unfinessing} clue, meaning that the clued card is not involved into the finesse, and hence the card on its right has to be played next.
+	Same as before, except for A's hand. B clues \Y{S} to D, trying to get the \B{4} and the \Y{3} for free. All the players but A see the connecting card in A's hand, and they also see that A's drop is a \B{4}, which is playable, so nobody does anything. A plays their \B{4} assuming that it is a \Y{3} instead, and now B must stop A from playing their \M{3}, with either a \M{S} or a \K{3} clue on that card. This can't possibly be a play clue (if it were a \M{1}, then no clue would have been needed), nor a finesse on some other player (otherwise B could just have let that going, since everybody knew that A was about to play their \M{3}), hence it must just be an \textit{unfinessing} clue, meaning that the clued card is not involved into the finesse, and hence the card on its right has to be played next.
 \end{example}
 
 \begin{remark}
@@ -620,6 +631,7 @@ If the leftmost card is not immediately playable, then such a clue implies a fin
 %\end{convention}
 
 \begin{convention}[Delayed multi-card finesse]
+	\label{delayed-finesse}
 	If a player receives a colour clue on multiple cards, assuming that they had no previous knowledge on the number of these cards, then what happens after all the playable ones are played depends on several factors.
 	
 	Players whose turn is between the moment in which the last card has been played and the original cluer's turn should act according to the following algorithm.
@@ -681,7 +693,7 @@ For example, if a played is clued on a \Y{2} and a \Y{4}, and they already had a
 	\begin{tasks}(3)
 		\task[+] \C{R1} \C{Y2} \C{G5} \C{B3} \C{W2} \C{M0}
 		\task[A] \C{B1} \C[n]{B4} \C{Y3} \C{R5}
-		\task[B] \C{W1} \C{Y2} \C[c]{M2} \C{W5}
+		\task[B] \C{W1} \C{Y2} \C[c]{M2} \C{W4}
 		\task[C] \C[n]{M5} \C{R2} \C{Y1} \C[n]{Y5}
 		\task[D] \C{B2} \C{G4} \C{Y4} \C{R1}
 		\task[E] \C[c]{W3} \C{G3} \C[c]{W4} \C{Y1}
@@ -704,7 +716,7 @@ For example, if a played is clued on a \Y{2} and a \Y{4}, and they already had a
 		\task[E] \C[c]{W3} \C[c]{W5} \C{G3} \C{Y1}
 	\end{tasks}
 	
-	A clues \W{S} to E. B, C, and D do something (i.e. B clues \Y{S} to D, C clues \K{5} to A, D plays his \Y{4}), then E plays their \W{3}. It's A's turn again, and they discard. B sees that E's clued card is a \W{5}, hence it is not playable. Since A didn't give any fix clue, it must be a finesse, so B plays their newest card, which is a \R{2}. E sees that B's \W{4} was in finesse position, so they delay playing the \W{5} until the \W{4} is played.
+	A clues \W{S} to E. B, C, and D do something (i.e. B clues \Y{S} to D, C clues \K{5} to A, D plays his \Y{3}), then E plays their \W{3}. It's A's turn again, and they discard. B sees that E's clued card is a \W{5}, hence it is not playable. Since A didn't give any fix clue, it must be a finesse, so B plays their newest card, which is a \R{2}. E sees that B's \W{4} was in finesse position, so they delay playing the \W{5} until the \W{4} is played.
 	
 \end{example}
 
@@ -730,7 +742,7 @@ This convention is actually very intuitive. In fact, if the leftmost card has to
 	\label{ordering-three-cards}
 	If three cards of a colour are clued and in queue to be played, but the leftmost is not playable, then the fix clue depends on the current configuration. It is assumed that one of the cards is currently playable.
 	
-	If all the five cards of that colour are yet to be played, TBD. % TODO
+	If all the five cards of that colour are yet to be played, try to give the one clue that delays the impending misplays as much as possible, and follow the general principles described in the case of four cards to be played. It is up to the players to deal with this scenario (which is quite implausible anyway).
 	
 	If four cards of that colour are yet to be played, the algorithm is the following (assuming that the cards to be played range from \K{2} to \K{5}): if both \K{2} and \K{3} are involved, then one of the two has to be clued in a way such that always playing the leftmost compatible card leads to playing them both (recall that the leftmost card cannot be a \K{2} if such a clue is given), and the third card has not to be played until new information arises; if both \K{4} and \K{5} are involved, then the rightmost of the two has to be clued (this determines the positions of all of them).
 	
@@ -983,11 +995,11 @@ Cluing any set of useless cards means that the clued player should play the comp
 \subsection{Early game complement}
 \label{firstroundcomplement}
 
-Until the first card is discarded, cluing \K{3} or \K{4} to any player means that they should play the complement (their unclued cards) \textit{right to left} (opposite than the usual order, see \ref{earlygame}).
+Until the first card is discarded, cluing \K{3} or \K{4} to any player means that they should play the complement (their unclued cards) \textit{right to left} (opposite than the usual order, see \ref{sec:earlygame}).
 
 This is because cluing \K{3} or \K{4} in the beginning of the game is pretty useless, since you almost certainly want to clue \K{1}. This way, you get extra information and also have the chance to give more efficient clues (e.g. playing two \K{1}'s and one \K{2} with the same clue).
 
-One should read Section \ref{earlygame} to understand what to do during the early game; here we just want to introduce complement clues.
+One should read Section \ref{sec:earlygame} to understand what to do during the early game; here we just want to introduce complement clues.
 
 \begin{example}
 	
@@ -1005,7 +1017,7 @@ One should read Section \ref{earlygame} to understand what to do during the earl
 	First round of the game, A is the first player. They clue \K{3} to B: it is a complement clue. B plays their \Y{1} (they have to play right to left). C clues \K{4} to D: it is again a complement clue, so D plays their \W{1} (right to left, again). At last, E clues \K{3} to A: no card has been discarded yet, so it must be a complement clue.
 \end{example}
 
-We'll see more examples in Section \ref{earlygame}.
+We'll see more examples in Section \ref{sec:earlygame}.
 
 \section{Discard clues}
 
@@ -1064,9 +1076,9 @@ This trick was worth a full point, but it can get even better.
 Without the discard clue trick, they would have probably scored 28, so even in the worst-case scenario (e.g. A discarded the \M{5} to let C play their \Y{4}) it would still have been worth a full point.
 
 \section{Early game conventions}
-\label{earlgame}
+\label{sec:earlygame}
 
-We denote by \textit{early game} the phase of the game before the first discard. Misplaying a card does not end the early game. As we already said, during the early game most of the relevant information involves \K{1}'s and \K{2}'s, so it would be a waste to explicitly give clues on that card. There are some useful rules that can make first round clues extremely efficient.
+We denote by \textit{early game} the phase of the game before the first blind discard. Misplaying a card does not end the early game. Discarding a clued card that is known to be useless does not end the early game either. As we already said, during the early game most of the relevant information involves \K{1}'s and \K{2}'s, so it would be a waste to explicitly give clues on that card. There are some useful rules that can make first round clues extremely efficient.
 
 \subsection{Discard carefully}
 
@@ -1087,7 +1099,7 @@ A player is not allowed to discard if all the players before them either played 
 		\task[E] \C{G3} \C{W2} \C{M3} \C{G1}
 	\end{tasks}
 	
-	First round of the game, A is the first player. They clue \K{3} to B (complement clue). B plays their \Y{1} (they have to play right to left). C can't clue D or E about their \K{1}'s (because they're not disjoint from B's ones), so they clue \K{5} to A (a wasting-time clue). D can now clue \K{3} to C, asking them to play their \K{1}'s, and E is quite sure that they can discars, because of the \K{5} clue that C gave to E (if E's rightmost card was at risk, C should have clued them instead).
+	First round of the game, A is the first player. They clue \K{3} to B (complement clue). B plays their \Y{1} (they have to play right to left). C can't clue D or E about their \K{1}'s (because they're not disjoint from B's ones), so they clue \K{5} to A (a wasting-time clue). D can now clue \K{3} to C, asking them to play their \K{1}'s, and E is quite sure that they can discard, because of the \K{5} clue that C gave to E (if E's rightmost card was at risk, C should have clued them instead).
 \end{example}
 
 \subsection{Point at least two cards}
@@ -1137,6 +1149,7 @@ During the whole first round, any \K{3} or \K{4} clue should be interpreted as \
 \end{example}
 
 \begin{corollary}[Indirect \K{2} and \K{5}]
+	\label{indirect25}
 	If a player is clued on three \K{1}'s, then their other card can't possibly a \K{3} or a \K{4}. It must be a \K{2} or a \K{5} instead. The card counts as clued as both numbers for any interpretation (e.g. it is prioritized by prompts, it should not be cycled, it should not be discarded).
 \end{corollary}
 
@@ -1150,9 +1163,9 @@ Colour clues must be played \textit{left to right}, as usual, while complement c
 
 \subsection{Combining complements and finesses}
 
-Sometimes it is convenient to give a complement clue, even if not all the cards in the complement are immediately playable. In this case, if some of these cards is close to being played, it might be a finesse.
+Sometimes it is convenient to give a complement clue, even if not all the cards in the complement are immediately playable. In this case, if some of these cards are close to being played, it might be a finesse.
 
-All the players between the cluing player and the clued one should follow the normal rules for finesses (i.e. if the clued player is about to play a card that's not playable, but might be playable in their turn if you play, then play your finessed card). The players between the clued player and the cluing player should be more careful, since they won't get a chance to listen the cluing player again before the clued player's next turn; if they see, in the hand of any player between themselves and the clued player, all the cards that have to be played before the clued player's next turn, they should not play, and might even give a clue about those cards if they're not in playing position. If they don't, they can just play their finessed card as usual.
+All the players between the cluing player and the clued one should follow the normal rules for finesses (i.e. if the clued player is about to play a card that's not playable, but might be playable in their turn if you play, then play your finessed card). The players between the clued player and the cluing player should be more careful, since they won't get a chance to listen the cluing player again before the clued player's next turn; if they see, in the hand of any player between themselves and the clued player, all the cards that have to be played before the clued player's next turn, they should not play, and might even give a clue about those cards if they're not in playing position. If they don't, they can just play their finessed card as usual. See Section~\ref{sec:finesse}
 
 \begin{example}
 	
@@ -1167,7 +1180,7 @@ All the players between the cluing player and the clued one should follow the no
 		\task[E] \C{G3} \C{W2} \C{M3} \C{G1}
 	\end{tasks}
 	
-	In this case, A clues \K{4} to B: B plays the \Y{1}, C can clue \Y{S} to D, who has to be careful. D sees a \G{1} in E's hand, but it's not in playing position, so they have to clue \K{1} to E. E plays the \G{1}, A clues \G{S} to C (it's a finesse on E), B plays the \G{2}, and C sees no \W{1}'s, so they must play their newest card.
+	In this case, A clues \K{4} to B: B plays the \Y{1}, C can clue \Y{S} to D, who has to be careful. D sees a \G{1} in E's hand, but it's not in playing position, so they have to clue \K{1} to E. E plays the \G{1} and draws a \M{1}, A clues \G{S} to C (it's a layered finesse on E), B plays the \G{2}, and C sees no \W{1}'s, so they must play their newest card.
 \end{example}
 
 \subsection{Wasting time}
@@ -1206,15 +1219,15 @@ To all the other players, the clue means the following:
 	\item otherwise it is $0$. 
 \end{itemize}
 
-Colours are paired as follows: \R{S} means $0$, \Y{S} means $1$, \G{S} means $2$, \B{S} means $3$, W{S} means $4$, and \M{S} means $5$.
+Colours are paired as follows: \R{S} is $0$, \Y{S} is $1$, \G{S} is $2$, \B{S} is $3$, \W{S} is $4$, and \M{S} is $5$.
 
 The cluing players should then give the clue corresponding to the sum, modulo 8, of the clues they intend to give, and the next player should passively do what the cluing player asked them to do (otherwise the other players won't understand). This clue counts as a direct clue on the involved cards.
 
 Exception: if a player is in this situation because someone has already been, they told the next player to discard, and no other clue has been given yet, then the clue is a normal one (it doesn't have this artificial meaning).
 
-\section{Other ideas}
+Advanced variation: if a player (not the one on the immediate left of the cluer) has an indirect \K{2} or \K{5} in any position (see Convention~\ref{indirect25}), then they should get a $6 \pmod 8$ if their card is a \K{5}, and a regular modulo $8$ clue (which is always a number from $0$ to $5$) otherwise (implying that their indirect \K{2} or \K{5} is actually a \K{2}).
 
-\textit{This is not yet official.}
+\section{Other ideas}
 
 When a player have more than one playable card, they should decide which to play by looking at other players' hands. If they can allow someone else play, they must do so.
 
@@ -1234,6 +1247,8 @@ When a player have more than one playable card, they should decide which to play
 	A to play. They know that both the \R{3} and the \Y{4} are playable. B has a \R{4}, but they don't know its colour. A plays the \R{3}, so be knows that their \K{4} is red (else A should have played the \Y{4}, allowing E to play their \Y{5}). B plays the \G{3} instead, so C knows that their \K{5} isn't red (it's white). They can clue \Y{S} to E instead.
 \end{example}
 
+Be careful and use logic to deal with these cases. Always ask yourself the reason behind a certain choice of a player who had multiple play options, and try to deduce information by assuming they made the most logical choice. It is risky, especially for beginners, but very rewarding.
+
 \section{Relevant examples}
 
 \begin{example}[A brilliant first round]
@@ -1244,14 +1259,14 @@ When a player have more than one playable card, they should decide which to play
 		\task[+] \C{R0} \C{Y0} \C{G0} \C{B0} \C{W0} \C{M0}
 		\task[A] \C{Y1} \C{Y4} \C{W3} \C{M1}
 		\task[B] \C{R3} \C{G4} \C{R4} \C{G1}
-		\task[C] \C{R1} \C{W2} \C{B2} \C{Y5}
+		\task[C] \C{R1} \C{W2} \C{B3} \C{Y5}
 		\task[D] \C{Y2} \C{Y3} \C{G2} \C{W4}
 		\task[E] \C{B2} \C{B1} \C{R1} \C{G3}
 	\end{tasks}
 	
 	First round of the game, A is the first player. They clue \K{3} to E, asking to play the complement right to left, and move their \M{1} in the leftmost position. Then, B clues \Y{S} to C and moves the \G{1} in the leftmost position. This is a finesse involving A and D. Then, C can clue \G{S} to B, performing a finesse on the \G{2} and \G{3} as well.
 	
-	With the first three clues, the players get to play 12 cards. The drawback is that D doesn't really have anything useful to do, but they can clue \K{5} to C without causing any harm.	
+	With the first three clues, the players get to play 12 cards. The drawback is that D doesn't really have anything useful to do, but they can clue \K{2} to C to save the \W{2} which just became the chop card.	
 \end{example}
 
 \end{document}
