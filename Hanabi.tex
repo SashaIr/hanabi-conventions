@@ -236,10 +236,11 @@ We will refer to clues that are meant to prevent a card from being discarded as 
 When a player is clued on their chop, they should ask themselves whether or not it is a save clue. Clues involving \K{2}'s, \K{5}'s, or rainbow cards on chop are almost always save clues. Save clues should usually be given as number clues, while play clues should usually be given as colour clues. Players might ignore this guideline if there is a good reason to do so, which means that there should be no risk of misplays, and also that the unusual save gives more value, for example because it also saves another dangerous card (e.g. a \M{2} on chop can be saved with a colour clue if the player has at least one other rainbow card), or because it avoids cluing trash.
 
 \begin{convention}[Double discard]
+	\label{double-discard}
 	If a player discards a non-unique relevant card, then the next player is not allowed to discard, unless they see the other copy of that card in another player's hand.
 \end{convention}
 
-In fact, if they do so, they might be discarding the other copy of that card, which was impossible to save earlier. If a player double discards, then they are implying that they see the other copy of the just-discarded card.
+In fact, if they do so, they might be discarding the other copy of that card, which was impossible to save earlier. If a player double discards, then they are implying that they see the other copy of the just-discarded card. See also Section~\ref{sec:mod8}.
 
 \begin{convention}[Colour plays, number saves]
 	If a play clue has to be given and both colour and number have the same value, then the colour clue should be chosen. If a save clue has to be given and both colour and number have the same value, then the number clue should be chosen.
@@ -716,7 +717,7 @@ For example, if a played is clued on a \Y{2} and a \Y{4}, and they already had a
 		\task[E] \C[c]{W3} \C[c]{W5} \C{G3} \C{Y1}
 	\end{tasks}
 	
-	A clues \W{S} to E. B, C, and D do something (i.e. B clues \Y{S} to D, C clues \K{5} to A, D plays his \Y{3}), then E plays their \W{3}. It's A's turn again, and they discard. B sees that E's clued card is a \W{5}, hence it is not playable. Since A didn't give any fix clue, it must be a finesse, so B plays their newest card, which is a \R{2}. E sees that B's \W{4} was in finesse position, so they delay playing the \W{5} until the \W{4} is played.
+	A clues \W{S} to E. B, C, and D do something (i.e. B clues \Y{S} to D, C clues \K{5} to A, D plays his \Y{3}), then E plays their \W{3}. It's A's turn again, and they discard. B sees that E's clued card is a \W{5}, hence it is not playable. Since A didn't give any fix clue, it must be a finesse, so B plays the card that was in finesse position when the \W{S} clue was given, which is a \R{2}. E sees that B's \W{4} was in finesse position at that moment, so they delay playing the \W{5} until the \W{4} is played.
 	
 \end{example}
 
@@ -1199,12 +1200,13 @@ A colour clue is usually a finesse, instead, so the clued player should check th
 In case of doubt, the safe thing to do is to just give a clue on the cards that are supposed to be played but shouldn't. Try other clues only if it is sufficiently clear from the context that they must be stop signals.
 
 \section{Artificial $\pmod 8$ clues}
+\label{sec:mod8}
 
 Some triggering conditions can be used to give a completely artificial meaning to a clue.
 
 \subsection{Relevant card just discarded}
 
-If some player just discarded a relevant, non-unique card, then the next player must not discard too (since they can be holding the other copy of that card, that was previously impossible to address with a save clue). It is then convenient that their next clue has an artificial meaning, since there may be none to give without generate misunderstandings.
+If some player just discarded a relevant, non-unique card, then the next player must not discard too (since they can be holding the other copy of that card, that was previously impossible to address with a save clue - see Convention~\ref{double-discard}). It is then convenient that their next clue has an artificial meaning, since there may be none to give without generate misunderstandings.
 
 The clue is given as a number modulo 8. Colour clues represent numbers from $0$ to $3$, from the player on the cluing player's left to the player on their right; number clues represent numbers from $4$ to $7$, in the same order. Which kind of clue to give is up to the cluing player, with the following guidelines: a number clue doesn't usually mean anything; a colour clue on the card that is also involved by the modulo 8 clue doesn't mean anything; a colour clue on some other card has to be interpreted as if it were a normal clue (in addition to it being a modulo 8 clue).
 
