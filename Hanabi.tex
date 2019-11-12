@@ -1,4 +1,5 @@
 \documentclass[a4paper]{article}
+\pdfsuppresswarningpagegroup=1
 
 % Packages
 \usepackage[utf8]{inputenc}
@@ -233,7 +234,7 @@ Once again, since clued cards are supposed to be eventually played, giving a clu
 
 We will refer to clues that are meant to prevent a card from being discarded as \textit{save clues}, and to all the other clues as \textit{play clues}.
 
-When a player is clued on their chop, they should ask themselves whether or not it is a save clue. Clues involving \K{2}'s, \K{5}'s, or rainbow cards on chop are almost always save clues. Save clues should usually be given as number clues, while play clues should usually be given as colour clues. Players might ignore this guideline if there is a good reason to do so, which means that there should be no risk of misplays, and also that the unusual save gives more value, for example because it also saves another dangerous card (e.g. a \M{2} on chop can be saved with a colour clue if the player has at least one other rainbow card), or because it avoids cluing trash.
+When a player is clued on their chop, they should ask themselves whether or not it is a save clue. Clues involving \K{2}'s, \K{5}'s, or rainbow cards on chop are usually save clues. Save clues should usually be given as number clues, while play clues should usually be given as colour clues. %Players might ignore this guideline if there is a good reason to do so, which means that there should be no risk of misplays, and also that the unusual save gives more value, for example because it also saves another dangerous card (e.g. a \M{2} on chop can be saved with a colour clue if the player has at least one other rainbow card), or because it avoids cluing trash.
 
 \begin{convention}[Double discard]
 	\label{double-discard}
@@ -1020,6 +1021,13 @@ One should read Section \ref{sec:earlygame} to understand what to do during the 
 
 We'll see more examples in Section \ref{sec:earlygame}.
 
+
+\begin{convention}[Early Rainbow save]
+	Until the first card is discarded, a Rainbow clue on chop should be interpreted as a save clue on a \M{3} or a \M{4}.
+\end{convention}
+
+Since a \K{3} or \K{4} clue is a complement clue, then to save a \M{3} or a \M{4} a \M{S} clue is needed. \M{2} and \M{5} should be saved with a number clue, as usual. After the first card is discarded, this no longer applies, so \M{3} and \M{4} should be saved with a number clue, as usual.
+
 \section{Discard clues}
 
 Sometimes, a player can pass information to the others by discarding a card. There are two main cases, depending on the information a player has on the discarded card.
@@ -1199,7 +1207,7 @@ A colour clue is usually a finesse, instead, so the clued player should check th
 
 In case of doubt, the safe thing to do is to just give a clue on the cards that are supposed to be played but shouldn't. Try other clues only if it is sufficiently clear from the context that they must be stop signals.
 
-\section{Artificial $\pmod 8$ clues}
+\section{Artificial hat-guessing clues}
 \label{sec:mod8}
 
 Some triggering conditions can be used to give a completely artificial meaning to a clue.
@@ -1210,7 +1218,7 @@ If some player just discarded a relevant, non-unique card, then the next player 
 
 The clue is given as a number modulo 8. Colour clues represent numbers from $0$ to $3$, from the player on the cluing player's left to the player on their right; number clues represent numbers from $4$ to $7$, in the same order. Which kind of clue to give is up to the cluing player, with the following guidelines: a number clue doesn't usually mean anything; a colour clue on the card that is also involved by the modulo 8 clue doesn't mean anything; a colour clue on some other card has to be interpreted as if it were a normal clue (in addition to it being a modulo 8 clue).
 
-To the player on their left, the clue means ``play or discard a card'', with the following convention. $0$ means ``play your leftmost card'', $1$ means ``play your second card from the left'', $2$ means ``play your third card from the left'', $3$ means ``play your fourth card from the left'', $4$ means ``discard your leftmost card'', $5$ means ``discard your second card from the left'', $6$ means ``discard your third card from the left'', $7$ means ``discard your fourth card from the left''.
+To the player on their left, the clue means ``play or discard a card'', with the following convention. $0$ means ``play your leftmost card'', $1$ means ``play your second card from the left'', $2$ means ``play your third card from the left'', $3$ means ``play your fourth card from the left'', $4$ means ``discard your leftmost card'', $5$ means ``discard your second card from the left'', $6$ means ``discard your third card from the left'', $7$ means ``discard your fourth card from the left or give a clue''.
 
 To all the other players, the clue means the following:
 
