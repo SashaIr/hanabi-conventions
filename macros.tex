@@ -33,44 +33,53 @@
 
 \newcommand{\rainbow}{\scalerel*{
 		\includegraphics[width=10pt]{cards/MS.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+	
+\newcommand{\black}{\scalerel*{
+\includegraphics[width=10pt]{cards/KS.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+
+\newcommand{\colorless}{\scalerel*{
+\includegraphics[width=10pt]{cards/CS.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+
 % Numbers
 
 \newcommand{\zero}{\scalerel*{
-		\includegraphics[width=10pt]{cards/K0.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+		\includegraphics[width=10pt]{cards/Z0.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 \newcommand{\one}{\scalerel*{
-		\includegraphics[width=10pt]{cards/K1.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+		\includegraphics[width=10pt]{cards/Z1.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 \newcommand{\two}{\scalerel*{
-		\includegraphics[width=10pt]{cards/K2.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+		\includegraphics[width=10pt]{cards/Z2.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 	
 \newcommand{\three}{\scalerel*{
-		\includegraphics[width=10pt]{cards/K3.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+		\includegraphics[width=10pt]{cards/Z3.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 \newcommand{\four}{\scalerel*{
-		\includegraphics[width=10pt]{cards/K4.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+		\includegraphics[width=10pt]{cards/Z4.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 \newcommand{\five}{\scalerel*{
-		\includegraphics[width=10pt]{cards/K5.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
+		\includegraphics[width=10pt]{cards/Z5.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 
 \newcommand{\ZZ}{\scalerel*{
 		\includegraphics[width=10pt]{cards/ZZ.pdf} }{X\rule[0ex]{0pt}{1pt}}{}}
 	
 % Macros
 
-\newcommand{\K}[1]{\scalerel*{\includegraphics[width=10pt]{cards/K#1.pdf} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\Z}[1]{\scalerel*{\includegraphics[width=10pt]{cards/Z#1.pdf} }{X\rule[0ex]{0pt}{1pt}}}
 \newcommand{\R}[1]{\scalerel*{\includegraphics[width=10pt]{cards/R#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\red}}
 \newcommand{\Y}[1]{\scalerel*{\includegraphics[width=10pt]{cards/Y#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\yellow}}
 \newcommand{\G}[1]{\scalerel*{\includegraphics[width=10pt]{cards/G#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\green}}
 \newcommand{\B}[1]{\scalerel*{\includegraphics[width=10pt]{cards/B#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\blue}}
 \newcommand{\W}[1]{\scalerel*{\includegraphics[width=10pt]{cards/W#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\white}}
 \newcommand{\M}[1]{\scalerel*{\includegraphics[width=10pt]{cards/M#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\rainbow}}
+\newcommand{\K}[1]{\scalerel*{\includegraphics[width=10pt]{cards/K#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\black}}
+\newcommand{\C}[1]{\scalerel*{\includegraphics[width=10pt]{cards/C#1.pdf} }{X\rule[0ex]{0pt}{1pt}} \IfBeginWith{#1}{S}{\hspace{-1.2 mm}}{\colorless}}
 
 % Generic card template
 
 \makeatletter
 
-\newcommand{\C}[2][]{%
+\newcommand{\CARD}[2][]{%
 	%		
 	\IfBeginWith{#2}{R}{\def\@color{\red}}{}%
 	\IfBeginWith{#2}{Y}{\def\@color{\yellow}}{}%
