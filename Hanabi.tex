@@ -254,7 +254,7 @@ This convention is tricky, because it is not totally clear what \textit{same val
 \end{convention}
 
 \begin{corollary}[Safe discard]
-	If a player gets a \textit{save clue} on their card in discard position, then the card on its left can be safely discarded.
+	If a player gets a \textit{save clue} on their card in discard position, then the card on its left cannot be a \Z{5}.
 \end{corollary}
 
 \section{Cyclic rearrangement}
@@ -459,12 +459,13 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 An exception to the multiple finesse convention is the \textit{bluff}. A player can be tricked into thinking that they have the connecting card even if they don't, just to get their drop played. This might lead into confusion, since all the other players will assume that they have the connecting card, so a precise criterion to distinguish bluffs from multiple finesses is needed.
 
 \begin{convention}[Bluff]
-	If a player clues a one-away card (i.e. a card that needs only one connecting card) of which the connecting card is missing, then the very next player has to play their drop card and not continue playing into the finesse during their next turn. The player who got the clue should deduce that their card is one-away and only play it if the other played card might be the connecting one. No one should assume that the connecting card is visible in any player's hand.
+	If a player gives a \emph{play clue} focussing on a one-away card (i.e. a card that needs only one connecting card) of which the connecting card is missing, then the very next player has to play their drop card and not continue playing into the finesse during their next turn. The player who got the clue should deduce that their card is one-away and only play it if the other played card might be the connecting one. No one should assume that the connecting card is visible in any player's hand.
 \end{convention}
 
 This might be quite confusing, so some examples are needed.
 
 \begin{example}
+	\label{ex:bluff}
 	\hfill
 	\begin{tasks}(3)
 		\task[+] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{W2} \CARD{M0}
@@ -546,6 +547,21 @@ This might be quite confusing, so some examples are needed.
 	\end{tasks}
 	
 	A clues \Z{4} to D. It is a finesse on the \Y{4}, so B is supposed to play their drop, which is the \Y{2}. C sees that the \Y{4} was not one-away (it was not the \W{4}), hence it can't be a bluff, and according to Convention~\ref{multiplayer-finesse}, they should play their drop, the \R{2}. D sees that C played, so their \Z{4} can be either the \W{4} (bluff) or the \Y{4} (finesse). The next turn C will play the \Y{3} (they know it is not a bluff, since the \Y{4} is not one-away), and D deduces that the clue is an actual finesse, hence their card must be \Y{4}.
+\end{example}
+
+
+\begin{example}
+	\hfill
+	\begin{tasks}(3)
+		\task[+] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{W2} \CARD{M0}
+		\task[A] \CARD{B1} \CARD{G2} \CARD[n]{R5} \CARD[n]{B4}
+		\task[B] \CARD{W1} \CARD{Y2} \CARD[n]{M2} \CARD[n]{W5}
+		\task[C] \CARD{R2} \CARD{W4} \CARD{R3} \CARD[c]{M4}
+		\task[D] \CARD{B2} \CARD{G4} \CARD{Y5} \CARD{Y4}
+		\task[E] \CARD[c]{W3} \CARD[c]{W4} \CARD{G3} \CARD{Y1}
+	\end{tasks}
+	
+	This is the same as Example~\ref{ex:bluff}, except that the \Y{S} clue B gives to D now touches two cards. Because of Convention~\ref{chop-focus}, the focus of the clue is the card in discard position, i.e. the \Y{4}. This still works as normal. Considering that C played, then D's rightmost card must be a \Y{4}, and because of Convention~\ref{disjoint-clues} the other one is most likely (but not certainly) a \Y{5}.
 \end{example}
 
 \subsection{Layered finesse}
