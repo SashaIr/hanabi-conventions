@@ -1122,7 +1122,7 @@ A player is not allowed to discard if all the players before them either played 
 		\task[E] \CARD{G3} \CARD{W2} \CARD{M3} \CARD{G1}
 	\end{tasks}
 	
-	First round of the game, A is the first player. They clue \Z{3} to B (complement clue). B plays their \Y{1} (they have to play right to left). C can't clue D or E about their \Z{1}'s (because they're not disjoint from B's ones), so they clue \Z{5} to A (a wasting-time clue). D can now clue \Z{3} to C, asking them to play their \Z{1}'s, and E is quite sure that they can discard, because of the \Z{5} clue that C gave to E (if E's rightmost card was at risk, C should have clued them instead).
+	First round of the game, A is the first player. They clue \Z{3} to B (complement clue). B plays their \Y{1} (they have to play right to left). C can't clue D or E about their \Z{1}'s (because they're not disjoint from B's ones), so they clue \Z{5} to A (a wasting-time clue). D can now clue \Z{3} to C, asking them to play their \Z{1}'s, and E is quite sure that they can discard, because of the \Z{5} clue that C gave to A (if E's rightmost card was at risk, C should have clued them instead).
 \end{example}
 
 \subsection{Point at least two cards}
@@ -1230,9 +1230,9 @@ Some triggering conditions can be used to give a completely artificial meaning t
 
 If some player just discarded a relevant, non-unique card, then the next player must not discard too (since they can be holding the other copy of that card, that was previously impossible to address with a save clue - see Convention~\ref{double-discard}). It is then convenient that their next clue has an artificial meaning, since there may be none to give without generate misunderstandings.
 
-The clue is given as a number modulo 8. Colour clues represent numbers from $0$ to $3$, from the player on the cluing player's left to the player on their right; number clues represent numbers from $4$ to $7$, in the same order. Which kind of clue to give is up to the cluing player, with the following guidelines: a number clue doesn't usually mean anything; a colour clue on the card that is also involved by the modulo 8 clue doesn't mean anything; a colour clue on some other card has to be interpreted as if it were a normal clue (in addition to it being a modulo 8 clue).
+The clue is given as a number modulo 8. Colour clues represent numbers from $1$ to $4$, from the player on the cluing player's left to the player on their right; number clues represent numbers from $5$ to $8$, in the same order. Which kind of clue to give is up to the cluing player, with the following guidelines: a number clue doesn't usually mean anything; a colour clue on the card that is also involved by the modulo 8 clue doesn't mean anything; a colour clue on some other card has to be interpreted as if it were a normal clue (in addition to it being a modulo 8 clue).
 
-To the player on their left, the clue means ``play or discard a card'', with the following convention. $0$ means ``play your leftmost card'', $1$ means ``play your second card from the left'', $2$ means ``play your third card from the left'', $3$ means ``play your fourth card from the left'', $4$ means ``discard your leftmost card'', $5$ means ``discard your second card from the left'', $6$ means ``discard your third card from the left'', $7$ means ``discard your fourth card from the left or give a clue''.
+To the player on their left, the clue means ``play or discard a card'', with the following convention. $1$ means ``play your leftmost card'', $2$ means ``play your second card from the left'', $3$ means ``play your third card from the left'', $4$ means ``play your fourth card from the left'', $5$ means ``discard your leftmost card'', $6$ means ``discard your second card from the left'', $7$ means ``discard your third card from the left'', $8$ means ``discard your fourth card from the left or give a clue''.
 
 To all the other players, the clue means the following:
 
