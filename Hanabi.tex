@@ -1303,7 +1303,7 @@ Some triggering conditions can be used to give a completely artificial meaning t
 
 \subsection{Relevant card just discarded}
 
-If some player just discarded a relevant, non-unique card, then the next player must not discard too (since they can be holding the other copy of that card, that was previously impossible to address with a save clue - see Convention~\ref{double-discard}). It is then convenient that their next clue has an artificial meaning, since there may be none to give without generate misunderstandings.
+If some player just discarded a previously unclued relevant, non-unique card, then the next player must not discard too (since they can be holding the other copy of that card, that was previously impossible to address with a save clue - see Convention~\ref{double-discard}). It is then convenient that their next clue has an artificial meaning, since there may be none to give without generate misunderstandings.
 
 The clue is given as a number modulo 8. Colour clues represent numbers from $1$ to $4$, from the player on the cluing player's left to the player on their right; number clues represent numbers from $5$ to $8$, in the same order. Which kind of clue to give is up to the cluing player, with the following guidelines: a number clue doesn't usually mean anything; a colour clue on the card that is also involved by the modulo 8 clue doesn't mean anything; a colour clue on some other card has to be interpreted as if it were a normal clue (in addition to it being a modulo 8 clue).
 
@@ -1318,7 +1318,7 @@ To all the other players, the clue means the following:
 	\item otherwise it is $0$. 
 \end{itemize}
 
-Colours are paired as follows: \R{S} is $0$, \Y{S} is $1$, \G{S} is $2$, \B{S} is $3$, \W{S} is $4$, and \M{S} is $5$.
+Colours are paired as follows: \R{S} is $1$, \Y{S} is $2$, \G{S} is $3$, \B{S} is $4$, \W{S} is $5$, and \M{S} is $0$.
 
 The cluing players should then give the clue corresponding to the sum, modulo 8, of the clues they intend to give, and the next player should passively do what the cluing player asked them to do (otherwise the other players won't understand). This clue counts as a direct clue on the involved cards.
 
