@@ -1,127 +1,226 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{hanabi}[2018/04/22 v1.0 A package for drawing Hanabi cards]
+\ProvidesPackage{hanabi}[2020/04/16 v1.0 A package for drawing Hanabi cards]
 
 % Requirements
-\RequirePackage{contour}
-\RequirePackage{scalerel}
 \RequirePackage{pgfkeys}
 \RequirePackage{pgfopts}
+\RequirePackage{scalerel}
+\RequirePackage{xstring}
+
 \RequirePackage{tikz}
 	\usetikzlibrary{backgrounds,calc,shapes}
+	
+% Colours
+\definecolor{red}{rgb}{1, 0, 0}
+\definecolor{yellow}{rgb}{1, 1, 0}
+\definecolor{green}{rgb}{0, 1, 0}
+\definecolor{blue}{rgb}{0, 0, 1}
+\definecolor{purple}{rgb}{0.5, 0, 1}
+\definecolor{teal}{rgb}{0, 0.8, 0.8}
+
+\definecolor{aqua}{rgb}{0.5, 1.0, 1.0}
+\definecolor{cream}{rgb}{0.9, 0.9, 0.81}
 
 % Symbols
-\newcommand{\white}{\scalerel*{ \hspace{-1 mm}
-		\def\svgwidth{10 pt}
-		\import{symbols/}{white.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\red}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{red.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+	
+\newcommand{\yellow}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{yellow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
 
-\newcommand{\blue}{\scalerel*{ \hspace{-1 mm}
-		\def\svgwidth{10 pt}
-		\import{symbols/}{blue.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\green}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{green.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
 
-\newcommand{\green}{\scalerel*{ \hspace{-1 mm}
-		\def\svgwidth{10 pt}
-		\import{symbols/}{green.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\blue}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{blue.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+	
+\newcommand{\purple}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{purple.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
 
-\newcommand{\yellow}{\scalerel*{ \hspace{-1 mm}
-		\def\svgwidth{10 pt}
-		\import{symbols/}{yellow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\teal}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{teal.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
 
-\newcommand{\red}{\scalerel*{ \hspace{-1 mm}
-		\def\svgwidth{10 pt}
-		\import{symbols/}{red.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\black}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{black.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+	
+\newcommand{\white}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{white.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}%
 
-\newcommand{\rainbow}{\scalerel*{ \hspace{-1 mm}
-		\def\svgwidth{10 pt}
-		\import{symbols/}{rainbow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}}
+\newcommand{\rainbow}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{rainbow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+	
+\newcommand{\zero}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{zero.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+
+\newcommand{\one}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{one.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+
+\newcommand{\two}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{two.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+
+\newcommand{\three}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{three.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+
+\newcommand{\four}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{four.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+
+\newcommand{\five}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{five.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+
+\newcommand{\blank}{\scalerel*{%
+	\def\svgwidth{10 pt}%
+	\import{symbols/}{blank.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
 
 \pgfkeys{/card/options/.is family}
-\newcommand{\cardsetup}[1]{\pgfkeys{/card/options,#1}}
+\newcommand{\cardsetup}[1]{\pgfkeys{/card/options, #1}}
 
 \pgfkeys{/card/options,
-	color/.default = black
-	color/black/.code = {%
-		\def \@color {black}
-		\def \@symbol {}}
-	color/white/.code = {%
-		\def \@color {gray}
-		\def \@symbol \white}
-	color/blue/.code = {%
-		\def \@color {blue}
-		\def \@symbol \blue}
-	color/green/.code = {%
-		\def \@color {green}
-		\def \@symbol \green}
-	color/yellow/.code = {%
-		\def \@color {yellow}
-		\def \@symbol \yellow}
-	color/red/.code = {%
-		\def \@color {red}
-		\def \@symbol \red}
-	color/rainbow/.code = {%
-		\def \@color {violet}
-		\def \@symbol \rainbow}
+	color/.default = X,
+	color/.is choice,
+	color/X/.code = {%
+		\def \csymbol {\!}},
+	color/R/.code = {%
+		\def \csymbol {\red}},
+	color/Y/.code = {%
+		\def \csymbol {\yellow}},
+	color/G/.code = {%
+		\def \csymbol {\green}},
+	color/B/.code = {%
+		\def \csymbol {\blue}},
+	color/P/.code = {%
+		\def \csymbol {\purple}},
+	color/T/.code = {%
+		\def \csymbol {\teal}},
+	color/K/.code = {%
+		\def \csymbol {\black}},
+	color/W/.code = {%
+		\def \csymbol {\white}},
+	color/M/.code = {%
+		\def \csymbol {\rainbow}},
 	}
 
-\pgfkeys{/number/options,
-	number/.default = ?
-	number/.code = {%
-		\def \@number {$#1$}
-}
+\pgfkeys{/card/options,
+	number/.default = X,
+	number/.is choice,
+	number/X/.code = {%
+		\def \nsymbol {\!}},
+	number/0/.code = {%
+		\def \nsymbol {\zero}},
+	number/1/.code = {%
+		\def \nsymbol {\one}},
+	number/2/.code = {%
+		\def \nsymbol {\two}},
+	number/3/.code = {%
+		\def \nsymbol {\three}},
+	number/4/.code = {%
+		\def \nsymbol {\four}},
+	number/5/.code = {%
+		\def \nsymbol {\five}},
+	}
 
 \pgfkeys{/card/options,	
 	colorclue/.default = false,
 	colorclue/.is choice,
-	colorclue/true/.code = {\def \@cclue {(0.12, 0.3) node {\tiny \hspace{-2 mm} \@symbol}}},
-	colorclue/false/.code = {\def \@nclue {}},
-	c/.value forbidden,
-	c/.style = {colorclue = true},
-}
-
-\pgfkeys{/card/options,	
+	colorclue/true/.code = {%
+		\def \cclue {(0.10, 0.35) node {\tiny \hspace{-1.5 mm} \csymbol}}%
+		\def \bordercolor {orange}%
+	},
+	colorclue/false/.code = {%
+		\def \cclue {(0.10, 0.35) node {\tiny \hspace{-2 mm} \blank}}%
+		\def \bordercolor {black}%
+	},
 	numberclue/.default = false,
 	numberclue/.is choice,
-	numberclue/true/.code = {\def \@nclue {(-0.04, 0.3) node {\tiny \hspace{-2 mm} \@number}}},
-	numberclue/false/.code = {\def \@nclue {}},
+	numberclue/true/.code = {%
+		\def \nclue {(-0.02, 0.35) node {\tiny \hspace{-2 mm} \nsymbol}}%
+		\def \bordercolor {orange}%
+	},
+	numberclue/false/.code = {%
+		\def \nclue {(-0.02, 0.35) node {\tiny \hspace{-2 mm} \blank}}%
+		\def \bordercolor {black}%
+	},	
+	finessed/.default = false,
+	finessed/.is choice,
+	finessed/true/.code = {%
+		\def \bordercolor {aqua}%
+	},
+	finessed/false/.code = {},
+	chopmoved/.default = false,
+	chopmoved/.is choice,
+	chopmoved/true/.code = {%
+		\def \bordercolor {cream}%
+	},
+	chopmoved/false/.code = {},
+	c/.value forbidden,
+	c/.style = {colorclue = true},
 	n/.value forbidden,
 	n/.style = {numberclue = true},
+	cn/.value forbidden,
+	cn/.style = {colorclue = true, numberclue = true},
+	nc/.value forbidden,
+	nc/.style = {colorclue = true, numberclue = true},	
+	f/.value forbidden,
+	f/.style = {finessed = true},
+	cm/.value forbidden,
+	cm/.style = {chopmoved = true},
 }
 
-\newcommand{\@card}{%
-	\@card@i
+\newcommand{\CARD}[2][]{%
+	\raisebox{-2 pt}{%
+		\begin{tikzpicture}
+			\StrLeft{#2}{1}[\@@color]
+			\StrRight{#2}{1}[\@@number]
+			\cardsetup{#1, color=\@@color, number=\@@number}
+			\draw[\bordercolor, line width = 0.9 pt] (-0.36, -0.24) rectangle (0.36, 0.24)
+			(0,0) node {\nsymbol \! \csymbol}
+			\cclue \nclue;
+			\carddefault
+		\end{tikzpicture}%
+	}%
 }
 
-\newcommand{\@card@i}{%
-	\@ifnextchar[%
-	{\@card@ii}%
-	{\@card@iii}%
+\newcommand{\C}[1]{%
+	\StrLeft{#1}{1}[\@@color]%
+	\StrRight{#1}{1}[\@@number]%
+	\cardsetup{color=\@@color, number=\@@number}%
+	\nsymbol\,\csymbol%
+	\carddefault%
 }
-
-\newcommand{\@card@ii}[1][]{%
-	\@ifnextchar c
-	\@card@i
-}
-
-\newcommand{\@card@iii}[2]{
-	\def \@color #1
-	\def \@number #2
-	\carddefault
-}
-
-\newenvironment{hanabicard}[2]{%
-	\begin{tikzpicture}
-		\@card
-		\draw (-0.2,-0.2) rectangle (0.2,0.2)
-		(0,0) node[\@color] {\contourlength{0.01 em} \contour{black}{\@number}};
-		\@cclue
-		\@nclue
-	}{%
-	\end{tikzpicture}%
-	}
 
 \newcommand{\carddefault}{%
-	\cardsetup{color, number, colorclue, numberclue}
-	}
-
+	\cardsetup{color, number, colorclue, numberclue, finessed, chopmoved}%
+	}%
 \carddefault
 \ProcessPgfPackageOptions{/card/options}
 
