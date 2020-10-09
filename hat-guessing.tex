@@ -1,0 +1,30 @@
+%\section{Artificial hat-guessing clues}
+%\label{sec:mod8}
+%
+%Some triggering conditions can be used to give a completely artificial meaning to a clue.
+%
+%\subsection{Relevant card just discarded}
+%
+%If some player just discarded a relevant, non-unique card, then the next player must not discard too (since they can be holding the other copy of that card, that was previously impossible to address with a save clue - see Convention~\ref{double-discard}). It is then convenient that their next clue has an artificial meaning, since there may be none to give without generate misunderstandings.
+%
+%The clue is given as a number modulo 8. Colour clues represent numbers from $1$ to $4$, from the player on the cluing player's left to the player on their right; number clues represent numbers from $5$ to $8$, in the same order. Which kind of clue to give is up to the cluing player, with the following guidelines: a number clue doesn't usually mean anything; a colour clue on the card that is also involved by the modulo 8 clue doesn't mean anything; a colour clue on some other card has to be interpreted as if it were a normal clue (in addition to it being a modulo 8 clue).
+%
+%To the player on their left, the clue means ``play or discard a card'', with the following convention. $1$ means ``play your leftmost card'', $2$ means ``play your second card from the left'', $3$ means ``play your third card from the left'', $4$ means ``play your fourth card from the left'', $5$ means ``discard your leftmost card'', $6$ means ``discard your second card from the left'', $7$ means ``discard your third card from the left'', $8$ means ``discard your fourth card from the left or give a clue''.
+%
+%To all the other players, the clue means the following:
+%
+%\begin{itemize}
+%	\item it is the number of their leftmost card on which they have no direct information on (or $0$ if the card is useless), if they have any;
+%	\item otherwise it is the number of their leftmost card of which they don't know the number (or $0$ if the card is useless), if they have any;
+%	\item otherwise it is the colour of the leftmost card of which they do not know the colour, if they have any;
+%	\item otherwise it is $0$. 
+%\end{itemize}
+%
+%Colours are paired as follows: \C{RX} is $0$, \C{YX} is $1$, \C{GX} is $2$, \C{BX} is $3$, \C{PX} is $4$, and \C{KX} is $5$.
+%
+%The cluing players should then give the clue corresponding to the sum, modulo 8, of the clues they intend to give, and the next player should passively do what the cluing player asked them to do (otherwise the other players won't understand). This clue counts as a direct clue on the involved cards.
+%
+%Exception: if a player is in this situation because someone has already been, they told the next player to discard, and no other clue has been given yet, then the clue is a normal one (it doesn't have this artificial meaning).
+%
+%Advanced variation: if a player (not the one on the immediate left of the cluer) has an indirect \C{X2} or \C{X5} in any position (see Convention~\ref{indirect25}), then they should get a $6 \pmod 8$ if their card is a \C{X5}, and a regular modulo $8$ clue (which is always a number from $0$ to $5$) otherwise (implying that their indirect \C{X2} or \C{X5} is actually a \C{X2}).
+%

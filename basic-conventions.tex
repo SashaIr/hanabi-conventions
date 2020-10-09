@@ -1,0 +1,141 @@
+\section{Basic conventions}
+
+In order to achieve a better score, the players may agree beforehand on the meaning of each clue. Be aware that any of these conventions may be broken if there's a good reason to do so: just trust your team mates, and do not assume that they're wrong if they are not playing as you were expecting. Team play is the most important thing in Hanabi.
+
+\begin{remark}
+	No convention is strict. Players are allowed to break them if they think it's better to do so.
+\end{remark}
+
+\subsection{Hand ordering}
+
+In one player's hand, the cards on which they have any explicit clue on, and the cards on which they have no information, should not interact in any way.
+
+In this document, we will assume that slot 1 is on the left, and slot 4 is on the right. When a new card is drawn, it is positioned in slot 1, with other cards possibly moving one slot to the right to make room for it. So in general the card in slot 1 is the newest card in a player's hand, and the card in slot 4 is the oldest.
+
+The starting hands are canonically ordered in the same way in order to make clues not ambiguous.
+
+\subsection{Play left, discard right}
+
+It's usually a good idea to let other players know if you're going to discard some important card, or playing some other one. There's an easy and allowed way to do so.
+
+\begin{convention}[Play left]
+	\label{play-left}
+	When a player has some indistinguishable clued cards that they are supposed to play, and sometimes even if they are somehow distinguishable, they should start from the leftmost one.
+\end{convention}
+
+This makes sense because of the \emph{timing} (if no one clued them before, then probably the new one is the most important). We will refer to the leftmost unclued card as card in \emph{finesse position} or \emph{drop}.
+
+\begin{convention}[Discard right]
+	\label{discard-right}
+	When a player is going to discard a card, they are supposed to discard the rightmost unclued one.
+\end{convention}
+
+This card should be the oldest among the unclued ones, so it makes sense to discard it (no one clued that card, so it is probably not an important one). We will refer to the rightmost unclued card as card in \emph{discard position} or \emph{chop}.
+
+\subsection{Give useful clues}
+
+Most of the times, there will not be enough clues in a game to explicitly tell value and colour of each card before playing it, so the players need a way to deduce information other than the one explicitly given by the clue. The most important thing is the \emph{timing} of the clues: if a player is giving a clue, they're doing so for a reason. This can be summed up as follows.
+
+\begin{convention}[Clue playable cards]
+	\label{clue-playable-cards}
+	All the clued cards must be played as soon as possible, unless they are known to be trash or there is a reason to delay the play.
+\end{convention}
+
+If a player gets a clue on some of their cards, these cards must eventually be played. If a player is supposed to play, they should do so unless there is something urgent and more important to do; for any such player discarding is discouraged, as the other players, expecting them to play, will not warn them about a potentially dangerous discard.
+
+\begin{convention}[Disjoint clues principle]
+	\label{disjoint-clues}
+	Players should not give clues on two different copies of the same card, i.e. useless cards should not be clued, unless there is an important reason to do so.
+\end{convention}
+
+Since players are supposed to play their clued cards, cluing trash will eventually lead to a misplay, and more clues are needed in order to prevent so. Hence, players should avoid cluing trash unless it is really necessary. There might be exceptions, for example when such a clue gives useful new information, and the clued player knows that they are being clued trash.
+
+
+\begin{example} \hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{P2} \CARD{KX}
+			\item[\Large A] \CARD{B1} \CARD{G2} \CARD[n]{B4} \CARD[n]{R5}
+			\item[\Large B] \CARD{P1} \CARD{Y1} \CARD[n]{K2} \CARD[n]{P5}
+			\item[\Large C] \CARD{Y4} \CARD{P4} \CARD{R3} \CARD[c]{K4}
+			\item[\Large D] \CARD{B5} \CARD{B2} \CARD{Y4} \CARD{R1}
+			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{G3} \CARD{Y1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		B to play. If they clue \C{BX} to D, according to Convention~\ref{clue-playable-cards}, D should deduce that at least one of their cards is a \C{B4} or \C{B5}. According to Convention~\ref{disjoint-clues} and Convention~\ref{new-information}, since the \C{B4} has already been clued in A's hand, one of the clued cards must be \C{B5}. According to Convention~\ref{play-left}, the \C{B5} is the leftmost card. Hence, the other blue card must be trash. \\
+	
+		In this case it is ok to clue a trash card in D's hand, because the clue is adding new important information (D is told that they have a \C{B5}, and A is told that their \C{X4} is in fact a \C{B4}, see Convention~\ref{prompt}), and also D knows that their other blue card is trash (hence there is no risk of misplays).
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+\begin{convention}[New information principle]
+	\label{new-information}
+	Every clue must either indicate sufficient information for one or more previously unclued cards to be played, prevent the possible discard of a card that needs to be saved, or prevent an impending misplay.
+\end{convention}
+
+We will refer to clues that are meant to get some previously unclued cards to be played as \emph{play clues}, to clues that are meant to prevent some cards from being discarded as \emph{save clues}, and to clues that are meant to prevent misplays as \emph{fix clues}. On certain specific situations that will be covered later, a clue can be neither of the three.
+
+Once again, since clued cards are supposed to be eventually played, giving a clue that only gets already clued cards played is bad, since the play would have happened anyway. Giving a second clue on a clued card to get it played immediately (a \emph{tempo clue}) is sometimes possible if waiting would be worse (e.g. towards the end of the game, if some player has a lot of cards to play) or if there are no other allowed options (e.g. in a \emph{double discard situation}, see Convention~\ref{double-discard}).
+
+\begin{convention}[Save clues]
+	Critical cards, playable cards, and \C{X2}'s of which only one copy is visible should be saved with a number clue if in danger of being discarded. A \emph{save} interpretation has precedence over a \emph{play} interpretation.
+\end{convention}
+
+Receiving a \emph{save clue} usually narrows a lot the possible options for a card.
+
+\begin{convention}[Save notes]
+	\label{save-notes}
+	When a player receives a \emph{save clue} (except for a \C{X2} clue), they must assume that such a card is either critical or playable. Every player should take a note on that card marking down all the possibilities.
+\end{convention}
+
+%When a player is clued on their chop, they should ask themselves whether or not it is a save clue. Clues involving \C{X2}'s, \C{X5}'s, or rainbow cards on chop are usually save clues. Save clues should usually be given as number clues, while play clues should usually be given as colour clues. %Players might ignore this guideline if there is a good reason to do so, which means that there should be no risk of misplays, and also that the unusual save gives more value, for example because it also saves another dangerous card (e.g. a \C{K2} on chop can be saved with a colour clue if the player has at least one other rainbow card), or because it avoids cluing trash.
+
+\begin{convention}[Double discard]
+	\label{double-discard}
+	If a player discards a non-critical relevant card, then the next player is not allowed to discard, unless they see the other copy of that card in another player's hand.
+\end{convention}
+
+In fact, if they do so, they might be discarding the other copy of that card, which was impossible to save earlier. If a player double discards, then they are implying that they see the other copy of the just-discarded card. This also applies if the discarded card is a \C{X1}, even though such a situation is rare, as discarding two copies of the same \C{X1} is potentially very dangerous. %See also Section~\ref{sec:mod8}.
+
+\begin{convention}[Discard notes]
+	\label{discard-notes}
+	When a double discard happens, everyone should take notes on all the cards in the hand of the player holding the other copy of the card that triggered the double discard situation, marking that either of these cards can be the other copy of that card. When only one compatible card remains, it is considered globally known as that card for all purposes.
+\end{convention}
+
+Colour clues are usually interpreted as \emph{play clues}, while number clues are usually interpreted as \emph{save clues}.
+
+\begin{convention}[Colour plays, number saves]
+	If a play clue has to be given and both colour and number have the same value, then the colour clue should be chosen. If a save clue has to be given, then it must be given as a number clue.
+\end{convention}
+
+\begin{corollary}
+	If a player receives a number as \emph{play clue}, they should know that they have at least another card of that colour.
+\end{corollary}
+
+\begin{convention}[Early saves]
+	A number clue on the card that is one away from chop is an \emph{early save} on that card. The chop card is \emph{temporarily chop moved}, namely it cannot be discarded until it leaves the discard position at least once (see Convention~\ref{cyclic-rearrangement}).
+\end{convention}
+
+If, after receiving such a clue, a player has at least two more unclued cards in their hand, then after they give a clue their card cycles and the player should cancel the chop move. If they have only one unclued card, then even after they give a clue the card stays on chop, and thus the chop move is still on. In order for it to be cancelled, they will have to draw a new card first, then give a clue to have the chop moved card cycle (see Convention~\ref{cyclic-rearrangement}) and leave discard position for real.
+
+\begin{corollary}[Safe discard]
+	If a player gets a \emph{save clue} on their chop card, then the new chop cannot be critical.
+\end{corollary}
+
+\begin{corollary}[Fake early save]
+	\label{fake-early-save}
+	If a player gives a number clue on a card that is one away from chop, but the card on chop is useless, then the clue is a finesse instead (see Section~\ref{sec:finesse}).
+\end{corollary}
+
+After the finesse resolves, the player who received the clue knows that their chop card is useless. It cannot be a direct play clue (with no finesse involved) because the player who receives the clue has no mean of knowing if their chop card is useless or not.
+
+It is convenient to have one exception to the \emph{always save with a number clue} rule, which is the following.
+
+\begin{convention}[Multiple black save]
+	A \C{KX} clue that touches multiple cards, among which the one in discard position, then it is to be interpreted as \emph{save clue} rather than as \emph{play clue}.
+\end{convention}

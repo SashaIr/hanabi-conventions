@@ -1,0 +1,162 @@
+\section{Mid game conventions}
+
+This section is dedicated to all those conventions that are generally used through all the game, especially during the mid game (i.e. after the early game but before the late game).
+
+\subsection{Priorities}
+\label{ssec:priorities}
+
+It often happens that a player has a choice between multiple cards to play. In these cases, it is convenient to establish a preferential order for the cards that have to be played, so that purposefully choosing a different order will pass information to the other players.
+
+\begin{convention}[Standard priority order]
+	The standard priority order is the following:
+	\begin{enumerate}
+		\item Blind-plays (demonstrating that a finesse or a bluff occurred is very important).
+		\item Cards that lead into clued cards in someone else's hand (to give other people cards to play).
+		\item Cards that lead into the player's own hand, if there is no \C{X5} (so the rest of that suit can be played earlier).
+		\item \C{X5}'s (to gain a clue).
+		\item The card with the lower number (it's better not to leave a suit too far behind).
+		\item The focus of the original clue, or otherwise the leftmost card (it is more likely to be important).
+	\end{enumerate}
+\end{convention}
+
+Sometimes, because of the context, a player has full knowledge on a card that they are supposed to blind-play. In that case, the team is supposed to treat that card as clued when determining the priority order.
+
+By assuming that players are following the priority order, is it possible to perform \emph{priority prompts} or \emph{priority finesses}.
+
+\begin{convention}[Priority prompt/finesse]
+	If a player purposefully chooses to play a card that does not follow the priority order, they are promising that the next card of that suit is in \emph{finesse position} in the hand of some other player.
+\end{convention}
+
+It can happen that a player has a card that leads into an unclued card in someone else's hand that is not in finesse position. In such a case, it might still be worth it to play it, just so that the player with the next card will have something to do on their turn. However, this requires a \emph{fix clue} to be given to that player. If possible, that player has to interpret it as a \emph{play clue} rather than a \emph{fix clue}.
+
+% TODO: Insert examples!
+
+As for a normal finesse, it is possible to perform \emph{priority bluffs}.
+
+\begin{convention}[Priority bluff]
+	If a player purposefully chooses to play a card that does not follow the priority order, the next card of that suit is not visible, and the next player has no clued cards that are compatible with that card, then that player has to play their drop card as priority bluff, and no one should assume that the promised card is actually visible in any player's hand.
+\end{convention}
+
+During the late game (see Section~\ref{sec:late-game}), the priority order makes less sense, as there are several reasons for which a player thinks that an out-of-order play can help achieving a better score, and some of them are fairly common.
+
+\begin{convention}[No late game priorities]
+	Priority prompts, finesses, and bluffs are generally off during the late game. They can still be performed if no other explanation for an out-of-order play is available.
+\end{convention}
+
+Of course the information is asymmetric in this game, so a player can have a totally valid reason for an out-of-order play, but another player might not be able to see it. It is up to the players to decide whether an out-of-order play can have a different reason behind it or not, based on contextual information.
+
+\subsection{Trash complements}
+
+Late in the game, some clues are just useless. It's clear that cluing \C{X1} when all the six \C{X1}'s have been played, or cluing \C{RX} after the \C{R5} has been played, doesn't mean that you have to play those cards. It is a complement clue instead.
+
+\begin{convention}[Trash complement]
+	Cluing any set of trash cards means that the clued player should play the complement (the cards not involved in that clue) \emph{left to right} (the usual order). The clued player should start with their compatible clued cards that are not a \C{X5} (if any), and then their unclued cards, as for finesses.
+\end{convention}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R3} \CARD{Y5} \CARD{G3} \CARD{B3} \CARD{P2} \CARD{K2}
+			\item[\Large A] \CARD{B4} \CARD{G3} \CARD{G2} \CARD{R5}
+			\item[\Large B] \CARD{R4} \CARD{G1} \CARD{G5} \CARD[n]{G4}
+			\item[\Large C] \CARD{R2} \CARD{Y2} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large D] \CARD{R4} \CARD{G4} \CARD{Y4} \CARD{R1}
+			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{K4} \CARD{B1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		A is to play. They can safely clue \C{X1} to B, who should play their \C{G4} (followed by \C{R4} and \C{G5} in the upcoming rounds). Immediately after, C can clue \C{GX} to A. In fact, A knows that their green cards are trash (both A and C see the \C{G5} in B's hand), hence A should play the complement left to right. The \C{R5} is not immediately playable, it will be at the right moment (B has to play the \C{R4} their next turn).
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R3} \CARD{Y5} \CARD{G3} \CARD{B3} \CARD{P2} \CARD{K2}
+			\item[\Large A] \CARD{R5} \CARD{G3} \CARD{B4} \CARD{B5}
+			\item[\Large B] \CARD{K3} \CARD{G1} \CARD{G5} \CARD[n]{G4}
+			\item[\Large C] \CARD{R2} \CARD{Y2} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large D] \CARD{R4} \CARD{G4} \CARD{Y4} \CARD{R1}
+			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{K4} \CARD{G1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		Similar as before, but now B doesn't have a \C{R4}. D has one, but they don't know about it, and the \C{R5} is the leftmost card in A's hand. C can still clue \C{GX} to A, and this becomes a finesse for D. In fact, C is asking A to play their leftmost card (which isn't playable), so it must be a finesse.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R3} \CARD{Y5} \CARD{G3} \CARD{B3} \CARD{P2} \CARD{K2}
+			\item[\Large A] \CARD{K3} \CARD{G3} \CARD{B4} \CARD{R5}
+			\item[\Large B] \CARD{G5} \CARD{B1} \CARD{G1} \CARD[n]{G4}
+			\item[\Large C] \CARD{R2} \CARD{Y2} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large D] \CARD{B4} \CARD{G4} \CARD{Y4} \CARD{R1}
+			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{K4} \CARD{G1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		In this case there is no \C{R4} around. C may clue \C{GX} to A anyway, hoping for a \C{R4} to show up as soon as possible, and possibly cluing \C{X5} to A if it doesn't (same principle as fix clue for finesses, see \ref{unfinessing}). It is \emph{not} a finesse (yet) because the \C{R5} isn't A's first card to play. Also notice that B has a playable clued \C{X4} in their hand, hence (if they don't get any extra clue) they will play that card as a \C{R4} right after A plays their \C{B4}.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+Sometimes a trash clue can implicitly act as a prompt or a finesse for another player.
+
+\begin{convention}[Implicit trash finesse]
+	If a player gets a trash complement clue, but the clued cards are not globally known to be trash, then both the player who gives the clue and the player who receives the clue must know that these cards are, in fact, trash. This means that the missing cards of that number or colour must be visible in some other player's hand.
+	
+	If there is only one clued card that matches the missing card, then it is promised to be it. If there is only one card that matches the missing card, clued or not, then it must be it.
+\end{convention}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R3} \CARD{Y5} \CARD{G3} \CARD{B3} \CARD{P2} \CARD{K2}
+			\item[\Large A] \CARD{R5} \CARD{G3} \CARD{G2} \CARD{B4}
+			\item[\Large B] \CARD{K4} \CARD{G1} \CARD[n]{G5} \CARD[n]{G4}
+			\item[\Large C] \CARD{R2} \CARD{Y2} \CARD{P1} \CARD[n]{K5}
+			\item[\Large D] \CARD{R4} \CARD{G4} \CARD{Y4} \CARD{R1}
+			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{Y1} \CARD{B1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		Here C clues \C{GX} to A. It must be a complement (and a finesse on D's \C{R4} as well), as the clued green cards are trash. B can't see any \C{G4} or \C{G5}, so they can deduce that their clued \C{X4} and \C{X5} must be green.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R3} \CARD{Y5} \CARD{G3} \CARD{B3} \CARD{P2} \CARD{K3}
+			\item[\Large A] \CARD{R5} \CARD{G3} \CARD{G2} \CARD{B4}
+			\item[\Large B] \CARD{G4} \CARD{G1} \CARD[n]{G5} \CARD[n]{K4}
+			\item[\Large C] \CARD{R2} \CARD{Y2} \CARD{P1} \CARD[n]{K5}
+			\item[\Large D] \CARD{R4} \CARD{G4} \CARD{Y4} \CARD{R1}
+			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{Y1} \CARD{B1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		Same as before, but B's \C{K4} and \C{G4} are switched. Let us also assume that B has a negative \C{X4} clue on their \C{G1}. During their next turn, B will play their \C{K4} as \C{G4}. Then, realising that it is not a \C{G4}, but knowing that they must have one, they will play their unclued \C{G4}, and finally their \C{G5}.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}

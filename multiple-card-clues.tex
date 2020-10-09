@@ -1,0 +1,163 @@
+\section{Multiple card colour clues}
+
+It is often convenient to include multiple cards in a clue, in order to give as much information as possible while saving clues. To do so, one has to be precise in explaining what each clue means.
+
+Cluing multiple cards of the same colour usually promises that all the clued cards are playable (possibly implying finesses), assuming no prior knowledge on these cards. This is not always the case.
+
+\subsection{Playable focus}
+
+We first deal with the case in which a clue touches two new cards, and the focus is playable. If a colour clue touches three or more cards, the same principles apply.
+
+\begin{convention}[Delayed finesse]
+	\label{delayed-finesse}
+	If a player receives a colour clue on multiple cards, the focus of the clue is playable, and the other card will not be playable afterwards, then the player who gave the clue must be given a chance to give a number clue on the other card as a \emph{fix clue}. If they do not, then the original clue was also a finesse on the other card.
+\end{convention}
+
+Let's see some examples.
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{P2} \CARD{KX}
+			\item[\Large A] \CARD{R3} \CARD{B3} \CARD{P1} \CARD[n]{B4}
+			\item[\Large B] \CARD{B2} \CARD{Y2} \CARD[n]{K2} \CARD[n]{B5}
+			\item[\Large C] \CARD[c]{P3} \CARD[c]{P5} \CARD{G3} \CARD{Y1}
+			\item[\Large D] \CARD{R2} \CARD{Y5} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large E] \CARD{P4} \CARD{G4} \CARD{Y4} \CARD{R1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		D just clued \C{PX} to C, as a \emph{play clue} on \C{P3}. One round passes, C plays \C{P3}, and D discards. If the original \C{PX} clue was not a finesse, then D would have been required to clue \C{X5} to C to prevent a misplay. They chose not to, so the clue was actually a finesse on \C{P5} too. E then plays the card that was in finesse position when the \C{PX} clue was given, which is \C{P4}.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{P2} \CARD{KX}
+			\item[\Large A] \CARD{R3} \CARD{B3} \CARD{P1} \CARD[n]{B4}
+			\item[\Large B] \CARD{B2} \CARD{Y2} \CARD[n]{K2} \CARD[n]{B5}
+			\item[\Large C] \CARD[c]{P3} \CARD[c]{P5} \CARD{G3} \CARD{Y1}
+			\item[\Large D] \CARD{R2} \CARD{Y5} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large E] \CARD{P4} \CARD{G4} \CARD{Y4} \CARD{R1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		Exactly the same situation, but now is A who gives the \C{PX} clue to C. B clues \C{RX} to A as a finesse, C plays \C{P3}, D plays \C{R2}, and now E doesn't know whether A intends to stop C from playing \C{P5} or not, so they discard. A plays \C{R3}, B discards, and now C sees that E had a \C{P4} in finesse position when the \C{PX} clue was given, so they assume to have \C{P5}, and clue \C{BX} to B as a prompt. D discards, and E sees that neither A stopped C from playing, nor C misplayed \C{P5} as \C{P4}, so they must have had a \C{P4} in finesse position the previous round, which they play.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+Sometimes, if a direct \emph{number play clue} on the focus of a two-card colour clue is available, it can be immediately deduced that the colour clue was a finesse instead.
+
+\begin{convention}[Anticipating a delayed finesse]
+	\label{anticipated-delayed-finesse}
+	If delayed finesse clue is given and the finessed player sees that there was a clear \emph{number play clue} to give that touched that card only, then they can deduce that the clue must be a finesse and play immediately.
+\end{convention}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{P2} \CARD{KX}
+			\item[\Large A] \CARD{R3} \CARD{B3} \CARD{P1} \CARD[n]{B4}
+			\item[\Large B] \CARD{B2} \CARD{Y2} \CARD[n]{K2} \CARD[n]{B5}
+			\item[\Large C] \CARD[c]{P3} \CARD[c]{P5} \CARD{G2} \CARD{Y1}
+			\item[\Large D] \CARD{R2} \CARD{Y5} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large E] \CARD{P4} \CARD{G4} \CARD{Y4} \CARD{R1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		Same situation as before, but the \C{G3} in C's hand is replaced by a \C{G2}. A still clues \C{PX} to C, and as before B clues \C{RX} to A as a finesse, C plays \C{P3}, D plays \C{R2}. Now E sees that if A intended to get \C{P3} played only, they could have given a \C{X3} clue instead, which won't have required a fix. Thus, the \C{PX} clue must be a finesse, and E can play \C{P4} immediately.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+\subsection{Non-playable focus}
+
+If the focus of the clue is not playable, then the clue must be a prompt or a finesse. If it is not a \emph{reverse finesse}, then the same principle as before applies. As before, if a colour clue touches three or more cards, the same principles apply.
+
+\begin{convention}
+	Conventions~\ref{delayed-finesse} and \ref{anticipated-delayed-finesse} apply also if the clue is a prompt or a finesse on the focus.
+\end{convention}
+
+\begin{example}	\hfill \\
+	\begin{minipage}{0.45\textwidth}
+		\begin{itemize}
+			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B3} \CARD{P1} \CARD{KX}
+			\item[\Large A] \CARD{R3} \CARD{B3} \CARD{P1} \CARD[n]{B4}
+			\item[\Large B] \CARD[n]{P2} \CARD{Y2} \CARD[n]{K2} \CARD[n]{B5}
+			\item[\Large C] \CARD[c]{P3} \CARD[c]{P5} \CARD{G2} \CARD{Y1}
+			\item[\Large D] \CARD{R2} \CARD{Y5} \CARD{Y1} \CARD[n]{K5}
+			\item[\Large E] \CARD{P4} \CARD{G4} \CARD{Y4} \CARD{R1}
+		\end{itemize}
+	\end{minipage}%
+	\begin{minipage}{0.55\textwidth}
+		\hfill \\
+		
+		\textbf{Description.} \\
+		
+		A clues \C{PX} clue to C. B it is a finesse on \C{P3}, so they must have \C{P2}, and it must be the leftmost of the two clued \C{X2} in their hand. As before, since a \C{X3} clue to C would have got \C{P3} only, it must also be a finesse on \C{P5}, so after D discards, E can play as well.
+	\end{minipage}
+\end{example} \vspace{0.15 cm}
+
+In case of a reverse finesse, even if the clued cards are not in the right order, the finesse can still be performed. However, a \emph{fix clue} will be needed afterwards.
+
+\begin{convention}[Out of order finesse]
+	If a colour clue on multiple cards is given, and none of them is playable, it must be a finesse on the lowest value relevant one. If they are out of order, a fix clue is needed. If the fix clue touches the lowest value relevant card, then the other is promised to be playable (possibly through a finesse).
+\end{convention}
+
+If the focus of a colour clue on two or more cards is exactly one-away, then it is still possible to perform a \emph{bluff} on the next player.
+
+\begin{convention}[Multiple cards bluff]
+	Convention~\ref{bluff} applies also if the colour clue touches two or more cards, provided that none of them is playable and that the focus of the clue is exactly one-away.
+\end{convention}
+
+\subsection{Known cards}
+
+We now deal with the case in which a clue touches both new cards, and known cards.
+
+\begin{convention}[Delayed finesse]
+If a player receives a colour clue on multiple cards, some of which are already number clued, it is a \emph{play clue}, \emph{finesse}, or \emph{delayed finesse} on the previously unclued cards. The previously number clued cards are not supposed to be playable (unless they obviously are), and this does not trigger any prompt or finesse involving these cards.
+
+However, if only one new card is touched, and there was a clear \emph{number play clue} to give that touched that card only, then the clue is also a finesse on the lowest rank relevant card that already had a number clue on. Possible other higher rank cards are not supposed to be involved.
+\end{convention}
+
+\subsection{Fixing playing order}
+
+Sometimes two or more cards are in queue to be played, but the first of them is not playable, or worse, none of them is. In these cases, a fix clue is needed.
+
+\begin{convention}[Fix for two cards]	
+	If there are two clued cards of the same colour in queue to be played, but in the wrong order, then give a fix clue as follows. If it is guaranteed that at least one of them is playable, they are both playable, either can be clued; if only the lowest value one is playable, the other must be clued; if the highest rank one is playable through a finesse, the lowest rank one must be clued.
+	
+	If none of them is guaranteed to be playable, but they are still supposed to be played, then clue the first in playing order if the second can be played, and clue the second if none can be played.
+\end{convention}
+	
+\begin{convention}[Fix for three cards]
+	If there are three clued cards of the same colour in queue to be played, but in the wrong order, give a fix clue as follows. If they are all playable, the one that should be clued is the one that is neither the focus of the clue nor the immediately playable card. If only two of them are playable (possibly through a finesse), the non-playable one should be clued, unless that would lead to a misplay; in that case (the non-playable one is the focus and the immediately playable one is last in the playing order) act like they are all playable, then give another fix clue later if needed. If only one of them is playable, it must be clued.
+\end{convention}
+
+Notice that any clue received in such a situation implies that the first card in the playing order is not playable.
+
+\begin{corollary}
+	If the first card in queue to be played, then no fix clue must be given until that card is played.
+\end{corollary}
+
+The possible cases for four clued cards of the same colour are too many to fully describe. The principles are the following: any clue implies that the first card in the playing order is not playable, and all the cards are supposed to be played until explicit contradictory information is given.
+
+The same conventions apply for finessed cards that require a fix to be played in the right order.
+
+Rarely, a player might end up with two colour clued cards, none of which is supposed to be played. When these cards become playable, it might be useful to give a tempo clue to have them played.
+
+\begin{convention}[Two colour clued cards]
+	If a player has two colour clued cards which are not supposed to be played, then do not clue them anything if they are not playable, clue the higher rank one if the other is playable, and clue the lower rank one if both are playable. This can trigger finesses.
+\end{convention}

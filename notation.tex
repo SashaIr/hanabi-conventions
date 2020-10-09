@@ -1,0 +1,41 @@
+\section{Notation}
+
+\begin{definition}
+	A card is \emph{clued} if its owner has received a direct clue about that card, and it's \emph{unclued} else.
+	
+	A card is \emph{number clued} if its owner has been told its value, and it's \emph{colour clued} if the owner has been told its colour. A card is \emph{completely clued} if it's both number clued and colour clued.
+\end{definition}
+
+\begin{note}
+	In the \emph{rainbow variant} a colour clue on a card is not sufficient to determine its suit. Regardless of this, any card with a colour clue given on it is still considered colour clued.
+\end{note}
+
+Clued cards are surrounded by an orange border, with a small symbol on top denoting the type of clue.
+
+\begin{tasks}(2)
+	\task[$\bullet$] Unclued card. \CARD{G2}
+	\task[$\bullet$] Number clued card. \CARD[n]{R3}
+	\task[$\bullet$] Colour clued card. \CARD[c]{B4}
+	\task[$\bullet$] Completely clued card. \CARD[cn]{K5}
+\end{tasks}
+
+\begin{definition}
+	A card and a clue are \emph{compatible} if the clue touches that card.
+\end{definition}
+
+We will use letters from A to E to denote players, with the turn order being the alphabetical order. The cards in one player's hand are denoted by ordered strings, and the positions of the cards are referred to as \emph{slots}, going from 1 to 4 from left to right. As an example, \[ \text{{\Large C} \CARD{B3} \CARD[n]{K2} \CARD[c]{R3} \CARD{G4}} \] means that player C has those four cards in their hand, they got a number clue on the \C{K2} in slot 2 and a colour clue on \C{R3} in slot 3. We use the symbol $+$ to denote the current board.
+
+We also want to name some properties.
+
+\begin{definition}
+	A card is
+	
+	\begin{itemize}
+		\item \emph{playable} if at least one copy of each card of the same suit and lower value is already played or clued,
+		\item \emph{trash} if it can't possibly be played during the rest of the game,
+		\item \emph{relevant} if it is not trash,
+		\item \emph{critical} if it is relevant and there are no other copies of that card left,
+		\item \emph{useless} if it is either trash, or identical to a clued card.
+	\end{itemize}
+
+\end{definition}
