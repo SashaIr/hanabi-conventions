@@ -119,7 +119,7 @@ The game ends immediately if the players have 0 lives. If that does not happen, 
 \section{Notation}
 
 \begin{definition}
-	A card is \emph{clued} if its owner has received a direct clue about that card, and it's \emph{unclued} else.
+	A card is \emph{clued} if its owner has received a direct clue about that card, and it's \emph{non-clued} else.
 	
 	A card is \emph{number clued} if its owner has been told its value, and it's \emph{colour clued} if the owner has been told its colour. A card is \emph{completely clued} if it's both number clued and colour clued.
 \end{definition}
@@ -131,7 +131,7 @@ The game ends immediately if the players have 0 lives. If that does not happen, 
 Clued cards are surrounded by an orange border, with a small symbol on top denoting the type of clue.
 
 \begin{tasks}(2)
-	\task[$\bullet$] Unclued card. \CARD{G2}
+	\task[$\bullet$] Non-clued card. \CARD{G2}
 	\task[$\bullet$] Number clued card. \CARD[n]{R3}
 	\task[$\bullet$] Colour clued card. \CARD[c]{B4}
 	\task[$\bullet$] Completely clued card. \CARD[cn]{K5}
@@ -183,14 +183,14 @@ It's usually a good idea to let other players know if you're going to discard so
 	When a player has some indistinguishable clued cards that they are supposed to play, and sometimes even if they are somehow distinguishable, they should start from the leftmost one.
 \end{convention}
 
-This makes sense because of the \emph{timing} (if no one clued them before, then probably the new one is the most important). We will refer to the leftmost unclued card as card in \emph{finesse position} or \emph{drop}.
+This makes sense because of the \emph{timing} (if no one clued them before, then probably the new one is the most important). We will refer to the leftmost non-clued card as card in \emph{finesse position} or \emph{drop}.
 
 \begin{convention}[Discard right]
 	\label{discard-right}
-	When a player is going to discard a card, they are supposed to discard the rightmost unclued one.
+	When a player is going to discard a card, they are supposed to discard the rightmost non-clued one.
 \end{convention}
 
-This card should be the oldest among the unclued ones, so it makes sense to discard it (no one clued that card, so it is probably not an important one). We will refer to the rightmost unclued card as card in \emph{discard position} or \emph{chop}.
+This card should be the oldest among the non-clued ones, so it makes sense to discard it (no one clued that card, so it is probably not an important one). We will refer to the rightmost non-clued card as card in \emph{discard position} or \emph{chop}.
 
 \subsection{Give useful clues}
 
@@ -223,11 +223,7 @@ Since players are supposed to play their clued cards, cluing trash will eventual
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
-		B to play. If they clue \C{BX} to D, according to Convention~\ref{clue-playable-cards}, D should deduce that at least one of their cards is a \C{B4} or \C{B5}. According to Convention~\ref{disjoint-clues} and Convention~\ref{new-information}, since the \C{B4} has already been clued in A's hand, one of the clued cards must be \C{B5}. According to Convention~\ref{play-left}, the \C{B5} is the leftmost card. Hence, the other blue card must be trash. \\
+		B to play. If they clue \C{BX} to D, according to Convention~\ref{clue-playable-cards}, D should deduce that at least one of their cards is a \C{B4} or \C{B5}. According to Convention~\ref{disjoint-clues} and Convention~\ref{new-information}, since the \C{B4} has already been clued in A's hand, one of the clued cards must be \C{B5}. According to Convention~\ref{play-left}, the \C{B5} is the leftmost card. It follows that the other blue card touched by the clue must be trash. \vspace{0.15 cm}
 	
 		In this case it is ok to clue a trash card in D's hand, because the clue is adding new important information (D is told that they have a \C{B5}, and A is told that their \C{X4} is in fact a \C{B4}, see Convention~\ref{prompt}), and also D knows that their other blue card is trash (hence there is no risk of misplays).
 	\end{minipage}
@@ -235,10 +231,10 @@ Since players are supposed to play their clued cards, cluing trash will eventual
 
 \begin{convention}[New information principle]
 	\label{new-information}
-	Every clue must either indicate sufficient information for one or more previously unclued cards to be played, prevent the possible discard of a card that needs to be saved, or prevent an impending misplay.
+	Every clue must either indicate sufficient information for one or more previously non-clued cards to be played, prevent the possible discard of a card that needs to be saved, or prevent an impending misplay.
 \end{convention}
 
-We will refer to clues that are meant to get some previously unclued cards to be played as \emph{play clues}, to clues that are meant to prevent some cards from being discarded as \emph{save clues}, and to clues that are meant to prevent misplays as \emph{fix clues}. On certain specific situations that will be covered later, a clue can be neither of the three.
+We will refer to clues that are meant to get some previously non-clued cards to be played as \emph{play clues}, to clues that are meant to prevent some cards from being discarded as \emph{save clues}, and to clues that are meant to prevent misplays as \emph{fix clues}. On certain specific situations that will be covered later, a clue can be neither of the three.
 
 Once again, since clued cards are supposed to be eventually played, giving a clue that only gets already clued cards played is bad, since the play would have happened anyway. Giving a second clue on a clued card to get it played immediately (a \emph{tempo clue}) is sometimes possible if waiting would be worse (e.g. towards the end of the game, if some player has a lot of cards to play) or if there are no other allowed options (e.g. in a \emph{double discard situation}, see Convention~\ref{double-discard}).
 
@@ -281,7 +277,7 @@ Colour clues are usually interpreted as \emph{play clues}, while number clues ar
 	A number clue on the card that is one away from chop is an \emph{early save} on that card. The chop card is \emph{temporarily chop moved}, namely it cannot be discarded until it leaves the discard position at least once (see Convention~\ref{cyclic-rearrangement}).
 \end{convention}
 
-If, after receiving such a clue, a player has at least two more unclued cards in their hand, then after they give a clue their card cycles and the player should cancel the chop move. If they have only one unclued card, then even after they give a clue the card stays on chop, and thus the chop move is still on. In order for it to be cancelled, they will have to draw a new card first, then give a clue to have the chop moved card cycle (see Convention~\ref{cyclic-rearrangement}) and leave discard position for real.
+If, after receiving such a clue, a player has at least two more non-clued cards in their hand, then after they give a clue their card cycles and the player should cancel the chop move. If they have only one non-clued card, then even after they give a clue the card stays on chop, and thus the chop move is still on. In order for it to be cancelled, they will have to draw a new card first, then give a clue to have the chop moved card cycle (see Convention~\ref{cyclic-rearrangement}) and leave discard position for real.
 
 \begin{corollary}[Safe discard]
 	If a player gets a \emph{save clue} on their chop card, then the new chop cannot be critical.
@@ -355,10 +351,6 @@ The easiest of these conventions is the \emph{prompt}, which involve only alread
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		C to play. If they clue \C{RX} to D, then this is a play clue. However, according to Convention~\ref{disjoint-clues}, none of their cards is a \C{R2}, since it has already been clued in B's hand (probably with a \C{X2}-save, since they have \C{K2} on chop). Hence, D doesn't play. Then, when B is to play, since they know that a play clue has been given on \C{R3}, and they can't see the \C{R2} in any other players hand, they can deduce that the \C{R2} is in their hand. According to Convention~\ref{prompt}, it must be the leftmost of the two \C{X2}'s, so they can safely play it.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -377,10 +369,6 @@ Players are allowed to lie if this gets more cards played, as in the next exampl
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Same example as before, but the \C{X2}'s in B's hand are now of different colours. In particular, the leftmost is a \C{Y2}, not a \C{R2}. However, this is not a problem, since the \C{Y2} is playable: during their turn, B will deduce that their leftmost \C{X2} is \C{R2}, and they will play it. One round later, since B knows that they must have the \C{R2} in their hand, they will play their other clued \C{X2}, which this time would be the correct one. B was tricked into think that their leftmost \C{X2} was \C{R2} in order to get it played for free.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -392,7 +380,7 @@ The finesse is probably the most important convention in Hanabi. It takes a whil
 
 \begin{convention}[Finesse]
 	\label{finesse}
-	If a player deduces that they have a connecting card, and none of their clued cards (if any) is compatible, then it must be the leftmost among the unclued ones.
+	If a player deduces that they have a connecting card, and none of their clued cards (if any) is compatible, then it must be the leftmost among the non-clued ones.
 \end{convention}
 
 \begin{remark}
@@ -411,10 +399,6 @@ The finesse is probably the most important convention in Hanabi. It takes a whil
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		If B is to play, they can clue \C{YX} to D. C sees that D is given a play clue on their non-playable \C{Y4}, and also they can't see the connecting \C{Y3} in any other player's hand. Hence, C must have the \C{Y3}, and since their only clued card is the \C{K4} (which, being \C{KX}, can't be \C{YX}), then they should deduce that the connecting card is their leftmost, and play it.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -426,10 +410,10 @@ This trick gets two cards played with one clue, and hence it is a very powerful 
 The finesse works even if the player who gets the play clue comes before the one that is supposed to have the connecting card. 
 
 \begin{convention}[Reverse finesse]
-	If a player who is given a play clue sees that some other player has, as their leftmost unclued card, another card that matches the clue they just received, they should wait at least one round before playing.
+	If a player who is given a play clue sees that some other player has, as their leftmost non-clued card, another card that matches the clue they just received, they should wait at least one round before playing.
 \end{convention}
 
-If the player who has the matching card as leftmost unclued one plays it, then it means that the clued card is its successor. If they don't, then it is the same one. In any case the clued card should be played the next round.
+If the player who has the matching card as leftmost non-clued one plays it, then it means that the clued card is its successor. If they don't, then it is the same one. In any case the clued card should be played the next round.
 
 \begin{example} \hfill \\
 	\begin{minipage}{0.45\textwidth}
@@ -443,16 +427,12 @@ If the player who has the matching card as leftmost unclued one plays it, then i
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Same as before, except that C and D have been swapped. If B is to play, they can clue \C{YX} to C. C sees that D has a \C{Y3} as drop, hence the clued card might be a \C{Y4} and C does not play it. Then, D should deduce that they have a \C{Y3} and play their leftmost card, as before.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
 
 \begin{remark}
-	What if we replace the \C{Y4} with a \C{Y3}? In fact, this is no issue at all: after C's turn, D just doesn't play. In fact, maybe C had another good reason to not play the yellow-clued card. Even if D can deduce to have a \C{Y3} as leftmost unclued card, they should not play it, else C would think that their card is a \C{Y4}.
+	What if we replace the \C{Y4} with a \C{Y3}? In fact, this is no issue at all: after C's turn, D just doesn't play. In fact, maybe C had another good reason to not play the yellow-clued card. Even if D can deduce to have a \C{Y3} as leftmost non-clued card, they should not play it, else C would think that their card is a \C{Y4}.
 	
 	There are other better ways to deal with it. B can clue \C{YX} to D instead: there is no other \C{Y3} in anyone's slot 1, so they will know they have a \C{Y3}. Alternatively, B can simply not clue anything to C, and instead let C clue \C{YX} to D. Even better, if B happens to have a \C{Y4} in their hand (and they can't know), C could clue \C{YX} to them instead, saving one clue.
 \end{remark}
@@ -468,8 +448,8 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 	\begin{itemize}
 %		\item it is clued, the clue is compatible with the promised card, and it is the leftmost among the cards with these properties;
 		\item it is clued, the clue is compatible with the promised card, and all the cards with these properties on its left are playable;
-%		\item it is unclued, it is the leftmost among the unclued cards, and all the clued compatible cards in that player's hand (if any) are playable;
-		\item it is unclued, all the clued compatible cards in that player's hand (if any) are playable, and all the unclued cards on its left are playable.
+%		\item it is non-clued, it is the leftmost among the non-clued cards, and all the clued compatible cards in that player's hand (if any) are playable;
+		\item it is not clued, all the clued compatible cards in that player's hand (if any) are playable, and all the non-clued cards on its left are playable.
 	\end{itemize}
 \end{definition}
 
@@ -485,11 +465,7 @@ The finesse can be used in a lot more cases, possibly combined with prompts as w
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
-		If A clues \C{YX} to D, they are promising a \C{Y3}. C has a \C{Y3}, and it is in finesse position: it is unclued, there are no compatible clued cards, and all the cards on its left will be playable at the appropriate moment. However, if C also got a \C{X3} clue, then the \C{Y3} would not be in finesse position any more! In fact, it would be clued with a compatible clue, but in that case the \C{R3} would also be, it is on the left of the \C{Y3}, and it is not playable.
+		If A clues \C{YX} to D, they are promising a \C{Y3}. C has a \C{Y3}, and it is in finesse position: it is not clued, there are no compatible clued cards, and all the cards on its left will be playable at the appropriate moment. However, if C also got a \C{X3} clue, then the \C{Y3} would not be in finesse position any more! In fact, it would be clued with a compatible clue, but in that case the \C{R3} would also be, it is on the left of the \C{Y3}, and it is not playable.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
 
@@ -512,11 +488,7 @@ This example explains why it is not important that the promised card is exactly 
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
-		The setting is the same as Subsection~\ref{sec:finesse}, except that now C's leftmost unclued card is a \C{R2}, which is playable. The next one is a \C{Y3}. If A is to play, they can still clue \C{YX} to D. As before, C should play their leftmost unclued card, and so they do. Since C played, D can deduce that their card is not a \C{Y3}, but it's a \C{Y4} instead, so they wait. During their next turn C should keep playing, and so they have to pick their second leftmost unclued card \emph{at the moment they received the clue} (which is a very important information to track). They play the \C{Y3} and next D plays the \C{Y4}, leading to play three cards with one clue.
+		The setting is the same as Subsection~\ref{sec:finesse}, except that now C's leftmost non-clued card is a \C{R2}, which is playable. The next one is a \C{Y3}. If A is to play, they can still clue \C{YX} to D. As before, C should play their leftmost non-clued card, and so they do. Since C played, D can deduce that their card is not a \C{Y3}, but it's a \C{Y4} instead, so they wait. During their next turn C should keep playing, and so they have to pick their second leftmost non-clued card \emph{at the moment they received the clue} (which is a very important information to track). They play the \C{Y3} and next D plays the \C{Y4}, leading to play three cards with one clue.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
 
@@ -543,10 +515,6 @@ This example explains why it is not important that the promised card is exactly 
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		A clues \C{X4} to D. It is a finesse on the \C{Y4} (see Convention~\ref{fake-early-save}), so B is supposed to play their drop card, which is the \C{Y2}. C sees that the \C{Y4} still lacks a connecting card (the \C{Y3}) that they can't see in any other player's hand. Hence, C is also supposed to play their drop card.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -578,10 +546,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		B clues \C{YX} to D. As we've seen before, C is supposed to play their drop, which is the \C{R2}. Since C blind-played his newest card, D should deduce that its yellow card is one-away, and hence it is a \C{Y4}. Since the \C{R2} can't be connecting, D shouldn't play their yellow card; since the \C{Y4} is one-away, all the other players should deduce that they do not have a \C{Y3} and so they should not play their drop card.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -598,10 +562,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		B clues \C{YX} to D. As we've seen before, C is supposed to play their drop card, which is the \C{Y3}. Since C blind-played his newest card, D should deduce that its yellow card is one-away, and hence it is a \C{Y4}. Since the \C{Y3} can be connecting, D should play their yellow card.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -618,10 +578,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		In this case, cluing \C{YX} doesn't work because of the \C{Y1}, so B clues \C{X4} to D. The \C{Y4} is one-away, so C is supposed to play their drop, which is the \C{Y3}. D deduces that their \C{X4} is one-away, so it might be either yellow or white, but since the \C{Y3} can be connecting, D should play their \C{X4} anyway.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -638,10 +594,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Now it is A that clues \C{YX} to D. B sees that the \C{Y3} in C's hand only has playable cards on its left, hence, according to Convention~\ref{layered-finesse}, they deduce that C is the one that is supposed to play their drop. C plays it, and it is a \C{R2}. Since C blind-played his newest card, D should deduce that its yellow card is not a \C{Y3}, and hence it is probably a \C{Y4}. Since C was not the player immediately after the one who gave the play clue, they should keep playing until they see the \C{Y3}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -658,10 +610,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Now is again B that clues \C{YX} to D. C is supposed to play their drop, which is the \C{Y2}. D sees that C also has a \C{Y3} on the right of the \C{Y2}, so their card might be the \C{Y4}. Since the \C{Y4} was not one-away, C should keep playing until they see the \C{Y3}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -678,10 +626,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		A clues \C{X4} to D. It is a finesse on the \C{Y4}, so B is supposed to play their drop, which is the \C{Y2}. C sees that the \C{Y4} was not one-away (it was not the \C{P4}), hence it can't be a bluff, and according to Convention~\ref{multiplayer-finesse}, they should play their drop, the \C{R2}. D sees that C played, so their \C{X4} cannot be the \C{P4} (two people played, so it is not a bluff), but it must be the \C{Y4} (and it is a finesse). The next turn C will play the \C{Y3} (they know it is not a bluff, since the \C{Y4} is not one-away), and D will play their \C{Y4}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -698,10 +642,6 @@ This might be quite confusing, so some examples are needed.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		This is the same as Example~\ref{ex:bluff}, except that the \C{YX} clue B gives to D now touches two cards. Because of Convention~\ref{chop-focus}, the focus of the clue is the card in discard position, i.e. the \C{Y4}. This still works as normal. Considering that C played, then D's rightmost card must be a \C{Y4}, and because of Convention~\ref{disjoint-clues} the other one is most likely (but not certainly) a \C{Y5}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -722,11 +662,7 @@ It is usually impossible to perform a multiple finesse on the very next player, 
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
-		Here, A clues \C{RX} to D. B plays their leftmost unclued card, which is a \C{G1}, and sees that C has a \C{G2}. It makes no sense for A to perform a \textit{bluff} here, as they can just clue \C{GX} to C and perform a finesse instead, which would be better than a bluff as the \C{G2} gets played too. It follows that the \C{RX} clue cannot be a bluff, and must be a \emph{layered finesse} instead. The next round, B will go on playing their \C{R3} (they skip \C{P4} as it has a \C{X4} clue on it), and D will then play their \C{R4}.
+		Here, A clues \C{RX} to D. B plays their leftmost non-clued card, which is a \C{G1}, and sees that C has a \C{G2}. It makes no sense for A to perform a \textit{bluff} here, as they can just clue \C{GX} to C and perform a finesse instead, which would be better than a bluff as the \C{G2} gets played too. It follows that the \C{RX} clue cannot be a bluff, and must be a \emph{layered finesse} instead. The next round, B will go on playing their \C{R3} (they skip \C{P4} as it has a \C{X4} clue on it), and D will then play their \C{R4}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
 
@@ -738,7 +674,7 @@ It is usually impossible to perform a multiple finesse on the very next player, 
 
 Here, the definition of \emph{full knowledge} depends on the context; the player who discards must have strong reasons to believe that they know both colour and number of the card that they are discarding, and that the other players are aware of that.
 
-This manoeuvre is usually not recommended (just playing the card is simpler), but it can be done in several contexts to gain an advantage. For example, it can be useful if the other copy of the card is clued (thus, discarding it prevents misplays); if it is in finesse position but it is not the leftmost unclued card (in order to get some extra card played for free); if the player who has the other copy is short on clues and/or they have a dangerous chop (keeping them busy and preventing them from discarding); if the card is not immediately playable but it will be during the next turn of the player that has the other copy (to gain tempo).
+This manoeuvre is usually not recommended (just playing the card is simpler), but it can be done in several contexts to gain an advantage. For example, it can be useful if the other copy of the card is clued (thus, discarding it prevents misplays); if it is in finesse position but it is not the leftmost non-clued card (in order to get some extra card played for free); if the player who has the other copy is short on clues and/or they have a dangerous chop (keeping them busy and preventing them from discarding); if the card is not immediately playable but it will be during the next turn of the player that has the other copy (to gain tempo).
 
 \subsection{Self finesse}
 
@@ -760,10 +696,6 @@ If there is no risk of misunderstanding, a finesse can be performed even if the 
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		D just clued \C{X4} to E, who now is to play. It can't be a play clue on \C{B4}, as it is already clued in A's hand, so it must be another relevant \C{X4}, either \C{R4}, \C{Y4}, or \C{P4} (C has \C{K4}). The corresponding possible connecting cards are \C{R2}, \C{Y3}, and \C{P3}, none of which is visible, so it must be a self finesse. E plays their new finesse position card as either of those. It is \C{P3}, so they will assume a finesse on \C{P4} and they will go on playing their \C{X4} as \C{P4} on the next round. Notice that, since E didn't play the \C{X4} immediately, there must have been \C{B4} already clued in someone's hand. A knows this, deduces that their \C{X4} is in fact a \C{B4}, and plays it the very next turn.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -791,11 +723,7 @@ Let's see an example.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
-		B just clued \C{YX} to E, C plays their \C{P3}, and D is now to play. They see that A has a \C{Y3} in their hand, but not in finesse position. Cluing \C{RX} to A may be ambiguous, since A's red cards cannot be played. How can D deduce if they're being finessed or not? They can't, but it's not an issue at all: D should just play their leftmost unclued card. If that's a \C{Y3}, then D was being finessed everything is fine. If not, then A is being finessed, but their leftmost unclued card is a \C{R3}, not playable. Then there is also an ongoing finesse on that card and D's leftmost unclued card must be a \C{R2}, so they should still play.	
+		B just clued \C{YX} to E, C plays their \C{P3}, and D is now to play. They see that A has a \C{Y3} in their hand, but not in finesse position. Cluing \C{RX} to A may be ambiguous, since A's red cards cannot be played. How can D deduce if they're being finessed or not? They can't, but it's not an issue at all: D should just play their leftmost non-clued card. If that's a \C{Y3}, then D was being finessed everything is fine. If not, then A is being finessed, but their leftmost non-clued card is a \C{R3}, not playable. Then there is also an ongoing finesse on that card and D's leftmost non-clued card must be a \C{R2}, so they should still play.	
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
 
@@ -822,10 +750,6 @@ Let's see an example.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Same as before, except for A's hand. B clues \C{YX} to D, trying to get the \C{B4} and the \C{Y3} for free. All the players but A see the connecting card in A's hand, and they also see that A's drop is a \C{B4}, which is playable, so nobody does anything. A plays their \C{B4} assuming that it is a \C{Y3} instead, and now B must stop A from playing their \C{K3}, with either a \C{KX} or a \C{X3} clue on that card. This can't possibly be a play clue (if it were a \C{K1}, then no clue would have been needed), nor a finesse on some other player (otherwise B could just have let that going, since everybody knew that A was about to play their \C{K3}), hence it must just be a \emph{fix clue}, meaning that the clued card is not involved into the finesse, and hence the card on its right has to be played next.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -853,7 +777,6 @@ Sometimes a clue can be confusing, because multiple people will interpret it as 
 \end{convention}
 
 \begin{example}	\hfill \\
-	\label{ex:ambiguous-finesse}
 	\begin{minipage}{0.45\textwidth}
 		\begin{itemize}
 			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B1} \CARD{P2} \CARD{KX}
@@ -865,10 +788,7 @@ Sometimes a clue can be confusing, because multiple people will interpret it as 
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
+		\label{ex:ambiguous-finesse}
 		A clues \C{BX} to E, which is ambiguous as both C and D will think of it as a finesse on the other player. B clues \C{YX} to D as a finesse on A (their \C{Y3} is now in finesse position because of Convention~\ref{cyclic-rearrangement}), and C discards. The easier interpretation for D would be that C missed the finesse, but if they instead assume that everyone plays correctly, then they should play their \C{B2} instead.
 		
 		This is easier said than done: if there were no clues left, then C might have discarded as a save on D's chop; if C performed a finesse that D couldn't have possibly done themselves, then they might just think C wanted to gain efficiency and play their \C{B2} the next round. However, if it is clear that C wasn't otherwise busy, then D is supposed to play their \C{B2}.
@@ -891,10 +811,6 @@ There are cases in which, even if one player understands an ambiguous finesse, t
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Same as Example~\ref{ex:ambiguous-finesse}, but the finesse is now on a \C{B4} and C has a \C{B3} as well. Even if D understands that they have a \C{B2} in finesse position, they should still pass the finesse back to C, otherwise they would go on misplaying their \C{B2} as \C{B3}. After D passes too, C should understand that they have both \C{B2} and \C{B3} and play these cards in the subsequent turns.
 		
 		In this case A cannot leave the clue to anyone: C has no finesse to perform as they don't see any \C{B3}, and when D's turn comes, the cards in C's hand won't be in the appropriate position any more.
@@ -902,7 +818,6 @@ There are cases in which, even if one player understands an ambiguous finesse, t
 \end{example} \vspace{0.15 cm}
 
 \begin{example}	\hfill \\
-	\label{ex:layered-ambiguous-finesse}
 	\begin{minipage}{0.45\textwidth}
 		\begin{itemize}
 			\item[\Large +] \CARD{R1} \CARD{Y2} \CARD{G5} \CARD{B1} \CARD{P2} \CARD{KX}
@@ -914,10 +829,7 @@ There are cases in which, even if one player understands an ambiguous finesse, t
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
+		\label{ex:layered-ambiguous-finesse}
 		Same as Example~\ref{ex:ambiguous-finesse}, but C has a playable \C{R2} to the left of their \C{B2}. Once again, even if D understands that they have a \C{B2} in finesse position, they should still pass the finesse back to C, to get the \C{R2} played for free.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -940,10 +852,6 @@ Sometimes, one can have another player believe that a finesse is ambiguous to ge
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Same as Example~\ref{ex:layered-ambiguous-finesse}, \C{R2} and \C{B2} are switched, and D has no \C{B2}. C is supposed to play their finessed \C{B2}, but they discard instead making D believe that they have a \C{B2} in finesse position. D sees that C didn't play, and goes on playing their \C{R2}. The next round, C \emph{must} play their \C{B2} to have D understand that they have been pass bluffed, otherwise D would play their \C{G4} as \C{B2}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -966,10 +874,6 @@ Unlike a standard finesse, it is not possible to pass on a finesse that might be
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		B clues \C{BX} to E as a finesse on C's \C{B2}. C sees that D has a critical \C{K4} in discard position, and also sees that they do not have anything urgent to do, so it is likely that D will discard the next turn. C has to prevent it, so they clue \C{RX} to D as a \emph{play clue}, keeping them busy. C knows that B knew that C had to prevent the \C{K4} discard, so they are promising that the \C{BX} clue to E is actually a finesse and not a bluff.
 		
 		If it were not, for example if C had a \C{Y3} in slot 1, then after C gives a clue to D, and D plays, E would think that they have a \C{B2} instead of a \C{B3}, as no one demonstrated the bluff, and would go on misplaying it. Thus B is not allowed to bluff here, and any potential bluff must be a finesse instead.
@@ -990,10 +894,6 @@ Unfortunately, because of these issues, an ambiguous finesse is not always possi
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Here, A might be tempted to clue \C{YX} to D, as a \emph{patch finesse} on B and C. However, if C's \C{X3} do not have contextual information by which it is not actually a \C{R3} (e.g. they got the \C{X3} clue as a save clue, and the \C{R3} is not critical), the clue doesn't work. In fact B thinks that the clue is either a regular finesse on them, or a patch finesse on C, and in either case they play their card in finesse position, which is a \C{B1}. Now, as B blind-played, rather than assuming it was a patch finesse on them, C will think that the clue is a patch finesse on B (as the \C{R4} is one-away) and thus they will misplay their \C{K3} as \C{R3}. These cards must be clued in some other way.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1032,10 +932,6 @@ Let's see some examples.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		D just clued \C{PX} to C, as a \emph{play clue} on \C{P3}. One round passes, C plays \C{P3}, and D discards. If the original \C{PX} clue was not a finesse, then D would have been required to clue \C{X5} to C to prevent a misplay. They chose not to, so the clue was actually a finesse on \C{P5} too. E then plays the card that was in finesse position when the \C{PX} clue was given, which is \C{P4}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1052,10 +948,6 @@ Let's see some examples.
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Exactly the same situation, but now is A who gives the \C{PX} clue to C. B clues \C{RX} to A as a finesse, C plays \C{P3}, D plays \C{R2}, and now E doesn't know whether A intends to stop C from playing \C{P5} or not, so they discard. A plays \C{R3}, B discards, and now C sees that E had a \C{P4} in finesse position when the \C{PX} clue was given, so they assume to have \C{P5}, and clue \C{BX} to B as a prompt. D discards, and E sees that neither A stopped C from playing, nor C misplayed \C{P5} as \C{P4}, so they must have had a \C{P4} in finesse position the previous round, which they play.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1079,10 +971,6 @@ Sometimes, if a direct \emph{number play clue} on the focus of a two-card colour
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Same situation as before, but the \C{G3} in C's hand is replaced by a \C{G2}. A still clues \C{PX} to C, and as before B clues \C{RX} to A as a finesse, C plays \C{P3}, D plays \C{R2}. Now E sees that if A intended to get \C{P3} played only, they could have given a \C{X3} clue instead, which won't have required a fix. Thus, the \C{PX} clue must be a finesse, and E can play \C{P4} immediately.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1107,10 +995,6 @@ If the focus of the clue is not playable, then the clue must be a prompt or a fi
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		A clues \C{PX} clue to C. B it is a finesse on \C{P3}, so they must have \C{P2}, and it must be the leftmost of the two clued \C{X2} in their hand. As before, since a \C{X3} clue to C would have got \C{P3} only, it must also be a finesse on \C{P5}, so after D discards, E can play as well.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1132,7 +1016,7 @@ If the focus of a colour clue on two or more cards is exactly one-away, then it 
 We now deal with the case in which a clue touches both new cards, and known cards.
 
 \begin{convention}[Delayed finesse]
-If a player receives a colour clue on multiple cards, some of which are already number clued, it is a \emph{play clue}, \emph{finesse}, or \emph{delayed finesse} on the previously unclued cards. The previously number clued cards are not supposed to be playable (unless they obviously are), and this does not trigger any prompt or finesse involving these cards.
+If a player receives a colour clue on multiple cards, some of which are already number clued, it is a \emph{play clue}, \emph{finesse}, or \emph{delayed finesse} on the not previously clued cards. The previously number clued cards are not supposed to be playable (unless they obviously are), and this does not trigger any prompt or finesse involving these cards.
 
 However, if only one new card is touched, and there was a clear \emph{number play clue} to give that touched that card only, then the clue is also a finesse on the lowest rank relevant card that already had a number clue on. Possible other higher rank cards are not supposed to be involved.
 \end{convention}
@@ -1215,19 +1099,19 @@ When multiple play clues are available, it is usually better to give them to the
 \subsection{Complements}
 
 \begin{convention}[Complement 3 and 4]
-	Any \C{X3} or \C{X4} clue given during the early game that is not a \emph{fix clue} is a \emph{complement clue} instead. The player who receives it is supposed to play all their other cards, starting from cards that already have a \emph{play clue} on them in the usual priority order (see Subsection~\ref{ssec:priorities}), if any, and following with all the remaining unclued cards, \emph{from right to left} (the opposite of the usual order).
+	Any \C{X3} or \C{X4} clue given during the early game that is not a \emph{fix clue} is a \emph{complement clue} instead. The player who receives it is supposed to play all their other cards, starting from cards that already have a \emph{play clue} on them in the usual priority order (see Subsection~\ref{ssec:priorities}), if any, and following with all the remaining non-clued cards, \emph{from right to left} (the opposite of the usual order).
 \end{convention}
 
-These clues can also be given by recluing a \C{X5}.
+These clues can also be given by re-cluing a \C{X5}.
 
 \begin{convention}[Complement double 5]
-	Recluing a \C{X5} during the early game is also a \emph{complement clue}, and it is to be interpreted exactly as a \C{X3} or \C{X4} complement clue.
+	Re-cluing a \C{X5} during the early game is also a \emph{complement clue}, and it is to be interpreted exactly as a \C{X3} or \C{X4} complement clue.
 \end{convention}
 
 Complement clues can trigger finesses as well, but sometimes this can get confusing if the clue requires a fix.
 
 \begin{convention}[Two card promise and 5 fix]
-	A complement clue leaving two or more unclued cards promises that at least two of them are playable (possibly through finesses), and that if there is a third unclued card that is not playable, then it must be a \C{X5}.
+	A complement clue leaving two or more non-clued cards promises that at least two of them are playable (possibly through finesses), and that if there is a third non-clued card that is not playable, then it must be a \C{X5}.
 \end{convention}
 
 This makes it clear when a card is included in a complement (possibly triggering finesses) and when the clue requires a fix instead.
@@ -1235,7 +1119,7 @@ This makes it clear when a card is included in a complement (possibly triggering
 Using complement clues this way gives some interesting corollaries.
 
 \begin{convention}[All-but-one-1's save]
-	If a player gets a \C{X1} clue on all but one unclued card during the early game, then the remaining card must be a \C{X2} or \C{X5}. That card is permanently chop moved (it cannot be discarded), and it counts as having a \C{X2} clue for the purpose of prompts and finesses only. If that card also has a negative \C{X2} or \C{X5}, then it counts as having the appropriate number clue for all purposes.
+	If a player gets a \C{X1} clue on all but one non-clued card during the early game, then the remaining card must be a \C{X2} or \C{X5}. That card is permanently chop moved (it cannot be discarded), and it counts as having a \C{X2} clue for the purpose of prompts and finesses only. If that card also has a negative \C{X2} or \C{X5}, then it counts as having the appropriate number clue for all purposes.
 \end{convention}
 
 Since a \C{X3} or \C{X4} clue given during the early game is a complement, in order to save a black \C{X3} or \C{X4} a colour clue is needed.
@@ -1265,7 +1149,7 @@ It can happen that a complement clue must be given immediately, but it would tri
 	\item If they can't see any copy of the connecting card, then they should assume that the original clue was a finesse, hence they should play their card that was in finesse position when the clue was given.
 \end{itemize}
 
-The same holds for a card in the complement that is 2-away or more, even if it is not the text one to be played, (remember that it is promised to be playable unless it is a \C{X5}) if any connecting card must be played before the original cluer's next turn to prevent future misplays.
+The same holds for a card in the complement that is 2-away or more, even if it is not the text one to be played, (remember that it is promised to be playable unless it is a \C{X5}) if any connecting card must be played before the next turn of the player who gave the clue. This is necessary to prevent future misplays.
 
 \section{Mid game conventions}
 
@@ -1296,7 +1180,7 @@ By assuming that players are following the priority order, is it possible to per
 	If a player purposefully chooses to play a card that does not follow the priority order, they are promising that the next card of that suit is in \emph{finesse position} in the hand of some other player.
 \end{convention}
 
-It can happen that a player has a card that leads into an unclued card in someone else's hand that is not in finesse position. In such a case, it might still be worth it to play it, just so that the player with the next card will have something to do on their turn. However, this requires a \emph{fix clue} to be given to that player. If possible, that player has to interpret it as a \emph{play clue} rather than a \emph{fix clue}.
+It can happen that a player has a card that leads into a non-clued card in someone else's hand that is not in finesse position. In such a case, it might still be worth it to play it, just so that the player with the next card will have something to do on their turn. However, this requires a \emph{fix clue} to be given to that player. If possible, that player has to interpret it as a \emph{play clue} rather than a \emph{fix clue}.
 
 % TODO: Insert examples!
 
@@ -1319,7 +1203,7 @@ Of course the information is asymmetric in this game, so a player can have a tot
 Late in the game, some clues are just useless. It's clear that cluing \C{X1} when all the six \C{X1}'s have been played, or cluing \C{RX} after the \C{R5} has been played, doesn't mean that you have to play those cards. It is a complement clue instead.
 
 \begin{convention}[Trash complement]
-	Cluing any set of trash cards means that the clued player should play the complement (the cards not involved in that clue) \emph{left to right} (the usual order). The clued player should start with their compatible clued cards that are not a \C{X5} (if any), and then their unclued cards, as for finesses.
+	Cluing any set of trash cards means that the clued player should play the complement (the cards not involved in that clue) \emph{left to right} (the usual order). The clued player should start with their compatible clued cards that are not a \C{X5} (if any), and then their non-clued cards, as for finesses.
 \end{convention}
 
 \begin{example}	\hfill \\
@@ -1334,10 +1218,6 @@ Late in the game, some clues are just useless. It's clear that cluing \C{X1} whe
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		A is to play. They can safely clue \C{X1} to B, who should play their \C{G4} (followed by \C{R4} and \C{G5} in the upcoming rounds). Immediately after, C can clue \C{GX} to A. In fact, A knows that their green cards are trash (both A and C see the \C{G5} in B's hand), hence A should play the complement left to right. The \C{R5} is not immediately playable, it will be at the right moment (B has to play the \C{R4} their next turn).
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1354,10 +1234,6 @@ Late in the game, some clues are just useless. It's clear that cluing \C{X1} whe
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Similar as before, but now B doesn't have a \C{R4}. D has one, but they don't know about it, and the \C{R5} is the leftmost card in A's hand. C can still clue \C{GX} to A, and this becomes a finesse for D. In fact, C is asking A to play their leftmost card (which isn't playable), so it must be a finesse.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1373,11 +1249,7 @@ Late in the game, some clues are just useless. It's clear that cluing \C{X1} whe
 			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{K4} \CARD{G1}
 		\end{itemize}
 	\end{minipage}%
-	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
+	\begin{minipage}{0.55\textwidth}		
 		In this case there is no \C{R4} around. C may clue \C{GX} to A anyway, hoping for a \C{R4} to show up as soon as possible, and possibly cluing \C{X5} to A if it doesn't (same principle as fix clue for finesses, see \ref{unfinessing}). It is \emph{not} a finesse (yet) because the \C{R5} isn't A's first card to play. Also notice that B has a playable clued \C{X4} in their hand, hence (if they don't get any extra clue) they will play that card as a \C{R4} right after A plays their \C{B4}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1402,10 +1274,6 @@ Sometimes a trash clue can implicitly act as a prompt or a finesse for another p
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		Here C clues \C{GX} to A. It must be a complement (and a finesse on D's \C{R4} as well), as the clued green cards are trash. B can't see any \C{G4} or \C{G5}, so they can deduce that their clued \C{X4} and \C{X5} must be green.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
@@ -1421,12 +1289,8 @@ Sometimes a trash clue can implicitly act as a prompt or a finesse for another p
 			\item[\Large E] \CARD[c]{P3} \CARD[c]{P4} \CARD{Y1} \CARD{B1}
 		\end{itemize}
 	\end{minipage}%
-	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
-		Same as before, but B's \C{K4} and \C{G4} are switched. Let us also assume that B has a negative \C{X4} clue on their \C{G1}. During their next turn, B will play their \C{K4} as \C{G4}. Then, realising that it is not a \C{G4}, but knowing that they must have one, they will play their unclued \C{G4}, and finally their \C{G5}.
+	\begin{minipage}{0.55\textwidth}		
+		Same as before, but B's \C{K4} and \C{G4} are switched. Let us also assume that B has a negative \C{X4} clue on their \C{G1}. During their next turn, B will play their \C{K4} as \C{G4}. Then, realising that it is not a \C{G4}, but knowing that they must have one, they will play their non-clued \C{G4}, and finally their \C{G5}.
 	\end{minipage}
 \end{example} \vspace{0.15 cm}
 
@@ -1455,10 +1319,6 @@ It can happen that a player knows, by negative information, that all their cards
 		\end{itemize}
 	\end{minipage}%
 	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
 		A to play, no clues left, two cards in the deck. One \C{Y4} has been discarded. In order to achieve a perfect score, B must play their \C{Y4} immediately, but they don't know which card is it (from B's perspective, it may still be in the deck). All the other players already have a play.
 		
 		A knows that they don't have any relevant card, so they discard their \C{R2} from slot 3, asking B (the first player who doesn't know what to do) to play their card in the same position (the \C{Y4}). They do, then C, D, E play their clued cards, A clues \C{X5} to B with the clue they gained the last round, B plays the \C{Y5}, and the players score a 30.
@@ -1478,11 +1338,7 @@ Sometimes it can be worth it to perform a positional trash discard even if the d
 			\item[\Large E] \CARD{P2} \CARD{B1} \CARD{R1} \CARD{G3}
 		\end{itemize}
 	\end{minipage}%
-	\begin{minipage}{0.55\textwidth}
-		\hfill \\
-		
-		\textbf{Description.} \\
-		
+	\begin{minipage}{0.55\textwidth}		
 		As before, A to play, no clues left, two cards in the deck, one \C{Y4} has been discarded. B, C, and D have been permuted, and also A, not E, has the \C{K5} in their hand. Notice that there is no way to point the \C{Y4} in C's hand with one single clue.
 			
 		A still discards their \C{R2} from slot 3. It may have been the \C{K5}, but even then this is the correct play. B knows that their only relevant card is the \C{B5}, so in particular they know that they must not play. Also, C has to play two cards, so B must not discard either. In this case, B clues \C{X5} to A. C plays the \C{Y4} according to A's discard, then D plays their \C{B4}, and E, with no clues left, discards their \C{R1} from slot 3 to communicate to C that their \C{Y5} is in that slot (they drew a new card after playing their \C{Y4}). A and B play their \C{X5}'s, C play their \C{Y5} because of E's positional trash discard, and once again the players score a 30.
@@ -1535,7 +1391,7 @@ This usually works well as it rarely happens that there is more than one relevan
 %
 %Exception: if a player is in this situation because someone has already been, they told the next player to discard, and no other clue has been given yet, then the clue is a normal one (it doesn't have this artificial meaning).
 %
-%Advanced variation: if a player (not the one on the immediate left of the cluer) has an indirect \C{X2} or \C{X5} in any position (see Convention~\ref{indirect25}), then they should get a $6 \pmod 8$ if their card is a \C{X5}, and a regular modulo $8$ clue (which is always a number from $0$ to $5$) otherwise (implying that their indirect \C{X2} or \C{X5} is actually a \C{X2}).
+%Advanced variation: if a player (not the one on the immediate left of the player who gave the clue) has an indirect \C{X2} or \C{X5} in any position (see Convention~\ref{indirect25}), then they should get a $6 \pmod 8$ if their card is a \C{X5}, and a regular modulo $8$ clue (which is always a number from $0$ to $5$) otherwise (implying that their indirect \C{X2} or \C{X5} is actually a \C{X2}).
 %
 
 \end{document}

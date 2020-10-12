@@ -22,85 +22,245 @@
 \definecolor{cream}{rgb}{0.9, 0.9, 0.81}
 
 % Symbols
-\newcommand{\red}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{red.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+\newsavebox{\redbox}
+\savebox{\redbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{red.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
 }
-	
-\newcommand{\yellow}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{yellow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
-}
+\newcommand{\red}{\usebox{\redbox}}
 
-\newcommand{\green}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{green.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+\newsavebox{\yellowbox}
+\savebox{\yellowbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{yellow.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\yellow}{\usebox{\yellowbox}}
 
-\newcommand{\blue}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{blue.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+\newsavebox{\greenbox}
+\savebox{\greenbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{green.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
 }
-	
-\newcommand{\purple}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{purple.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
-}
+\newcommand{\green}{\usebox{\greenbox}}
 
-\newcommand{\teal}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{teal.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+\newsavebox{\bluebox}
+\savebox{\bluebox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{blue.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\blue}{\usebox{\bluebox}}
 
-\newcommand{\black}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{black.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+\newsavebox{\purplebox}	
+\savebox{\purplebox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{purple.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
 }
-	
-\newcommand{\white}{\scalerel*{%
-	\def\svgwidth{10 pt}%
-	\import{symbols/}{white.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
-}%
+\newcommand{\purple}{\usebox{\purplebox}}
 
-\newcommand{\rainbow}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\tealbox}	
+\savebox{\tealbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{teal.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\teal}{\usebox{\tealbox}}
+
+\newsavebox{\blackbox}
+\savebox{\blackbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{black.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\black}{\usebox{\blackbox}}
+
+\newsavebox{\whitebox}		
+\savebox{\whitebox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{white.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\white}{\usebox{\whitebox}}
+
+\newsavebox{\rainbowbox}	
+\savebox{\rainbowbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
 	\import{symbols/}{rainbow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
-	
-\newcommand{\zero}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newcommand{\rainbow}{\usebox{\rainbowbox}}
+
+\newsavebox{\zerobox}
+\savebox{\zerobox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{zero.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\zero}{\usebox{\zerobox}}
+
+\newsavebox{\onebox}	
+\savebox{\onebox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{one.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\one}{\usebox{\onebox}}
+
+\newsavebox{\twobox}	
+\savebox{\twobox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{two.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\two}{\usebox{\twobox}}
+
+\newsavebox{\threebox}	
+\savebox{\threebox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{three.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\three}{\usebox{\threebox}}
+
+\newsavebox{\fourbox}	
+\savebox{\fourbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{four.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\four}{\usebox{\fourbox}}
+
+\newsavebox{\fivebox}	
+\savebox{\fivebox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{five.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\five}{\usebox{\fivebox}}
+
+\newsavebox{\blankbox}	
+\savebox{\blankbox}{\scalerel*{%
+	\def\svgwidth{2 pt}%
+	\import{symbols/}{blank.pdf_tex}%
+	}{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\blank}{\usebox{\blankbox}}
+
+% Small symbols
+\newsavebox{\smallredbox}
+\savebox{\smallredbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{red.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallred}{\usebox{\smallredbox}}
+
+\newsavebox{\smallyellowbox}
+\savebox{\smallyellowbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{yellow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallyellow}{\usebox{\smallyellowbox}}
+
+\newsavebox{\smallgreenbox}
+\savebox{\smallgreenbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{green.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallgreen}{\usebox{\smallgreenbox}}
+
+\newsavebox{\smallbluebox}
+\savebox{\smallbluebox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{blue.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallblue}{\usebox{\smallbluebox}}
+
+\newsavebox{\smallpurplebox}	
+\savebox{\smallpurplebox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{purple.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallpurple}{\usebox{\smallpurplebox}}
+
+\newsavebox{\smalltealbox}	
+\savebox{\smalltealbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{teal.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallteal}{\usebox{\smalltealbox}}
+
+\newsavebox{\smallblackbox}
+\savebox{\smallblackbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{black.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallblack}{\usebox{\smallblackbox}}
+
+\newsavebox{\smallwhitebox}		
+\savebox{\smallwhitebox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{white.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallwhite}{\usebox{\smallwhitebox}}
+
+\newsavebox{\smallrainbowbox}	
+\savebox{\smallrainbowbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
+	\import{symbols/}{rainbow.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
+}
+\newcommand{\smallrainbow}{\usebox{\smallrainbowbox}}
+
+\newsavebox{\smallzerobox}
+\savebox{\smallzerobox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{zero.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smallzero}{\usebox{\smallzerobox}}
 
-\newcommand{\one}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\smallonebox}	
+\savebox{\smallonebox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{one.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smallone}{\usebox{\smallonebox}}
 
-\newcommand{\two}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\smalltwobox}	
+\savebox{\smalltwobox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{two.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smalltwo}{\usebox{\smalltwobox}}
 
-\newcommand{\three}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\smallthreebox}	
+\savebox{\smallthreebox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{three.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smallthree}{\usebox{\smallthreebox}}
 
-\newcommand{\four}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\smallfourbox}	
+\savebox{\smallfourbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{four.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smallfour}{\usebox{\smallfourbox}}
 
-\newcommand{\five}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\smallfivebox}	
+\savebox{\smallfivebox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{five.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smallfive}{\usebox{\smallfivebox}}
 
-\newcommand{\blank}{\scalerel*{%
-	\def\svgwidth{10 pt}%
+\newsavebox{\smallblankbox}	
+\savebox{\smallblankbox}{\tiny \scalerel*{%
+	\def\svgwidth{1 pt}%
 	\import{symbols/}{blank.pdf_tex} }{X\rule[0ex]{0pt}{1pt}}%
 }
+\newcommand{\smallblank}{\usebox{\smallblankbox}}
 
 \pgfkeys{/card/options/.is family}
 \newcommand{\cardsetup}[1]{\pgfkeys{/card/options, #1}}
@@ -109,65 +269,99 @@
 	color/.default = X,
 	color/.is choice,
 	color/X/.code = {%
-		\def \csymbol {\!}},
+		\def \csymbol {\!}%
+		\def \smallcsymbol {\!}%
+		},
 	color/R/.code = {%
-		\def \csymbol {\red}},
+		\def \csymbol {\red}%
+		\def \smallcsymbol {\smallred}%
+		},
 	color/Y/.code = {%
-		\def \csymbol {\yellow}},
+		\def \csymbol {\yellow}%
+		\def \smallcsymbol {\smallyellow}%
+		},
 	color/G/.code = {%
-		\def \csymbol {\green}},
+		\def \csymbol {\green}%
+		\def \smallcsymbol {\smallgreen}%
+		},
 	color/B/.code = {%
-		\def \csymbol {\blue}},
+		\def \csymbol {\blue}%
+		\def \smallcsymbol {\smallblue}%
+		},
 	color/P/.code = {%
-		\def \csymbol {\purple}},
+		\def \csymbol {\purple}%
+		\def \smallcsymbol {\smallpurple}%
+		},
 	color/T/.code = {%
-		\def \csymbol {\teal}},
+		\def \csymbol {\teal}%
+		\def \smallcsymbol {\smallteal}%
+		},
 	color/K/.code = {%
-		\def \csymbol {\black}},
+		\def \csymbol {\black}%
+		\def \smallcsymbol {\smallblack}%
+		},
 	color/W/.code = {%
-		\def \csymbol {\white}},
+		\def \csymbol {\white}%
+		\def \smallcsymbol {\smallwhite}%
+		},
 	color/M/.code = {%
-		\def \csymbol {\rainbow}},
+		\def \csymbol {\rainbow}%
+		\def \smallcsymbol {\smallrainbow}%
+		},
 	}
 
 \pgfkeys{/card/options,
 	number/.default = X,
 	number/.is choice,
 	number/X/.code = {%
-		\def \nsymbol {\!}},
+		\def \nsymbol {\!}%
+		\def \smallnsymbol {\!}%
+		},
 	number/0/.code = {%
-		\def \nsymbol {\zero}},
+		\def \nsymbol {\zero}%
+		\def \smallnsymbol {\smallzero}%
+		},
 	number/1/.code = {%
-		\def \nsymbol {\one}},
+		\def \nsymbol {\one}%
+		\def \smallnsymbol {\smallone}%
+		},
 	number/2/.code = {%
-		\def \nsymbol {\two}},
+		\def \nsymbol {\two}%
+		\def \smallnsymbol {\smalltwo}%
+		},
 	number/3/.code = {%
-		\def \nsymbol {\three}},
+		\def \nsymbol {\three}%
+		\def \smallnsymbol {\smallthree}%
+		},
 	number/4/.code = {%
-		\def \nsymbol {\four}},
+		\def \nsymbol {\four}%
+		\def \smallnsymbol {\smallfour}%
+		},
 	number/5/.code = {%
-		\def \nsymbol {\five}},
+		\def \nsymbol {\five}%
+		\def \smallnsymbol {\smallfive}%
+		},
 	}
 
 \pgfkeys{/card/options,	
 	colorclue/.default = false,
 	colorclue/.is choice,
 	colorclue/true/.code = {%
-		\def \cclue {(0.10, 0.35) node {\tiny \hspace{-1.5 mm} \csymbol}}%
+		\def \cclue {(0.08, 0.35) node {\smallcsymbol}}%
 		\def \bordercolor {orange}%
 	},
 	colorclue/false/.code = {%
-		\def \cclue {(0.10, 0.35) node {\tiny \hspace{-2 mm} \blank}}%
+		\def \cclue {(0.08, 0.35) node {\smallblank}}%
 		\def \bordercolor {black}%
 	},
 	numberclue/.default = false,
 	numberclue/.is choice,
 	numberclue/true/.code = {%
-		\def \nclue {(-0.02, 0.35) node {\tiny \hspace{-2 mm} \nsymbol}}%
+		\def \nclue {(-0.08, 0.35) node {\smallnsymbol}}%
 		\def \bordercolor {orange}%
 	},
 	numberclue/false/.code = {%
-		\def \nclue {(-0.02, 0.35) node {\tiny \hspace{-2 mm} \blank}}%
+		\def \nclue {(-0.08, 0.35) node {\smallblank}}%
 		\def \bordercolor {black}%
 	},	
 	finessed/.default = false,
